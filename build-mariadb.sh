@@ -25,5 +25,8 @@ sudo sed -i -e "/join_buffer_size\s*= 32/a table_cache = 2048" /etc/mysql/my.cnf
 
 sudo systemctl restart mariadb
 
-cd && mysql_secure_installation
-cd -
+PWD=$(pwd)
+cd ~ && mysql_secure_installation
+cd $PWD # Reset path
+
+sudo apt install --no-install-recommends mysql-workbench

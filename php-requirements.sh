@@ -8,7 +8,7 @@ sudo apt install -y build-essential \
     file \
     g++ \
     gcc \
-    libc-dev \
+    libc6-dev \
     make \
     pkg-config \
     re2c \
@@ -19,12 +19,12 @@ sudo apt install -y build-essential \
     libsqlite3-0 \
     libxml2 \
     xz-utils \
-    libicu57 \
+    libicu60 \
     libbz2-1.0 \
     libxslt1.1 \
     apache2 \
     libcurl4-openssl-dev \
-    libreadline6-dev \
+    libreadline-dev \
     libedit-dev \
     librecode-dev \
     libsqlite3-dev \
@@ -32,7 +32,7 @@ sudo apt install -y build-essential \
     libxml2-dev \
     libicu-dev \
     libbz2-dev \
-    libxslt-dev \
+    libxslt1-dev \
     apache2-dev \
     libfreetype6 \
     libjpeg62 \
@@ -46,18 +46,18 @@ sudo apt install -y build-essential \
 sudo ln -sf /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib
 sudo ln -sf /usr/include/x86_64-linux-gnu/curl /usr/include/curl
 
-cat << EOF
+sudo sh -c "cat > /etc/apache2/conf-available/php.conf << EOF
 <FilesMatch \.php$>
     SetHandler application/x-httpd-php
 </FilesMatch>
 
 DirectoryIndex disabled
 DirectoryIndex index.php index.html
-EOF | sudo tee /etc/apache2/conf-available/php.conf
+EOF"
 sudo a2enconf php
 
 sudo systemctl restart apache2
 
 # Create phpinfo
 sudo mkdir -p /var/www/html/phpinfo
-sudo echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo/index.php
+sudo echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/phpinfo/index.php

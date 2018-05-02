@@ -18,3 +18,12 @@ sudo sed -i -e "s|#collation-server\s*= utf8_general_ci|collation-server = utf8_
 sudo sed -i -e "s|#character_set_server\s*= utf8|character_set_server = utf8|" /etc/mysql/conf.d/mariadb.cnf
 sudo sed -i -e "s|#collation_server\s*= utf8_general_ci|collation_server = utf8_general_ci|" /etc/mysql/conf.d/mariadb.cnf
 sudo sed -i -e "s|max_allowed_packet\s*= 16M|max_allowed_packet = 64M|" /etc/mysql/my.cnf
+sudo sed -i -e "s|tmp_table_size\s*= 32M|tmp_table_size = 256M|" /etc/mysql/my.cnf
+sudo sed -i -e "s|max_heap_table_size\s*= 32M|max_heap_table_size = 256M|" /etc/mysql/my.cnf
+sudo sed -i -e "/max_heap_table_size\s*= 256M/a join_buffer_size = 32M" /etc/mysql/my.cnf
+sudo sed -i -e "/join_buffer_size\s*= 32/a table_cache = 2048" /etc/mysql/my.cnf
+
+sudo systemctl restart mariadb
+
+cd && mysql_secure_installation
+cd -

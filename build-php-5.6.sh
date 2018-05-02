@@ -16,12 +16,12 @@ PHP_PATH="/usr/local/php/$VERSION"
 INI_PATH="/etc/php/$TINY_VERSION"
 CONF_PATH="$INI_PATH/conf.d"
 
-mkdir -p $PHP_PATH && cd $_
-curl -SsL $PHP_URL -o $PHP_VERSION.tar.xz
-tar -xJf $PHP_VERSION.tar.xz
-mv $PHP_VERSION src && cd $_
-sed -i 's/PHP_EXTRA_VERSION=""/PHP_EXTRA_VERSION="-custom"/g' configure
-./configure \
+sudo mkdir -p $PHP_PATH && cd $_
+sudo curl -SsL $PHP_URL -o $PHP_VERSION.tar.xz
+sudo tar -xJf $PHP_VERSION.tar.xz
+sudo mv $PHP_VERSION src && cd $_
+sudo sed -i 's/PHP_EXTRA_VERSION=""/PHP_EXTRA_VERSION="-custom"/g' configure
+sudo ./configure \
     --prefix=/usr/local/php/$VERSION \
     --sbindir=/usr/local/php/$VERSION \
     --sysconfdir=/usr/local/php/$VERSION \
@@ -89,44 +89,45 @@ sed -i 's/PHP_EXTRA_VERSION=""/PHP_EXTRA_VERSION="-custom"/g' configure
     --enable-opcache \
     CFLAGS="-llber"
 
-make -j5 && make install
+sudo make -j5 && sudo make install
 cd $PHP_PATH
-mkdir apache2
-a2dismod php5
-cp /usr/lib/apache2/modules/libphp5.so /etc/apache2/mods-available/php5.load apache2/
-rm /usr/lib/apache2/modules/libphp5.so /etc/apache2/mods-available/php5.load
-chmod -x apache2/*
-./bin/pecl install apcu-4.0.11 xdebug-2.5.1
-chmod -x lib/php/20131226/*
-rm $PHP_VERSION.tar.xz
+sudo mkdir apache2
+sudo a2dismod php5
+sudo cp /usr/lib/apache2/modules/libphp5.so /etc/apache2/mods-available/php5.load apache2/
+sudo rm /usr/lib/apache2/modules/libphp5.so /etc/apache2/mods-available/php5.load
+sudo chmod -x apache2/*
+sudo ./bin/pecl install apcu-4.0.11 xdebug-2.5.1
+sudo chmod -x lib/php/20131226/*
+sudo rm $PHP_VERSION.tar.xz
 
 if [ ! -d "$INI_PATH" ]; then
-    mkdir -p $INI_PATH $CONF_PATH
+    sudo mkdir -p $INI_PATH $CONF_PATH
 
-    cp $PHP_PATH/src/php.ini-development $INI_PATH/php.ini
+    sudo cp $PHP_PATH/src/php.ini-development $INI_PATH/php.ini
     cd $INI_PATH
-    sed -i -e "s|max_execution_time = 30|max_execution_time = 60|" php.ini
-    sed -i -e "s|memory_limit = 128M|memory_limit = 512M|" php.ini
-    sed -i -e "s|post_max_size = 8M|post_max_size = 55M|" php.ini
-    sed -i -e "s|upload_max_filesize = 2M|upload_max_filesize = 50M|" php.ini
-    sed -i -e "s|;date.timezone =|date.timezone = Europe/Brussels|" php.ini
-    sed -i -e "s|;cgi.fix_pathinfo=1|cgi.fix_pathinfo = 0|" php.ini
-    sed -i -e "s|;realpath_cache_size = 16k|realpath_cache_size = 4096K|" php.ini
-    sed -i -e "s|;realpath_cache_ttl = 120|realpath_cache_ttl = 600|" php.ini
+    sudo sed -i -e "s|max_execution_time = 30|max_execution_time = 60|" php.ini
+    sudo sed -i -e "s|memory_limit = 128M|memory_limit = 512M|" php.ini
+    sudo sed -i -e "s|post_max_size = 8M|post_max_size = 55M|" php.ini
+    sudo sed -i -e "s|upload_max_filesize = 2M|upload_max_filesize = 50M|" php.ini
+    sudo sed -i -e "s|;date.timezone =|date.timezone = Europe/Brussels|" php.ini
+    sudo sed -i -e "s|;cgi.fix_pathinfo=1|cgi.fix_pathinfo = 0|" php.ini
+    sudo sed -i -e "s|;realpath_cache_size = 16k|realpath_cache_size = 4096K|" php.ini
+    sudo sed -i -e "s|;realpath_cache_ttl = 120|realpath_cache_ttl = 600|" php.ini
+    sudo sed -i -e "s|\(mysqli\?.default_socket\)\s*=|\1 = /var/run/mysqld/mysqld.sock|" php.ini
 
-    cat > $CONF_PATH/apcu.ini << EOF
+    sudo sh -c "cat > $CONF_PATH/apcu.ini << EOF
 [apcu]
-extension="apcu.so"
+extension=\"apcu.so\"
 apc.enabled=1
 apc.shm_segments=1
 apc.shm_size=128M
 apc.ttl=7200
 apc.enable_cli=0
-EOF
+EOF"
 
-    cat > $CONF_PATH/opcache.ini << EOF
+    sudo sh -c "cat > $CONF_PATH/opcache.ini << EOF
 [opcache]
-zend_extension="/usr/local/php/5.6/lib/php/20131226/opcache.so"
+zend_extension=\"/usr/local/php/5.6/lib/php/20131226/opcache.so\"
 opcache.enable=1
 opcache.enable_cli=1
 opcache.memory_consumption=128
@@ -134,19 +135,19 @@ opcache.interned_strings_buffer=8
 opcache.fast_shutdown=1
 opcache.revalidate_freq=0
 opcache.max_accelerated_files = 20000
-EOF
+EOF"
 
-    cat > $CONF_PATH/xdebug.ini << EOF
+    sudo sh -c "cat > $CONF_PATH/xdebug.ini << EOF
 [xdebug]
-zend_extension="/usr/local/php/5.6/lib/php/20131226/xdebug.so"
+zend_extension=\"/usr/local/php/5.6/lib/php/20131226/xdebug.so\"
 xdebug.default_enable=1
 xdebug.profiler_enable=0
 xdebug.idekey=PHPSTORM
 xdebug.max_nesting_level=200
 xdebug.remote_enable=1
 xdebug.remote_autostart=0
-EOF
+EOF"
 fi
 
 cd $PHP_PATH/..
-ln -s $PHP_PATH $TINY_VERSION
+sudo ln -sfn $PHP_PATH $TINY_VERSION

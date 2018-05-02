@@ -26,7 +26,7 @@ sudo sed -i 's/01;32m/01;31m/' /root/.bashrc
 echo 'yannick ALL=(ALL:ALL) NOPASSWD: ALL' | sudo tee /etc/sudoers.d/users
 
 sudo apt purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine \
-    fonts-lklug-sinhala
+    fonts-lklug-sinhala nano
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 

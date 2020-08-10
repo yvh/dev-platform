@@ -47,3 +47,9 @@ sudo sed -i 's#APACHE_RUN_USER=www-data#APACHE_RUN_USER=yvh#g' /etc/apache2/envv
 sudo sed -i 's#APACHE_RUN_GROUP=www-data#APACHE_RUN_GROUP=yvh#g' /etc/apache2/envvars
 
 sudo systemctl restart apache2
+
+# mariadb
+sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
+sudo sh -c 'echo "deb [arch=amd64] http://mariadb.mirror.nucleus.be/repo/10.5/ubuntu focal main" > /etc/apt/sources.list.d/mariadb.list'
+sudo apt update && sudo apt install -y mariadb-server mariadb-client
+sudo mysql_secure_installation

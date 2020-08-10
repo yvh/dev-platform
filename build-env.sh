@@ -6,9 +6,6 @@ set -ex
 sudo add-apt-repository -y ppa:libreoffice/ppa
 sudo add-apt-repository -y ppa:git-core/ppa
 sudo add-apt-repository -y ppa:remmina-ppa-team/remmina-next
-#curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-#curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-#echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
 sudo apt -y full-upgrade
 sudo apt install -y tlp open-vm-tools-desktop vim curl ubuntu-restricted-extras \

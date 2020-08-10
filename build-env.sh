@@ -12,7 +12,7 @@ sudo add-apt-repository -y ppa:remmina-ppa-team/remmina-next
 
 sudo apt -y full-upgrade
 sudo apt install -y tlp open-vm-tools-desktop vim curl ubuntu-restricted-extras \
-    subversion git sshfs htop zsh nodejs yarn gimp gimp-data-extras libreoffice libreoffice-style-breeze \
+    subversion git sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze \
     gnome-tweak-tool
 sudo apt install --no-install-recommends kdiff3 wireshark
 
@@ -29,3 +29,8 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
 sudo apt update && sudo apt install -y atom
+
+# nodejs & yarn
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo npm install -g yarn

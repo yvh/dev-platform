@@ -55,6 +55,9 @@ sudo sh -c 'echo "deb [arch=amd64] http://mariadb.mirror.nucleus.be/repo/10.5/ub
 sudo apt update && sudo apt install -y mariadb-server mariadb-client
 sudo mysql_secure_installation
 
+sudo add-apt-repository ppa:serge-rider/dbeaver-ce
+sudo apt update && sudo apt install -y dbeaver-ce
+
 # php
 sudo add-apt-repository ppa:ondrej/php
 for VERSION in 5.6 7.0 7.1 7.2 7.3 7.4;do

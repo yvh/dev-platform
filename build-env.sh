@@ -97,3 +97,7 @@ echo "xdebug.idekey=PHPSTORM" >> xdebug.ini; \
 echo "xdebug.max_nesting_level=200" >> xdebug.ini; \
 echo "xdebug.remote_enable=1" >> xdebug.ini; \
 echo "xdebug.remote_autostart=0" >> xdebug.ini
+
+# docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io

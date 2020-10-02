@@ -8,7 +8,8 @@ sudo add-apt-repository -y ppa:git-core/ppa
 sudo add-apt-repository -y ppa:remmina-ppa-team/remmina-next
 
 sudo apt -y full-upgrade
-sudo apt install -y tlp open-vm-tools-desktop vim curl ubuntu-restricted-extras \
+sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
+    tlp open-vm-tools-desktop vim curl ubuntu-restricted-extras \
     subversion git sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze \
     gnome-tweak-tool
 sudo apt install --no-install-recommends kdiff3 wireshark

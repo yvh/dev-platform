@@ -101,5 +101,6 @@ echo "xdebug.remote_autostart=0" >> xdebug.ini
 
 # docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo sh -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list'
 sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker yvh

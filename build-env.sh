@@ -59,6 +59,8 @@ sudo apt update && sudo apt install -y dbeaver-ce
 # php
 sudo add-apt-repository ppa:ondrej/php
 
+sudo su -
+
 for VERSION in 5.6 7.0 7.1 7.2 7.3 7.4; do
   apt install php${VERSION} php${VERSION}-bz2 php${VERSION}-cli php${VERSION}-curl php${VERSION}-gd php${VERSION}-intl php${VERSION}-json php${VERSION}-ldap php${VERSION}-mbstring php${VERSION}-mysql php${VERSION}-opcache php${VERSION}-readline php${VERSION}-xml php${VERSION}-xsl php${VERSION}-zip
 
@@ -71,6 +73,7 @@ for VERSION in 5.6 7.0 7.1 7.2 7.3 7.4; do
     sed -i -e "s|;date.timezone =|date.timezone = Europe/Brussels|" php.ini
     sed -i -e "s|;cgi.fix_pathinfo=1|cgi.fix_pathinfo = 0|" php.ini
     sed -i -e "s|;realpath_cache_ttl = 120|realpath_cache_ttl = 600|" php.ini
+    sed -i -e "s|;sendmail_path =|sendmail_path = /usr/local/bin/mhsendmail|" php.ini
 
     if [ ${VERSION} = "5.6" ]; then
       sed -i -e "s|;realpath_cache_size = 16k|realpath_cache_size = 4096K|" php.ini

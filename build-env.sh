@@ -5,6 +5,7 @@ set -ex
 # Upgrade & install some apps
 sudo add-apt-repository -y ppa:libreoffice/ppa
 sudo add-apt-repository -y ppa:git-core/ppa
+sudo add-apt-repository -y ppa:otto-kesselgulasch/gimp
 sudo add-apt-repository -y ppa:remmina-ppa-team/remmina-next
 
 sudo apt -y full-upgrade
@@ -48,8 +49,9 @@ sudo sed -i 's#APACHE_RUN_GROUP=www-data#APACHE_RUN_GROUP=yvh#g' /etc/apache2/en
 sudo systemctl restart apache2
 
 # mariadb
-sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
-sudo sh -c 'echo "deb [arch=amd64] http://mariadb.mirror.nucleus.be/repo/10.5/ubuntu focal main" > /etc/apt/sources.list.d/mariadb.list'
+sudo apt-key --keyring /etc/apt/trusted.gpg.d/mariadb.gpg adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
+sudo sh -c 'echo "deb [arch=amd64] http://ams2.mirrors.digitalocean.com/mariadb/repo/10.5/ubuntu groovy main" > /etc/apt/sources.list.d/mariadb.list'
+sudo sh -c 'echo "#deb-src http://ams2.mirrors.digitalocean.com/mariadb/repo/10.5/ubuntu groovy main" >> /etc/apt/sources.list.d/mariadb.list'
 sudo apt update && sudo apt install -y mariadb-server mariadb-client
 sudo mysql_secure_installation
 

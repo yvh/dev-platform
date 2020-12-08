@@ -5,7 +5,6 @@ set -ex
 # Upgrade & install some apps
 sudo add-apt-repository -y ppa:libreoffice/ppa
 sudo add-apt-repository -y ppa:git-core/ppa
-sudo add-apt-repository -y ppa:otto-kesselgulasch/gimp
 sudo add-apt-repository -y ppa:remmina-ppa-team/remmina-next
 
 sudo apt -y full-upgrade

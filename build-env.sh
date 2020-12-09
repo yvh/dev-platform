@@ -27,7 +27,7 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 # atom
 curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key --keyring /etc/apt/trusted.gpg.d/atom.gpg add -
 sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
-sudo apt update && sudo apt install -y atom
+sudo apt update && sudo apt install -y --no-install-recommends atom
 
 # nodejs & yarn
 #curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -

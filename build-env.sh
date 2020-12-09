@@ -17,8 +17,8 @@ sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-ag
 sudo apt install --no-install-recommends kdiff3 wireshark
 
 sudo update-alternatives --set editor /usr/bin/vim.basic
-#sudo sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
-#sudo sed -i 's/01;32m/01;31m/' /root/.bashrc
+sudo sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
+sudo sed -i 's/01;32m/01;31m/' /root/.bashrc
 
 sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano
 

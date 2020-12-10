@@ -19,6 +19,7 @@ for VERSION in 5.6 7.0 7.1 7.2 7.3 7.4 8.0; do
     sudo sed -i -e "s|;date.timezone =|date.timezone = Europe/Brussels|" php.ini
     sudo sed -i -e "s|;cgi.fix_pathinfo=1|cgi.fix_pathinfo = 0|" php.ini
     sudo sed -i -e "s|;realpath_cache_ttl = 120|realpath_cache_ttl = 600|" php.ini
+    sudo sed -i -e "s|;sendmail_path =|sendmail_path = /usr/bin/msmtp -t|" php.ini
 
     if [[ ${VERSION} == 5\.* ]]; then
       sudo sed -i -e "s|;realpath_cache_size = 16k|realpath_cache_size = 4096K|" php.ini

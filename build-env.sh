@@ -13,17 +13,23 @@ sudo add-apt-repository -y ppa:git-core/ppa
 sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     tlp vim curl ubuntu-restricted-extras subversion git sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze \
-    gnome-tweak-tool
+    gnome-tweak-tool msmtp
 sudo apt install --no-install-recommends kdiff3 wireshark
 
 sudo update-alternatives --set editor /usr/bin/vim.basic
 sudo sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
 sudo sed -i 's/01;32m/01;31m/' /root/.bashrc
+sudo cp msmtprc /etc/msmtprc
 
 sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano
 
 # Oh my zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# set mailhog
+curl -sSL https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64 -o /usr/local/bin/mailhog
+sudo cp mailhog.service /etc/systemd/system/mailhog.service
+sudo systemctl enable --now mailhog
 
 # atom
 curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key --keyring /etc/apt/trusted.gpg.d/atom.gpg add -
@@ -67,8 +73,3 @@ sudo apt update && sudo apt install spotify-client
 # change inotify for idea (phpstorm)
 sudo sh -c 'echo "fs.inotify.max_user_watches = 524288" > /etc/sysctl.d/10-idea.conf'
 sudo sysctl -p --system
-
-# set mailhog
-curl -sSL https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64 -o /usr/local/bin/mailhog
-sudo cp mailhog.service /etc/systemd/system/mailhog.service
-sudo systemctl enable --now mailhog

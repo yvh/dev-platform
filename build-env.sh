@@ -14,7 +14,7 @@ sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     tlp vim curl ubuntu-restricted-extras subversion git sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze \
     gnome-tweak-tool msmtp
-sudo apt install --no-install-recommends kdiff3 wireshark
+sudo apt install -y --no-install-recommends kdiff3 wireshark
 
 curl -SL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/google-chrome-stable_current_amd64.deb
 sudo apt install -y /tmp/google-chrome-stable_current_amd64.deb
@@ -51,11 +51,11 @@ sudo npm install -g yarn
 # mariadb
 ./build-mariadb.sh
 
-sudo add-apt-repository ppa:serge-rider/dbeaver-ce
+sudo add-apt-repository -y ppa:serge-rider/dbeaver-ce
 sudo apt update && sudo apt install -y dbeaver-ce
 
 # php
-sudo add-apt-repository ppa:ondrej/php
+sudo add-apt-repository -y ppa:ondrej/php
 ./build-php.sh
 sudo mkdir -p /var/www/html/phpinfo
 sudo sh -c 'echo "<?php phpinfo();" > /var/www/html/phpinfo/index.php'
@@ -69,7 +69,7 @@ sudo usermod -aG docker yvh
 # spotify
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key --keyring /etc/apt/trusted.gpg.d/spotify.gpg add -
 sudo sh -c 'echo "deb http://repository.spotify.com stable non-free" > /etc/apt/sources.list.d/spotify.list'
-sudo apt update && sudo apt install spotify-client
+sudo apt update && sudo apt install -y spotify-client
 
 # change inotify for idea (phpstorm)
 sudo sh -c 'echo "fs.inotify.max_user_watches = 524288" > /etc/sysctl.d/10-idea.conf'

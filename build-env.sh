@@ -27,7 +27,8 @@ sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machi
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # set mailhog
-curl -sSL https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64 -o /usr/local/bin/mailhog
+sudo curl -sSL https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64 -o /usr/local/bin/mailhog
+sudo chmod +x /usr/local/bin/mailhog
 sudo cp mailhog.service /etc/systemd/system/mailhog.service
 sudo systemctl enable --now mailhog
 

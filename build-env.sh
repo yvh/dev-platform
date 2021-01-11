@@ -3,7 +3,7 @@
 set -ex
 
 # /tmp to tmpfs
-sudo cp -v /usr/share/systemd/tmp.mount /etc/systemd/system/ 
+sudo cp -v /usr/share/systemd/tmp.mount /etc/systemd/system/
 sudo systemctl enable --now tmp.mount
 
 # Upgrade & install some apps
@@ -22,9 +22,6 @@ sudo sed -i 's/01;32m/01;31m/' /root/.bashrc
 sudo cp msmtprc /etc/msmtprc
 
 sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano
-
-# Oh my zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # set mailhog
 sudo curl -sSL https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64 -o /usr/local/bin/mailhog
@@ -74,3 +71,6 @@ sudo apt update && sudo apt install spotify-client
 # change inotify for idea (phpstorm)
 sudo sh -c 'echo "fs.inotify.max_user_watches = 524288" > /etc/sysctl.d/10-idea.conf'
 sudo sysctl -p --system
+
+# Oh my zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

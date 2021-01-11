@@ -16,6 +16,9 @@ sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-ag
     gnome-tweak-tool msmtp
 sudo apt install --no-install-recommends kdiff3 wireshark
 
+curl -SL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/google-chrome-stable_current_amd64.deb
+sudo apt install -y /tmp/google-chrome-stable_current_amd64.deb
+
 sudo update-alternatives --set editor /usr/bin/vim.basic
 sudo sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
 sudo sed -i 's/01;32m/01;31m/' /root/.bashrc
@@ -24,7 +27,7 @@ sudo cp msmtprc /etc/msmtprc
 sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano
 
 # set mailhog
-sudo curl -sSL https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64 -o /usr/local/bin/mailhog
+sudo curl -SL https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64 -o /usr/local/bin/mailhog
 sudo chmod +x /usr/local/bin/mailhog
 sudo cp mailhog.service /etc/systemd/system/mailhog.service
 sudo systemctl enable --now mailhog

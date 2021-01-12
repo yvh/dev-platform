@@ -13,7 +13,7 @@ sudo add-apt-repository -y ppa:git-core/ppa
 sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     tlp vim curl subversion git sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze \
-    msmtp ttf-mscorefonts-installer
+    msmtp ttf-mscorefonts-installer filezilla hunspell-fr hunspell-fr-modern
 sudo apt install -y --no-install-recommends kdiff3 wireshark
 
 # google chrome

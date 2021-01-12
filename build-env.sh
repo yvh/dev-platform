@@ -13,7 +13,7 @@ sudo add-apt-repository -y ppa:git-core/ppa
 sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     tlp vim curl subversion git sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze \
-    msmtp ttf-mscorefonts-installer filezilla hunspell-fr hunspell-fr-modern
+    msmtp ttf-mscorefonts-installer filezilla hunspell-fr hunspell-fr-modern network-manager-fortisslvpn
 sudo apt install -y --no-install-recommends kdiff3 wireshark
 
 # google chrome
@@ -21,9 +21,9 @@ curl -SL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 sudo apt install -y /tmp/google-chrome-stable_current_amd64.deb
 
 # atom
-#curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key --keyring /etc/apt/trusted.gpg.d/atom.gpg add -
-#sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
-#sudo apt update && sudo apt install -y --no-install-recommends atom
+curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key --keyring /etc/apt/trusted.gpg.d/atom.gpg add -
+sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
+sudo apt update && sudo apt install -y --no-install-recommends atom
 
 # customization
 sudo update-alternatives --set editor /usr/bin/vim.basic

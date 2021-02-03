@@ -33,9 +33,15 @@ chmod g-w msmtprc
 sudo cp msmtprc /etc/msmtprc
 
 # remove uneccessary apps
-sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano firefox firefox-locale-en
+sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano firefox firefox-locale-en kate
 sudo apt autoremove --purge -y
-rm -r ~/.cache/mozilla ~/.mozilla
+rm -rf ~/.cache/mozilla ~/.mozilla
+rm -rf ~/.config/kateschemarc \
+    ~/.config/katevirc \
+    ~/.config/katerc \
+    ~/.config/katemetainfos \
+    ~/.local/share/kate \
+    ~/.local/share/kate/anonymous.katesession
 
 # set mailhog
 sudo curl -SL https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64 -o /usr/local/bin/mailhog

@@ -13,8 +13,8 @@ sudo add-apt-repository -y ppa:git-core/ppa
 sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     tlp vim curl subversion git sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze \
-    ttf-mscorefonts-installer filezilla hunspell-fr hunspell-fr-modern network-manager-fortisslvpn \
-    ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto
+    filezilla hunspell-fr hunspell-fr-modern network-manager-fortisslvpn \
+    ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline
 sudo apt install -y --no-install-recommends kdiff3 wireshark
 
 # google chrome
@@ -22,9 +22,9 @@ curl -SL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 sudo apt install -y /tmp/google-chrome-stable_current_amd64.deb
 
 # atom
-curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key --keyring /etc/apt/trusted.gpg.d/atom.gpg add -
-sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
-sudo apt update && sudo apt install -y --no-install-recommends atom
+#curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key --keyring /etc/apt/trusted.gpg.d/atom.gpg add -
+#sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
+#sudo apt update && sudo apt install -y --no-install-recommends atom
 
 # customization
 sudo update-alternatives --set editor /usr/bin/vim.basic
@@ -35,15 +35,9 @@ sudo sed -i 's/01;32m/01;31m/' /root/.bashrc
 #sudo cp msmtprc /etc/msmtprc
 
 # remove uneccessary apps
-sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano firefox firefox-locale-en kate
+sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano firefox firefox-locale-en skanlite
 sudo apt autoremove --purge -y
 rm -rf ~/.cache/mozilla ~/.mozilla
-rm -rf ~/.config/kateschemarc \
-    ~/.config/katevirc \
-    ~/.config/katerc \
-    ~/.config/katemetainfos \
-    ~/.local/share/kate \
-    ~/.local/share/kate/anonymous.katesession
 
 # set mailhog
 #sudo curl -SL https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64 -o /usr/local/bin/mailhog
@@ -64,7 +58,7 @@ sudo npm install -g yarn
 #./build-apache.sh
 
 # mariadb
-#./build-mariadb.sh
+./build-mariadb.sh
 
 #sudo add-apt-repository -y ppa:serge-rider/dbeaver-ce
 #sudo apt update && sudo apt install -y dbeaver-ce
@@ -82,9 +76,9 @@ sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker yvh
 
 # spotify
-curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key --keyring /etc/apt/trusted.gpg.d/spotify.gpg add -
-sudo sh -c 'echo "deb http://repository.spotify.com stable non-free" > /etc/apt/sources.list.d/spotify.list'
-sudo apt update && sudo apt install -y spotify-client
+#curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key --keyring /etc/apt/trusted.gpg.d/spotify.gpg add -
+#sudo sh -c 'echo "deb http://repository.spotify.com stable non-free" > /etc/apt/sources.list.d/spotify.list'
+#sudo apt update && sudo apt install -y spotify-client
 
 # change inotify for idea (phpstorm)
 sudo sh -c 'echo "fs.inotify.max_user_watches = 524288" > /etc/sysctl.d/10-idea.conf'
@@ -92,6 +86,8 @@ sudo sysctl -p --system
 
 # full-upgrade
 sudo apt -y full-upgrade
+
+sudo apt autoremove --purge -y
 
 # Oh my zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

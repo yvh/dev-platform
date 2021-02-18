@@ -35,7 +35,8 @@ sudo sed -i 's/01;32m/01;31m/' /root/.bashrc
 #sudo cp msmtprc /etc/msmtprc
 
 # remove uneccessary apps
-sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano firefox firefox-locale-en skanlite
+sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano firefox firefox-locale-en skanlite \
+    kio-audiocd
 sudo apt autoremove --purge -y
 rm -rf ~/.cache/mozilla ~/.mozilla
 

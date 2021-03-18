@@ -13,9 +13,15 @@ sudo add-apt-repository -y ppa:git-core/ppa
 sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     tlp vim curl subversion git sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze \
-    filezilla hunspell-fr hunspell-fr-modern network-manager-fortisslvpn inkscape gufw \
+    filezilla hunspell-fr hunspell-fr-modern network-manager-fortisslvpn inkscape \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline
 sudo apt install -y --no-install-recommends kdiff3 wireshark
+
+# github cli
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+sudo sh -c 'echo "deb https://cli.github.com/packages $(lsb_release -cs) main" > /etc/apt/sources.list.d/github.list'
+sudo sh -c 'echo "#deb-src https://cli.github.com/packages $(lsb_release -cs) main" >> /etc/apt/sources.list.d/github.list'
+sudo apt update && sudo apt install -y gh
 
 # google chrome
 curl -SL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/google-chrome-stable_current_amd64.deb
@@ -75,6 +81,9 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key --keyring
 sudo sh -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list'
 sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker yvh
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
 # spotify
 #curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key --keyring /etc/apt/trusted.gpg.d/spotify.gpg add -

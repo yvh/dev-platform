@@ -28,7 +28,7 @@ for VERSION in 7.3 7.4 8.0; do
   sudo update-alternatives --set php-config /usr/bin/php-config${VERSION}
   sudo update-alternatives --set phpize /usr/bin/phpize${VERSION}
 
-  sudo pecl -d php_suffix=${VERSION} install apcu ast xdebug && sudo pecl uninstall -r apcu ast xdebug
+  sudo pecl -d php_suffix=${VERSION} install apcu ast ssh2-1.3.1 xdebug && sudo pecl uninstall -r apcu ast ssh2 xdebug
 
   cd /etc/php/${VERSION}/mods-available
   sudo sh -c 'echo "extension=apcu.so" > apcu.ini'
@@ -41,6 +41,9 @@ for VERSION in 7.3 7.4 8.0; do
   
   sudo sh -c 'echo "extension=ast.so" > ast.ini'
   sudo phpenmod -v ${VERSION} -s cli ast
+  
+  sudo sh -c 'echo "extension=ssh2.so" > ssh2.ini'
+  sudo phpenmod -v ${VERSION} -s cli ssh2
 
   sudo sh -c 'echo "opcache.enable=1" >> opcache.ini'
   sudo sh -c 'echo "opcache.enable_cli=1" >> opcache.ini'
@@ -56,11 +59,5 @@ for VERSION in 7.3 7.4 8.0; do
   sudo sh -c 'echo "xdebug.max_nesting_level=200" >> xdebug.ini'
   sudo sh -c 'echo "xdebug.remote_enable=1" >> xdebug.ini'
   sudo sh -c 'echo "xdebug.remote_autostart=0" >> xdebug.ini'
-  sudo phpenmod -v ${VERSION} -s cli xdebug
-  
-  if [[ ${VERSION} != 8\.* ]]; then
-    sudo pecl -d php_suffix=${VERSION} install ssh2-1.2 && sudo pecl uninstall -r ssh2
-    sudo sh -c 'echo "extension=ssh2.so" > ssh2.ini'
-    sudo phpenmod -v ${VERSION} -s cli ssh2
-  fi
+  sudo phpenmod -v ${VERSION} -s cli xdebug 
 done

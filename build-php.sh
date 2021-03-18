@@ -28,7 +28,7 @@ for VERSION in 7.3 7.4 8.0; do
   sudo update-alternatives --set php-config /usr/bin/php-config${VERSION}
   sudo update-alternatives --set phpize /usr/bin/phpize${VERSION}
 
-  sudo pecl -d php_suffix=${VERSION} install apcu xdebug && sudo pecl uninstall -r apcu xdebug
+  sudo pecl -d php_suffix=${VERSION} install apcu ast xdebug && sudo pecl uninstall -r apcu ast xdebug
 
   cd /etc/php/${VERSION}/mods-available
   sudo sh -c 'echo "extension=apcu.so" > apcu.ini'
@@ -38,6 +38,9 @@ for VERSION in 7.3 7.4 8.0; do
   sudo sh -c 'echo "apc.ttl=7200" >> apcu.ini'
   sudo sh -c 'echo "apc.enable_cli=0" >> apcu.ini'
   sudo phpenmod -v ${VERSION} -s cli apcu
+  
+  sudo sh -c 'echo "extension=ast.so" > ast.ini'
+  sudo phpenmod -v ${VERSION} -s cli ast
 
   sudo sh -c 'echo "opcache.enable=1" >> opcache.ini'
   sudo sh -c 'echo "opcache.enable_cli=1" >> opcache.ini'

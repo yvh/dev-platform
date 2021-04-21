@@ -8,12 +8,12 @@ sudo systemctl enable --now tmp.mount
 
 # upgrade & install some apps
 sudo add-apt-repository -y ppa:libreoffice/ppa
-sudo add-apt-repository -y ppa:git-core/ppa
+sudo add-apt-repository -y ppa:remmina-ppa-team/remmina-next
 
 sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
-    tlp vim curl subversion git sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze \
-    filezilla hunspell-fr hunspell-fr-modern network-manager-fortisslvpn inkscape \
+    tlp vim curl subversion sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze \
+    filezilla hunspell-fr hunspell-fr-modern network-manager-fortisslvpn inkscape remmina \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline
 sudo apt install -y --no-install-recommends kdiff3 wireshark
 

@@ -26,6 +26,8 @@ for VERSION in 7.3 7.4 8.0; do
   sudo update-alternatives --set php /usr/bin/php${VERSION}
   sudo update-alternatives --set php-config /usr/bin/php-config${VERSION}
   sudo update-alternatives --set phpize /usr/bin/phpize${VERSION}
+  sudo update-alternatives --set phar /usr/bin/phar${VERSION}
+  sudo update-alternatives --set phar.phar /usr/bin/phar.phar${VERSION}
 
   sudo pecl -d php_suffix=${VERSION} install apcu ast ssh2-1.3.1 xdebug && sudo pecl uninstall -r apcu ast ssh2 xdebug
 
@@ -60,3 +62,6 @@ for VERSION in 7.3 7.4 8.0; do
     sudo phpenmod -v ${VERSION} -s ${SYSTEM} apcu ast ssh2 xdebug
   done
 done
+
+sudo cp php-switch.sh /usr/local/bin/php-switch
+sudo chmod +x /usr/local/bin/php-switch

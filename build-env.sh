@@ -36,9 +36,9 @@ sudo apt install -y /tmp/google-chrome-stable_current_amd64.deb
 sudo update-alternatives --set editor /usr/bin/vim.basic
 sudo sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
 sudo sed -i 's/01;32m/01;31m/' /root/.bashrc
-#sudo apt install -y msmtp
-#chmod g-w msmtprc
-#sudo cp msmtprc /etc/msmtprc
+sudo apt install -y msmtp
+chmod g-w msmtprc
+sudo cp msmtprc /etc/msmtprc
 
 # remove uneccessary apps
 sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano firefox firefox-locale-en skanlite \
@@ -47,11 +47,11 @@ sudo apt autoremove --purge -y
 rm -rf ~/.cache/mozilla ~/.mozilla
 
 # set mailhog
-#sudo curl -SL https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64 -o /usr/local/bin/mailhog
-#sudo chmod +x /usr/local/bin/mailhog
-#chmod g-w mailhog.service
-#sudo cp mailhog.service /etc/systemd/system/mailhog.service
-#sudo systemctl enable --now mailhog
+sudo curl -SL https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64 -o /usr/local/bin/mailhog
+sudo chmod +x /usr/local/bin/mailhog
+chmod g-w mailhog.service
+sudo cp mailhog.service /etc/systemd/system/mailhog.service
+sudo systemctl enable --now mailhog
 
 # nodejs & yarn
 #curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
@@ -62,7 +62,7 @@ sudo apt update && sudo apt install -y nodejs
 sudo npm install -g yarn
 
 # apache
-#./build-apache.sh
+./build-apache.sh
 
 # mariadb
 ./build-mariadb.sh
@@ -73,8 +73,8 @@ sudo npm install -g yarn
 # php
 sudo add-apt-repository -y ppa:ondrej/php
 ./build-php.sh
-#sudo mkdir -p /var/www/html/phpinfo
-#sudo sh -c 'echo "<?php phpinfo();" > /var/www/html/phpinfo/index.php'
+sudo mkdir -p /var/www/html/phpinfo
+sudo sh -c 'echo "<?php phpinfo();" > /var/www/html/phpinfo/index.php'
 
 # docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key --keyring /etc/apt/trusted.gpg.d/docker.gpg add -
@@ -82,7 +82,7 @@ sudo sh -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(ls
 sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker yvh
 
-sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # spotify

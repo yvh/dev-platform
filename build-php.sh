@@ -3,7 +3,7 @@
 set -ex
 
 for VERSION in 7.3 7.4 8.0; do
-    sudo apt install -y php${VERSION} php${VERSION}-{bz2,cli,curl,dev,gd,intl,ldap,mbstring,mysql,opcache,readline,xml,xsl,zip}
+    sudo apt install -y php${VERSION} php${VERSION}-{bz2,cli,curl,dev,gd,intl,ldap,mbstring,mysql,opcache,soap,readline,xml,xsl,zip}
 
     for SYSTEM in apache2 cli; do
         ini_path=/etc/php/${VERSION}/${SYSTEM}

@@ -11,7 +11,7 @@ sudo sed -i -e "s|^# en_GB\.UTF-8|en_GB.UTF-8|" /etc/locale.gen
 sudo sed -i -e "s|^# fr_BE\.UTF-8|fr_BE.UTF-8|" /etc/locale.gen
 sudo sed -i -e "/# en_BW\.UTF-8.*/a en_BE.UTF-8 UTF-8" /etc/locale.gen
 
-sudo rm /var/lib/locales/supported.d/*
+sudo rm -f /var/lib/locales/supported.d/*
 sudo locale-gen
 
 sudo sed -i -e "s|en_GB|en_BE|g" /etc/default/locale

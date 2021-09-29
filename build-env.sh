@@ -41,8 +41,8 @@ chmod g-w msmtprc
 sudo cp msmtprc /etc/msmtprc
 
 # remove uneccessary apps
-sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano firefox firefox-locale-en skanlite \
-    kio-audiocd
+sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano \
+    firefox firefox-locale-en skanlite kio-audiocd
 sudo apt autoremove --purge -y
 rm -rf ~/.cache/mozilla ~/.mozilla
 
@@ -67,8 +67,8 @@ sudo npm install -g yarn
 # mariadb
 ./build-mariadb.sh
 
-#sudo add-apt-repository -y ppa:serge-rider/dbeaver-ce
-#sudo apt update && sudo apt install -y dbeaver-ce
+sudo add-apt-repository -y ppa:serge-rider/dbeaver-ce
+sudo apt update && sudo apt install -y dbeaver-ce
 
 # php
 sudo add-apt-repository -y ppa:ondrej/php
@@ -82,7 +82,7 @@ sudo sh -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(ls
 sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker yvh
 
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # spotify

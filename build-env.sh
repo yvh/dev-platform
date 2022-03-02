@@ -7,8 +7,15 @@ sudo cp -v /usr/share/systemd/tmp.mount /etc/systemd/system/
 sudo systemctl enable --now tmp.mount
 
 # upgrade & install some apps
-sudo add-apt-repository -y ppa:libreoffice/ppa
-sudo add-apt-repository -y ppa:remmina-ppa-team/remmina-next
+#sudo add-apt-repository -y ppa:libreoffice/ppa
+sudo apt-key --keyring /etc/apt/trusted.gpg.d/libreoffice.gpg adv --keyserver keyserver.ubuntu.com --recv-key 36E81C9267FD1383FCC4490983FBA1751378B444
+sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/libreoffice/ppa/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/libreoffice.list'
+sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/libreoffice/ppa/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/libreoffice.list'
+
+#sudo add-apt-repository -y ppa:remmina-ppa-team/remmina-next
+sudo apt-key --keyring /etc/apt/trusted.gpg.d/remmina.gpg adv --keyserver keyserver.ubuntu.com --recv-key 04E38CE134B239B9F38F82EE8A993C2521C5F0BA
+sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/remmina-ppa-team/remmina-next/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/remmina.list'
+sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/remmina-ppa-team/remmina-next/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/remmina.list'
 
 sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
@@ -18,7 +25,7 @@ sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-ag
 sudo apt install -y --no-install-recommends kdiff3 wireshark
 
 # github cli
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+sudo apt-key --keyring /etc/apt/trusted.gpg.d/github.gpg adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
 sudo sh -c 'echo "deb https://cli.github.com/packages $(lsb_release -cs) main" > /etc/apt/sources.list.d/github.list'
 sudo sh -c 'echo "#deb-src https://cli.github.com/packages $(lsb_release -cs) main" >> /etc/apt/sources.list.d/github.list'
 sudo apt update && sudo apt install -y gh
@@ -26,6 +33,10 @@ sudo apt update && sudo apt install -y gh
 # google chrome
 curl -SL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/google-chrome-stable_current_amd64.deb
 sudo apt install -y /tmp/google-chrome-stable_current_amd64.deb
+
+# visual studio code
+curl -SL https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 -o /tmp/code_amd64.deb
+sudo apt install -y /tmp/code_amd64.deb
 
 # atom
 #curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key --keyring /etc/apt/trusted.gpg.d/atom.gpg add -
@@ -56,8 +67,8 @@ sudo systemctl enable --now mailhog
 # nodejs & yarn
 #curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 curl -sL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/nodesource.gpg add -
-sudo sh -c 'echo "deb https://deb.nodesource.com/node_14.x $(lsb_release -cs) main" > /etc/apt/sources.list.d/nodesource.list'
-sudo sh -c 'echo "#deb-src https://deb.nodesource.com/node_14.x $(lsb_release -cs) main" >> /etc/apt/sources.list.d/nodesource.list'
+sudo sh -c 'echo "deb https://deb.nodesource.com/node_16.x $(lsb_release -cs) main" > /etc/apt/sources.list.d/nodesource.list'
+sudo sh -c 'echo "#deb-src https://deb.nodesource.com/node_16.x $(lsb_release -cs) main" >> /etc/apt/sources.list.d/nodesource.list'
 sudo apt update && sudo apt install -y nodejs
 sudo npm install -g yarn
 
@@ -67,11 +78,17 @@ sudo npm install -g yarn
 # mariadb
 ./build-mariadb.sh
 
-sudo add-apt-repository -y ppa:serge-rider/dbeaver-ce
+#sudo add-apt-repository -y ppa:serge-rider/dbeaver-ce
+sudo apt-key --keyring /etc/apt/trusted.gpg.d/dbeaver-ce.gpg adv --keyserver keyserver.ubuntu.com --recv-key 30ECE32520D438C21E16BF884A71B51882788FD2
+sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/serge-rider/dbeaver-ce/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/dbeaver-ce.list'
+sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/serge-rider/dbeaver-ce/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/dbeaver-ce.list'
 sudo apt update && sudo apt install -y dbeaver-ce
 
 # php
-sudo add-apt-repository -y ppa:ondrej/php
+#sudo add-apt-repository -y ppa:ondrej/php
+sudo apt-key --keyring /etc/apt/trusted.gpg.d/php.gpg adv --keyserver keyserver.ubuntu.com --recv-key 14AA40EC0831756756D7F66C4F4EA0AAE5267A6C
+sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/ondrej/php/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/php.list'
+sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/ondrej/php/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/php.list'
 ./build-php.sh
 sudo mkdir -p /var/www/html/phpinfo
 sudo sh -c 'echo "<?php phpinfo();" > /var/www/html/phpinfo/index.php'
@@ -82,11 +99,11 @@ sudo sh -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(ls
 sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker yvh
 
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+#sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+#sudo chmod +x /usr/local/bin/docker-compose
 
 # spotify
-curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key --keyring /etc/apt/trusted.gpg.d/spotify.gpg add -
+curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo apt-key --keyring /etc/apt/trusted.gpg.d/spotify.gpg add -
 sudo sh -c 'echo "deb http://repository.spotify.com stable non-free" > /etc/apt/sources.list.d/spotify.list'
 sudo apt update && sudo apt install -y spotify-client
 

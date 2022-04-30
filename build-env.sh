@@ -19,24 +19,29 @@ sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/remmina-ppa-team/rem
 
 sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
-    tlp vim curl subversion sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze \
+    vim curl subversion sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze \
     filezilla hunspell-fr hunspell-fr-modern network-manager-fortisslvpn inkscape remmina \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline
 sudo apt install -y --no-install-recommends kdiff3 wireshark
 
 # github cli
 sudo apt-key --keyring /etc/apt/trusted.gpg.d/github.gpg adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-sudo sh -c 'echo "deb https://cli.github.com/packages $(lsb_release -cs) main" > /etc/apt/sources.list.d/github.list'
-sudo sh -c 'echo "#deb-src https://cli.github.com/packages $(lsb_release -cs) main" >> /etc/apt/sources.list.d/github.list'
+sudo sh -c 'echo "deb https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github.list'
+sudo sh -c 'echo "#deb-src https://cli.github.com/packages stable main" >> /etc/apt/sources.list.d/github.list'
 sudo apt update && sudo apt install -y gh
 
 # google chrome
-curl -SL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/google-chrome-stable_current_amd64.deb
+curl -SL "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" -o /tmp/google-chrome-stable_current_amd64.deb
 sudo apt install -y /tmp/google-chrome-stable_current_amd64.deb
 
 # visual studio code
-curl -SL https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 -o /tmp/code_amd64.deb
+curl -SL "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" -o /tmp/code_amd64.deb
 sudo apt install -y /tmp/code_amd64.deb
+
+# teams
+curl -sL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/teams.gpg add -
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main" > /etc/apt/sources.list.d/teams.list'
+sudo apt update && sudo apt install -y teams
 
 # atom
 #curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key --keyring /etc/apt/trusted.gpg.d/atom.gpg add -
@@ -66,11 +71,11 @@ sudo systemctl enable --now mailhog
 
 # nodejs & yarn
 #curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-curl -sL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/nodesource.gpg add -
-sudo sh -c 'echo "deb https://deb.nodesource.com/node_16.x $(lsb_release -cs) main" > /etc/apt/sources.list.d/nodesource.list'
-sudo sh -c 'echo "#deb-src https://deb.nodesource.com/node_16.x $(lsb_release -cs) main" >> /etc/apt/sources.list.d/nodesource.list'
-sudo apt update && sudo apt install -y nodejs
-sudo npm install -g yarn
+#curl -sL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/nodesource.gpg add -
+#sudo sh -c 'echo "deb https://deb.nodesource.com/node_16.x $(lsb_release -cs) main" > /etc/apt/sources.list.d/nodesource.list'
+#sudo sh -c 'echo "#deb-src https://deb.nodesource.com/node_16.x $(lsb_release -cs) main" >> /etc/apt/sources.list.d/nodesource.list'
+#sudo apt update && sudo apt install -y nodejs
+#sudo npm install -g yarn
 
 # apache
 ./build-apache.sh
@@ -89,6 +94,7 @@ sudo apt update && sudo apt install -y dbeaver-ce
 sudo apt-key --keyring /etc/apt/trusted.gpg.d/php.gpg adv --keyserver keyserver.ubuntu.com --recv-key 14AA40EC0831756756D7F66C4F4EA0AAE5267A6C
 sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/ondrej/php/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/php.list'
 sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/ondrej/php/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/php.list'
+sudo apt update
 ./build-php.sh
 sudo mkdir -p /var/www/html/phpinfo
 sudo sh -c 'echo "<?php phpinfo();" > /var/www/html/phpinfo/index.php'
@@ -101,6 +107,10 @@ sudo usermod -aG docker yvh
 
 #sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 #sudo chmod +x /usr/local/bin/docker-compose
+DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+mkdir -p $DOCKER_CONFIG/cli-plugins
+curl -SL https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
 # spotify
 curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo apt-key --keyring /etc/apt/trusted.gpg.d/spotify.gpg add -

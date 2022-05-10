@@ -2,8 +2,8 @@
 
 set -ex
 
-for VERSION in 7.4 8.0 8.1; do
-    sudo apt install php${VERSION}-{bz2,cli,curl,dev,gd,intl,ldap,mbstring,mysql,opcache,soap,readline,xml,xsl,zip}
+for VERSION in 7.3 7.4 8.0 8.1; do
+    sudo apt install -y php${VERSION}-{bz2,cli,curl,dev,gd,intl,ldap,mbstring,mysql,opcache,soap,readline,xml,xsl,zip}
 
     ini_path=/etc/php/${VERSION}/cli
     sudo sed -i -e "s|max_execution_time = 30|max_execution_time = 60|" $ini_path/php.ini
@@ -20,7 +20,7 @@ done
 sudo apt install -y php-pear libssh2-1-dev
 sudo pecl channel-update pecl.php.net
 
-for VERSION in 7.4 8.0 8.1; do
+for VERSION in 7.3 7.4 8.0 8.1; do
     sudo update-alternatives --set php /usr/bin/php${VERSION}
     sudo update-alternatives --set php-config /usr/bin/php-config${VERSION}
     sudo update-alternatives --set phpize /usr/bin/phpize${VERSION}

@@ -20,8 +20,8 @@ sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/remmina-ppa-team/rem
 sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     vim curl subversion sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze filezilla inkscape remmina \
-    ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline vlc gnome-tweaks \
-    network-manager-fortisslvpn-gnome mariadb-client mariadb-backup
+    ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline vlc \
+    mariadb-client mariadb-backup ttf-mscorefonts-installer hunspell-fr
 sudo apt install -y --no-install-recommends kdiff3 wireshark
 
 # github cli

@@ -21,7 +21,7 @@ sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     vim curl subversion sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze filezilla inkscape remmina \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline vlc \
-    mariadb-client mariadb-backup ttf-mscorefonts-installer hunspell-fr network-manager-fortisslvpn
+    ttf-mscorefonts-installer hunspell-fr network-manager-fortisslvpn
 sudo apt install -y --no-install-recommends kdiff3 wireshark
 
 # github cli
@@ -82,7 +82,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 ./build-apache.sh
 
 # mariadb
-#./build-mariadb.sh
+./build-mariadb.sh
 
 #sudo add-apt-repository -y ppa:serge-rider/dbeaver-ce
 sudo apt-key --keyring /etc/apt/trusted.gpg.d/dbeaver-ce.gpg adv --keyserver keyserver.ubuntu.com --recv-key 30ECE32520D438C21E16BF884A71B51882788FD2

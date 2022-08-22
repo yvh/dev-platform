@@ -21,8 +21,17 @@ sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     vim curl subversion sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze filezilla inkscape remmina \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline vlc \
-    ttf-mscorefonts-installer hunspell-fr network-manager-fortisslvpn
+    ttf-mscorefonts-installer hunspell-fr network-manager-fortisslvpn cntlm
 sudo apt install -y --no-install-recommends kdiff3 wireshark
+
+# remove snapd
+sudo snap remove firefox gnome-3-38-2004
+sudo snap remove gtk-common-themes
+sudo snap remove core20
+sudo snap remove bare
+sudo snap remove snapd
+sudo apt -y autoremove --purge snapd
+rm -rf ~/snap ~/Downloads/firefox.tmp
 
 # github cli
 sudo apt-key --keyring /etc/apt/trusted.gpg.d/github.gpg adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
@@ -58,7 +67,7 @@ sudo cp msmtprc /etc/msmtprc
 
 # remove uneccessary apps
 sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano \
-    firefox firefox-locale-en skanlite kio-audiocd
+    firefox firefox-locale-en skanlite kio-audiocd thunderbird muon kde-config-tablet usb-creator-kde
 sudo apt autoremove --purge -y
 rm -rf ~/.cache/mozilla ~/.mozilla
 

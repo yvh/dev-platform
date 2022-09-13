@@ -34,7 +34,7 @@ sudo apt -y autoremove --purge snapd
 rm -rf ~/snap ~/Downloads/firefox.tmp
 
 # github cli
-sudo apt-key --keyring /etc/apt/trusted.gpg.d/github.gpg adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+sudo apt-key --keyring /etc/apt/trusted.gpg.d/github.gpg adv --keyserver keyserver.ubuntu.com --recv-key 23F3D4EA75716059
 sudo sh -c 'echo "deb https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github.list'
 sudo sh -c 'echo "#deb-src https://cli.github.com/packages stable main" >> /etc/apt/sources.list.d/github.list'
 sudo apt update && sudo apt install -y gh

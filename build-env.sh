@@ -17,7 +17,7 @@ sudo apt-key --keyring /etc/apt/trusted.gpg.d/remmina.gpg adv --keyserver keyser
 sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/remmina-ppa-team/remmina-next/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/remmina.list'
 sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/remmina-ppa-team/remmina-next/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/remmina.list'
 
-sudo apt -y full-upgrade
+sudo apt update && sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     vim curl subversion sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze filezilla inkscape remmina \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline vlc \

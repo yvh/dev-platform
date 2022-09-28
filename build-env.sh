@@ -93,10 +93,9 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 # mariadb
 ./build-mariadb.sh
 
-#sudo add-apt-repository -y ppa:serge-rider/dbeaver-ce
-sudo apt-key --keyring /etc/apt/trusted.gpg.d/dbeaver-ce.gpg adv --keyserver keyserver.ubuntu.com --recv-key 30ECE32520D438C21E16BF884A71B51882788FD2
-sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/serge-rider/dbeaver-ce/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/dbeaver-ce.list'
-sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/serge-rider/dbeaver-ce/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/dbeaver-ce.list'
+# dbeaver
+curl -sL https://dbeaver.io/debs/dbeaver.gpg.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/dbeaver-ce.gpg add -
+sudo sh -c 'echo "deb https://dbeaver.io/debs/dbeaver-ce /" > /etc/apt/sources.list.d/dbeaver-ce.list'
 sudo apt update && sudo apt install -y dbeaver-ce
 
 # php

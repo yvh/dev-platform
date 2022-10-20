@@ -17,15 +17,26 @@ sudo apt-key --keyring /etc/apt/trusted.gpg.d/remmina.gpg adv --keyserver keyser
 sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/remmina-ppa-team/remmina-next/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/remmina.list'
 sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/remmina-ppa-team/remmina-next/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/remmina.list'
 
-sudo apt -y full-upgrade
+sudo apt update && sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     vim curl subversion sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze filezilla inkscape remmina \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline vlc gnome-tweaks \
-    network-manager-fortisslvpn-gnome openssh-server hyphen-fr mythes-fr
+    network-manager-fortisslvpn-gnome openssh-server hyphen-fr mythes-fr ttf-mscorefonts-installer cntlm
 sudo apt install -y --no-install-recommends kdiff3 wireshark
 
+# remove snapd
+sudo snap remove firefox gnome-3-38-2004
+sudo snap remove gtk-common-themes
+sudo snap remove snapd-desktop-integration
+sudo snap remove snap-store
+sudo snap remove core20
+sudo snap remove bare
+sudo snap remove snapd
+sudo apt -y autoremove --purge snapd
+rm -rf ~/snap ~/Downloads/firefox.tmp
+
 # github cli
-sudo apt-key --keyring /etc/apt/trusted.gpg.d/github.gpg adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+sudo apt-key --keyring /etc/apt/trusted.gpg.d/github.gpg adv --keyserver keyserver.ubuntu.com --recv-key 23F3D4EA75716059
 sudo sh -c 'echo "deb https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github.list'
 sudo sh -c 'echo "#deb-src https://cli.github.com/packages stable main" >> /etc/apt/sources.list.d/github.list'
 sudo apt update && sudo apt install -y gh
@@ -58,7 +69,7 @@ sudo cp msmtprc /etc/msmtprc
 
 # remove uneccessary apps
 sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano \
-    firefox firefox-locale-en skanlite kio-audiocd
+    firefox firefox-locale-en skanlite kio-audiocd thunderbird
 sudo apt autoremove --purge -y
 rm -rf ~/.cache/mozilla ~/.mozilla
 
@@ -84,10 +95,9 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 # mariadb
 ./build-mariadb.sh
 
-#sudo add-apt-repository -y ppa:serge-rider/dbeaver-ce
-sudo apt-key --keyring /etc/apt/trusted.gpg.d/dbeaver-ce.gpg adv --keyserver keyserver.ubuntu.com --recv-key 30ECE32520D438C21E16BF884A71B51882788FD2
-sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/serge-rider/dbeaver-ce/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/dbeaver-ce.list'
-sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/serge-rider/dbeaver-ce/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/dbeaver-ce.list'
+# dbeaver
+curl -sL https://dbeaver.io/debs/dbeaver.gpg.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/dbeaver-ce.gpg add -
+sudo sh -c 'echo "deb https://dbeaver.io/debs/dbeaver-ce /" > /etc/apt/sources.list.d/dbeaver-ce.list'
 sudo apt update && sudo apt install -y dbeaver-ce
 
 # php
@@ -110,7 +120,7 @@ sudo usermod -aG docker yvh
 #sudo chmod +x /usr/local/bin/docker-compose
 DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 mkdir -p $DOCKER_CONFIG/cli-plugins
-curl -SL https://github.com/docker/compose/releases/download/v2.9.0/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+curl -SL https://github.com/docker/compose/releases/download/v2.12.0/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
 chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
 # spotify

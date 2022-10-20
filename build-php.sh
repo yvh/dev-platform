@@ -3,7 +3,7 @@
 set -ex
 
 for VERSION in 7.3 7.4 8.0 8.1; do
-    sudo apt install -y php${VERSION} php${VERSION}-{bz2,cli,curl,dev,gd,intl,ldap,mbstring,mysql,opcache,soap,readline,xml,xsl,zip}
+    sudo apt install -y php${VERSION} php${VERSION}-{bz2,cli,curl,dev,gd,intl,ldap,mbstring,mysql,opcache,soap,readline,redis,xml,xsl,zip}
 
     for SYSTEM in apache2 cli; do
         ini_path=/etc/php/${VERSION}/${SYSTEM}
@@ -63,4 +63,3 @@ done
 
 sudo cp php-switch.sh /usr/local/bin/php-switch
 sudo chmod +x /usr/local/bin/php-switch
-

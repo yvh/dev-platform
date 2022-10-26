@@ -2,6 +2,21 @@
 
 set -ex
 
+# /tmp to tmpfs
+sudo cp -v /usr/share/systemd/tmp.mount /etc/systemd/system/
+sudo systemctl enable --now tmp.mount
+
+# upgrade & install some apps
+#sudo add-apt-repository -y ppa:libreoffice/ppa
+sudo apt-key --keyring /etc/apt/trusted.gpg.d/libreoffice.gpg adv --keyserver keyserver.ubuntu.com --recv-key 36E81C9267FD1383FCC4490983FBA1751378B444
+sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/libreoffice/ppa/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/libreoffice.list'
+sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/libreoffice/ppa/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/libreoffice.list'
+
+#sudo add-apt-repository -y ppa:remmina-ppa-team/remmina-next
+sudo apt-key --keyring /etc/apt/trusted.gpg.d/remmina.gpg adv --keyserver keyserver.ubuntu.com --recv-key 04E38CE134B239B9F38F82EE8A993C2521C5F0BA
+sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/remmina-ppa-team/remmina-next/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/remmina.list'
+sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/remmina-ppa-team/remmina-next/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/remmina.list'
+
 sudo apt update && sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     vim curl subversion sshfs htop zsh gimp gimp-data-extras libreoffice libreoffice-style-breeze filezilla inkscape remmina \

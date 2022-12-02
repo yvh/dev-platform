@@ -76,7 +76,7 @@ sudo systemctl enable --now mailhog
 #sudo sh -c 'echo "#deb-src https://deb.nodesource.com/node_16.x $(lsb_release -cs) main" >> /etc/apt/sources.list.d/nodesource.list'
 #sudo apt update && sudo apt install -y nodejs
 #sudo npm install -g yarn
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 
 # apache
 ./build-apache.sh
@@ -109,7 +109,7 @@ sudo usermod -aG docker yvh
 #sudo chmod +x /usr/local/bin/docker-compose
 DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 mkdir -p $DOCKER_CONFIG/cli-plugins
-curl -SL https://github.com/docker/compose/releases/download/v2.9.0/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+curl -SL https://github.com/docker/compose/releases/download/v2.13.0/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
 chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
 # spotify

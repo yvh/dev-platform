@@ -98,6 +98,7 @@ sudo apt update
 ./build-php.sh
 sudo mkdir -p /var/www/html/phpinfo
 sudo sh -c 'echo "<?php phpinfo();" > /var/www/html/phpinfo/index.php'
+curl -SL https://raw.githubusercontent.com/composer/getcomposer.org/main/web/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 
 # docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key --keyring /etc/apt/trusted.gpg.d/docker.gpg add -

@@ -55,6 +55,10 @@ sudo sed -i 's/01;32m/01;31m/' /root/.bashrc
 sudo apt install -y msmtp
 chmod g-w msmtprc
 sudo cp msmtprc /etc/msmtprc
+sudo sh -c 'echo "[General]
+Numlock=on" >> /etc/sddm.conf'
+sudo sh -c 'echo "[connectivity]
+enabled=false" > /etc/NetworkManager/conf.d/20-connectivity.conf'
 
 # remove uneccessary apps
 sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano \
@@ -106,11 +110,9 @@ sudo sh -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(ls
 sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker yvh
 
-#sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-#sudo chmod +x /usr/local/bin/docker-compose
 DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 mkdir -p $DOCKER_CONFIG/cli-plugins
-curl -SL https://github.com/docker/compose/releases/download/v2.13.0/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+curl -SL https://github.com/docker/compose/releases/download/v2.14.0/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
 chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
 # spotify

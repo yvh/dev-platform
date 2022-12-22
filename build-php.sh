@@ -29,7 +29,13 @@ for VERSION in 7.4 8.0 8.1; do
     sudo update-alternatives --set phar /usr/bin/phar${VERSION}
     sudo update-alternatives --set phar.phar /usr/bin/phar.phar${VERSION}
 
-    sudo pecl -d php_suffix=${VERSION} install apcu ast ssh2-1.3.1 xdebug && sudo pecl uninstall -r apcu ast ssh2 xdebug
+    sudo pecl -d php_suffix=${VERSION} install apcu ast ssh2-1.3.1 && sudo pecl uninstall -r apcu ast ssh2
+
+    if [[ ${VERSION} != 8\.* ]]; then
+        sudo pecl -d php_suffix=${VERSION} install xdebug-3.1.6 && sudo pecl uninstall -r xdebug
+    else
+        sudo pecl -d php_suffix=${VERSION} install xdebug && sudo pecl uninstall -r xdebug
+    fi
 
     ini_path=/etc/php/${VERSION}/mods-available
     sudo sh -c "echo \"extension=apcu.so\" > $ini_path/apcu.ini"

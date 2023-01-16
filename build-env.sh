@@ -39,9 +39,8 @@ curl -SL "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x
 sudo apt install -y /tmp/code_amd64.deb
 
 # teams
-curl -sL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/teams.gpg add -
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main" > /etc/apt/sources.list.d/teams.list'
-sudo apt update && sudo apt install -y teams
+curl -SL "https://go.microsoft.com/fwlink/p/?LinkID=2112886&clcid=0x80c&culture=fr-be&country=BE" -o /tmp/teams_amd64.deb
+sudo apt install -y /tmp/teams_amd64.deb
 
 # atom
 #curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key --keyring /etc/apt/trusted.gpg.d/atom.gpg add -

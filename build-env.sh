@@ -42,6 +42,13 @@ sudo apt install -y /tmp/code_amd64.deb
 curl -SL "https://go.microsoft.com/fwlink/p/?LinkID=2112886&clcid=0x80c&culture=fr-be&country=BE" -o /tmp/teams_amd64.deb
 sudo apt install -y /tmp/teams_amd64.deb
 
+# pdfsam
+curl -SL "https://github.com/torakiki/pdfsam/releases/download/v4.3.4/pdfsam_4.3.4-1_amd64.deb" -o /tmp/pdfsam.deb
+sudo apt install -y /tmp/pdfsam.deb
+
+# postman
+curl https://gist.githubusercontent.com/SanderTheDragon/1331397932abaa1d6fbbf63baed5f043/raw/postman-deb.sh | sh
+
 # atom
 #curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key --keyring /etc/apt/trusted.gpg.d/atom.gpg add -
 #sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'

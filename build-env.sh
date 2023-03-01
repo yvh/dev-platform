@@ -16,7 +16,7 @@ sudo apt update && sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     vim curl subversion sshfs htop zsh libreoffice libreoffice-style-breeze filezilla \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline gnome-tweaks \
-    hyphen-fr mythes-fr ttf-mscorefonts-installer cntlm terminator
+    hyphen-fr mythes-fr ttf-mscorefonts-installer cntlm
 sudo apt install -y --no-install-recommends kdiff3 wireshark
 
 # remove snapd
@@ -57,6 +57,9 @@ sudo apt install -y /tmp/code_amd64.deb
 sudo update-alternatives --set editor /usr/bin/vim.basic
 sudo sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
 sudo sed -i 's/01;32m/01;31m/' /root/.bashrc
+sudo apt install -y msmtp
+chmod g-w msmtprc
+sudo cp msmtprc /etc/msmtprc
 
 # remove uneccessary apps
 sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano \
@@ -64,14 +67,21 @@ sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machi
 sudo apt autoremove --purge -y
 rm -rf ~/.cache/mozilla ~/.mozilla
 
+# set mailhog
+sudo curl -SL https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64 -o /usr/local/bin/mailhog
+sudo chmod +x /usr/local/bin/mailhog
+chmod g-w mailhog.service
+sudo cp mailhog.service /etc/systemd/system/mailhog.service
+sudo systemctl enable --now mailhog
+
 # nodejs & yarn
-#curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
 # apache
-#./build-apache.sh
+./build-apache.sh
 
 # mariadb
-#./build-mariadb.sh
+./build-mariadb.sh
 
 # dbeaver
 curl -sL https://dbeaver.io/debs/dbeaver.gpg.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/dbeaver-ce.gpg add -
@@ -79,14 +89,13 @@ sudo sh -c 'echo "deb https://dbeaver.io/debs/dbeaver-ce /" > /etc/apt/sources.l
 sudo apt update && sudo apt install -y dbeaver-ce
 
 # php
-#sudo add-apt-repository -y ppa:ondrej/php
-#sudo apt-key --keyring /etc/apt/trusted.gpg.d/php.gpg adv --keyserver keyserver.ubuntu.com --recv-key 14AA40EC0831756756D7F66C4F4EA0AAE5267A6C
-#sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/ondrej/php/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/php.list'
-#sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/ondrej/php/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/php.list'
-#sudo apt update
-#./build-php.sh
-#sudo mkdir -p /var/www/html/phpinfo
-#sudo sh -c 'echo "<?php phpinfo();" > /var/www/html/phpinfo/index.php'
+sudo apt-key --keyring /etc/apt/trusted.gpg.d/php.gpg adv --keyserver keyserver.ubuntu.com --recv-key 14AA40EC0831756756D7F66C4F4EA0AAE5267A6C
+sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/ondrej/php/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/php.list'
+sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/ondrej/php/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/php.list'
+sudo apt update
+./build-php.sh
+sudo mkdir -p /var/www/html/phpinfo
+sudo sh -c 'echo "<?php phpinfo();" > /var/www/html/phpinfo/index.php'
 
 # docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key --keyring /etc/apt/trusted.gpg.d/docker.gpg add -
@@ -96,7 +105,7 @@ sudo usermod -aG docker yvh
 
 DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 mkdir -p $DOCKER_CONFIG/cli-plugins
-curl -SL https://github.com/docker/compose/releases/download/v2.15.1/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
 chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
 # change inotify for idea (phpstorm)

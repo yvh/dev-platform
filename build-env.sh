@@ -7,16 +7,19 @@ sudo cp -v /usr/share/systemd/tmp.mount /etc/systemd/system/
 sudo systemctl enable --now tmp.mount
 
 # upgrade & install some apps
-#sudo add-apt-repository -y ppa:libreoffice/ppa
-sudo apt-key --keyring /etc/apt/trusted.gpg.d/libreoffice.gpg adv --keyserver keyserver.ubuntu.com --recv-key 36E81C9267FD1383FCC4490983FBA1751378B444
-sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/libreoffice/ppa/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/libreoffice.list'
-sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/libreoffice/ppa/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/libreoffice.list'
+curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x36e81c9267fd1383fcc4490983fba1751378b444" | sudo gpg --dearmor -o /etc/apt/keyrings/libreoffice.gpg
+echo "Types: deb
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/libreoffice.gpg
+URIs: https://ppa.launchpadcontent.net/libreoffice/ppa/ubuntu
+Suites: $(lsb_release -cs)
+Components: main" | sudo tee /etc/apt/sources.list.d/libreoffice.sources
 
 sudo apt update && sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     vim curl subversion sshfs htop zsh libreoffice libreoffice-style-breeze filezilla \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline gnome-tweaks \
-    hyphen-fr mythes-fr ttf-mscorefonts-installer cntlm
+    hyphen-fr mythes-fr ttf-mscorefonts-installer cntlm terminator
 sudo apt install -y --no-install-recommends kdiff3 wireshark
 
 # remove snapd
@@ -31,9 +34,13 @@ sudo apt -y autoremove --purge snapd
 rm -rf ~/snap ~/Downloads/firefox.tmp
 
 # firefox
-sudo apt-key --keyring /etc/apt/trusted.gpg.d/firefox.gpg adv --keyserver keyserver.ubuntu.com --recv-key 0AB215679C571D1C8325275B9BDB3D89CE49EC21
-sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/firefox.list'
-sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/firefox.list'
+curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0ab215679c571d1c8325275b9bdb3d89ce49ec21" | sudo gpg --dearmor -o /etc/apt/keyrings/firefox.gpg
+echo "Types: deb
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/firefox.gpg
+URIs: https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu
+Suites: $(lsb_release -cs)
+Components: main" | sudo tee /etc/apt/sources.list.d/firefox.sources
 sudo apt update
 echo 'Package: *                  
 Pin: release o=LP-PPA-mozillateam
@@ -41,17 +48,19 @@ Pin-Priority: 1001' | sudo tee /etc/apt/preferences.d/firefox
 sudo apt install -y firefox
 
 # github cli
-sudo apt-key --keyring /etc/apt/trusted.gpg.d/github.gpg adv --keyserver keyserver.ubuntu.com --recv-key 23F3D4EA75716059
-sudo sh -c 'echo "deb https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github.list'
-sudo sh -c 'echo "#deb-src https://cli.github.com/packages stable main" >> /etc/apt/sources.list.d/github.list'
+curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2c6106201985b60e6c7ac87323f3d4ea75716059" | sudo gpg --dearmor -o /etc/apt/keyrings/github.gpg
+echo "Types: deb
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/github.gpg
+URIs: https://cli.github.com/packages
+Suites: stable
+Components: main" | sudo tee /etc/apt/sources.list.d/github.sources
 sudo apt update && sudo apt install -y gh
 
 # visual studio code
-curl -SL "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" -o /tmp/code_amd64.deb
-sudo apt install -y /tmp/code_amd64.deb
+curl -fsSL "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" -o /tmp/code_amd64.deb
 
-# postman
-#curl https://gist.githubusercontent.com/SanderTheDragon/1331397932abaa1d6fbbf63baed5f043/raw/postman-deb.sh | sh
+sudo apt install -y /tmp/code_amd64.deb
 
 # customization
 sudo update-alternatives --set editor /usr/bin/vim.basic
@@ -68,14 +77,14 @@ sudo apt autoremove --purge -y
 rm -rf ~/.cache/mozilla ~/.mozilla
 
 # set mailhog
-sudo curl -SL https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64 -o /usr/local/bin/mailhog
+sudo curl -fsSL "https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64" -o /usr/local/bin/mailhog
 sudo chmod +x /usr/local/bin/mailhog
 chmod g-w mailhog.service
 sudo cp mailhog.service /etc/systemd/system/mailhog.service
 sudo systemctl enable --now mailhog
 
 # nodejs & yarn
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh" | bash
 
 # apache
 ./build-apache.sh
@@ -84,28 +93,41 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 ./build-mariadb.sh
 
 # dbeaver
-curl -sL https://dbeaver.io/debs/dbeaver.gpg.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/dbeaver-ce.gpg add -
-sudo sh -c 'echo "deb https://dbeaver.io/debs/dbeaver-ce /" > /etc/apt/sources.list.d/dbeaver-ce.list'
+curl -fsSL "https://dbeaver.io/debs/dbeaver.gpg.key"  | sudo gpg --dearmor -o /etc/apt/keyrings/dbeaver.gpg
+echo "Types: deb
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/dbeaver.gpg
+URIs: https://dbeaver.io/debs/dbeaver-ce
+Suites: /" | sudo tee /etc/apt/sources.list.d/dbeaver-ce.sources
 sudo apt update && sudo apt install -y dbeaver-ce
 
 # php
-sudo apt-key --keyring /etc/apt/trusted.gpg.d/php.gpg adv --keyserver keyserver.ubuntu.com --recv-key 14AA40EC0831756756D7F66C4F4EA0AAE5267A6C
-sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/ondrej/php/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/php.list'
-sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/ondrej/php/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/php.list'
+curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x14aa40ec0831756756d7f66c4f4ea0aae5267a6c" | sudo gpg --dearmor -o /etc/apt/keyrings/php.gpg
+echo "Types: deb
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/php.gpg
+URIs: https://ppa.launchpadcontent.net/ondrej/php/ubuntu
+Suites: $(lsb_release -cs)
+Components: main" | sudo tee /etc/apt/sources.list.d/php.sources
 sudo apt update
 ./build-php.sh
 sudo mkdir -p /var/www/html/phpinfo
 sudo sh -c 'echo "<?php phpinfo();" > /var/www/html/phpinfo/index.php'
 
 # docker
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key --keyring /etc/apt/trusted.gpg.d/docker.gpg add -
-sudo sh -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list'
+curl -fsSL "https://download.docker.com/linux/ubuntu/gpg" | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "Types: deb
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/docker.gpg
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(lsb_release -cs)
+Components: stable" | sudo tee /etc/apt/sources.list.d/docker.sources
 sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker yvh
 
 DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 mkdir -p $DOCKER_CONFIG/cli-plugins
-curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+curl -fsSL "https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64" -o $DOCKER_CONFIG/cli-plugins/docker-compose
 chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
 # change inotify for idea (phpstorm)

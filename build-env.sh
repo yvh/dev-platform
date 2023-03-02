@@ -19,7 +19,7 @@ sudo apt update && sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     vim curl subversion sshfs htop zsh libreoffice libreoffice-style-breeze filezilla \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline gnome-tweaks \
-    hyphen-fr mythes-fr ttf-mscorefonts-installer cntlm terminator
+    aspell-fr hyphen-fr mythes-fr hunspell-fr ttf-mscorefonts-installer cntlm terminator
 sudo apt install -y --no-install-recommends kdiff3 wireshark
 
 # remove snapd
@@ -59,7 +59,6 @@ sudo apt update && sudo apt install -y gh
 
 # visual studio code
 curl -fsSL "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" -o /tmp/code_amd64.deb
-
 sudo apt install -y /tmp/code_amd64.deb
 
 # customization

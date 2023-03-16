@@ -61,6 +61,9 @@ sudo apt update && sudo apt install -y gh
 curl -fsSL "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" -o /tmp/code_amd64.deb
 sudo apt install -y /tmp/code_amd64.deb
 
+# postman
+curl https://gist.githubusercontent.com/SanderTheDragon/1331397932abaa1d6fbbf63baed5f043/raw/postman-deb.sh | sh
+
 # customization
 sudo update-alternatives --set editor /usr/bin/vim.basic
 sudo sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc

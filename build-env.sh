@@ -54,7 +54,7 @@ sudo apt install -y /tmp/code_amd64.deb
 #sudo apt install -y /tmp/teams_amd64.deb
 
 # pdfsam
-curl -SL "https://github.com/torakiki/pdfsam/releases/download/v5.0.3/pdfsam_5.0.3-1_amd64.deb" -o /tmp/pdfsam.deb
+curl -SL "https://github.com/torakiki/pdfsam/releases/download/v5.1.1/pdfsam_5.1.1-1_amd64.deb" -o /tmp/pdfsam.deb
 sudo apt install -y /tmp/pdfsam.deb
 
 # postman
@@ -135,7 +135,7 @@ sudo usermod -aG docker yvh
 
 DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 mkdir -p $DOCKER_CONFIG/cli-plugins
-curl -fsSL "https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64" -o $DOCKER_CONFIG/cli-plugins/docker-compose
+curl -fsSL "https://github.com/docker/compose/releases/download/v2.17.2/docker-compose-linux-x86_64" -o $DOCKER_CONFIG/cli-plugins/docker-compose
 chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
 # change inotify for idea (phpstorm)

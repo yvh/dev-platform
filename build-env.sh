@@ -89,6 +89,10 @@ sudo systemctl enable --now mailhog
 curl -fsSL "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz" -o /tmp/openshift-client-linux.tar.gz
 sudo tar --extract --directory /usr/local/bin --file /tmp/openshift-client-linux.tar.gz oc kubectl
 
+# wkhtmltox
+curl -fsSL "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb" -o /tmp/wkhtmltox_amd64.deb
+sudo apt install -y /tmp/wkhtmltox_amd64.deb
+
 # nodejs & yarn
 curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh" | bash
 

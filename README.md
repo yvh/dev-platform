@@ -1,10 +1,13 @@
 # dev-platform
 
 ```bash
-#sudo add-apt-repository -y ppa:git-core/ppa
-sudo apt-key --keyring /etc/apt/trusted.gpg.d/git.gpg adv --keyserver keyserver.ubuntu.com --recv-key E1DD270288B4E6030699E45FA1715D88E1DF1F24
-sudo sh -c 'echo "deb https://ppa.launchpadcontent.net/git-core/ppa/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/git.list'
-sudo sh -c 'echo "#deb-src https://ppa.launchpadcontent.net/git-core/ppa/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/git.list'
+curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xe1dd270288b4e6030699e45fa1715d88e1df1f24" | sudo gpg --dearmor -o /etc/apt/keyrings/git.gpg
+echo "Types: deb
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/git.gpg
+URIs: https://ppa.launchpadcontent.net/git-core/ppa/ubuntu
+Suites: $(lsb_release -cs)
+Components: main" | sudo tee /etc/apt/sources.list.d/git.sources
 sudo apt update && sudo apt install -y git
 
 mkdir -p ~/Projects/yvh

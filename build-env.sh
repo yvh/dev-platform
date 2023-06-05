@@ -49,21 +49,12 @@ sudo apt install -y /tmp/google-chrome-stable_current_amd64.deb
 curl -SL "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" -o /tmp/code_amd64.deb
 sudo apt install -y /tmp/code_amd64.deb
 
-# teams
-#curl -SL "https://go.microsoft.com/fwlink/p/?LinkID=2112886&clcid=0x80c&culture=fr-be&country=BE" -o /tmp/teams_amd64.deb
-#sudo apt install -y /tmp/teams_amd64.deb
-
 # pdfsam
 curl -SL "https://github.com/torakiki/pdfsam/releases/download/v5.1.2/pdfsam_5.1.2-1_amd64.deb" -o /tmp/pdfsam.deb
 sudo apt install -y /tmp/pdfsam.deb
 
 # postman
 curl https://gist.githubusercontent.com/SanderTheDragon/1331397932abaa1d6fbbf63baed5f043/raw/postman-deb.sh | sh
-
-# atom
-#curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key --keyring /etc/apt/trusted.gpg.d/atom.gpg add -
-#sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
-#sudo apt update && sudo apt install -y --no-install-recommends atom
 
 # customization
 sudo update-alternatives --set editor /usr/bin/vim.basic
@@ -89,6 +80,14 @@ sudo chmod +x /usr/local/bin/mailhog
 chmod g-w mailhog.service
 sudo cp mailhog.service /etc/systemd/system/mailhog.service
 sudo systemctl enable --now mailhog
+
+# OC
+curl -fsSL "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz" -o /tmp/openshift-client-linux.tar.gz
+sudo tar --extract --directory /usr/local/bin --file /tmp/openshift-client-linux.tar.gz oc kubectl
+
+# wkhtmltox
+curl -fsSL "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb" -o /tmp/wkhtmltox_amd64.deb
+sudo apt install -y /tmp/wkhtmltox_amd64.deb
 
 # nodejs & yarn
 curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh" | bash

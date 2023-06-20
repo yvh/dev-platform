@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
 # /tmp to tmpfs
 sudo cp -v /usr/share/systemd/tmp.mount /etc/systemd/system/
@@ -23,11 +23,11 @@ sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-ag
 sudo apt install -y --no-install-recommends kdiff3 wireshark
 
 # remove snapd
-sudo snap remove firefox gnome-3-38-2004 gnome-42-2204
+sudo snap remove firefox gnome-3-38-2004
 sudo snap remove gtk-common-themes
 sudo snap remove snapd-desktop-integration
 sudo snap remove snap-store
-sudo snap remove core20 core22
+sudo snap remove core20
 sudo snap remove bare
 sudo snap remove snapd
 sudo apt -y autoremove --purge snapd
@@ -138,7 +138,7 @@ sudo usermod -aG docker yvh
 
 DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 mkdir -p $DOCKER_CONFIG/cli-plugins
-curl -fsSL "https://github.com/docker/compose/releases/download/v2.17.2/docker-compose-linux-x86_64" -o $DOCKER_CONFIG/cli-plugins/docker-compose
+curl -fsSL "https://github.com/docker/compose/releases/download/v2.18.1/docker-compose-linux-x86_64" -o $DOCKER_CONFIG/cli-plugins/docker-compose
 chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
 # change inotify for idea (phpstorm)

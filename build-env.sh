@@ -90,11 +90,11 @@ curl -fsSL "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/ope
 sudo tar --extract --directory /usr/local/bin --file /tmp/openshift-client-linux.tar.gz oc kubectl
 
 # wkhtmltox
-curl -fsSL "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb" -o /tmp/wkhtmltox_amd64.deb
+curl -fsSL "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.jammy_amd64.deb" -o /tmp/wkhtmltox_amd64.deb
 sudo apt install -y /tmp/wkhtmltox_amd64.deb
 
 # nodejs & yarn
-curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh" | bash
+curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh" | bash
 
 # apache
 ./build-apache.sh
@@ -138,7 +138,7 @@ sudo usermod -aG docker yvh
 
 DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 mkdir -p $DOCKER_CONFIG/cli-plugins
-curl -fsSL "https://github.com/docker/compose/releases/download/v2.18.1/docker-compose-linux-x86_64" -o $DOCKER_CONFIG/cli-plugins/docker-compose
+curl -fsSL "https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-x86_64" -o $DOCKER_CONFIG/cli-plugins/docker-compose
 chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
 # change inotify for idea (phpstorm)

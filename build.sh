@@ -35,13 +35,13 @@ sudo apt install -y --no-install-recommends kdiff3 wireshark
 # postman
 ./postman.sh
 
+# msmtp
+./msmtp.sh
+
 # customization
 sudo update-alternatives --set editor /usr/bin/vim.basic
 sudo sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
 sudo sed -i 's/01;32m/01;31m/' /root/.bashrc
-#sudo apt install -y msmtp
-#chmod g-w msmtprc
-#sudo cp msmtprc /etc/msmtprc
 #sudo sh -c 'echo "[General]
 #Numlock=on" >> /etc/sddm.conf'
 sudo sh -c 'echo "[connectivity]

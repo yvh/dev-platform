@@ -53,7 +53,7 @@ sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machi
 sudo apt autoremove --purge -y
 rm -rf ~/.cache/mozilla ~/.mozilla
 
-# OC
+# oc
 ./oc.sh
 
 # wkhtmltox

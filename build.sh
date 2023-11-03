@@ -11,7 +11,7 @@ sudo apt update && sudo apt -y full-upgrade
 sudo apt install -y build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     vim curl sshfs htop zsh gimp gimp-data-extras filezilla inkscape \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline vlc \
-    ttf-mscorefonts-installer hunspell-fr cntlm openssh-server
+    ttf-mscorefonts-installer hunspell-fr cntlm openssh-server jq
 sudo apt install -y --no-install-recommends kdiff3 wireshark
 
 # libreoffice
@@ -37,6 +37,9 @@ sudo apt install -y --no-install-recommends kdiff3 wireshark
 
 # msmtp
 ./msmtp.sh
+
+# jetbrains-toolbox
+./jetbrains-toolbox.sh
 
 # customization
 sudo update-alternatives --set editor /usr/bin/vim.basic

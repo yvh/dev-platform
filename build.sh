@@ -53,13 +53,6 @@ sudo apt-get purge -y fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machi
 sudo apt autoremove --purge -y
 rm -rf ~/.cache/mozilla ~/.mozilla
 
-# set mailhog
-#sudo curl -SL https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64 -o /usr/local/bin/mailhog
-#sudo chmod +x /usr/local/bin/mailhog
-#chmod g-w mailhog.service
-#sudo cp mailhog.service /etc/systemd/system/mailhog.service
-#sudo systemctl enable --now mailhog
-
 # OC
 ./oc.sh
 

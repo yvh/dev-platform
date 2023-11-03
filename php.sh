@@ -2,6 +2,15 @@
 
 set -ex
 
+curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x14aa40ec0831756756d7f66c4f4ea0aae5267a6c" | sudo gpg --dearmor -o /etc/apt/keyrings/php.gpg
+echo "Types: deb
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/php.gpg
+URIs: https://ppa.launchpadcontent.net/ondrej/php/ubuntu
+Suites: $(lsb_release -cs)
+Components: main" | sudo tee /etc/apt/sources.list.d/php.sources
+sudo apt update
+
 for VERSION in 7.4 8.0 8.1 8.2; do
     sudo apt install -y php${VERSION} php${VERSION}-{apcu,ast,bz2,cli,curl,dev,gd,intl,ldap,mbstring,mysql,opcache,soap,solr,ssh2,readline,redis,xml,xsl,xdebug,zip}
 
@@ -15,7 +24,7 @@ for VERSION in 7.4 8.0 8.1 8.2; do
         sudo sed -i -e "s|;cgi.fix_pathinfo=1|cgi.fix_pathinfo = 0|" $ini_path/php.ini
         sudo sed -i -e "s|;realpath_cache_ttl = 120|realpath_cache_ttl = 600|" $ini_path/php.ini
         sudo sed -i -e "s|;realpath_cache_size = 4096k|realpath_cache_size = 4096K|" $ini_path/php.ini
-        sudo sed -i -e "s|;sendmail_path =|sendmail_path = /usr/bin/msmtp -t|" $ini_path/php.ini
+        #sudo sed -i -e "s|;sendmail_path =|sendmail_path = /usr/bin/msmtp -t|" $ini_path/php.ini
     done
 
     ini_path=/etc/php/${VERSION}/mods-available
@@ -43,3 +52,6 @@ done
 
 sudo cp php-switch.sh /usr/local/bin/php-switch
 sudo chmod +x /usr/local/bin/php-switch
+sudo mkdir -p /var/www/html/phpinfo
+sudo sh -c 'echo "<?php phpinfo();" > /var/www/html/phpinfo/index.php'
+curl -SL https://raw.githubusercontent.com/composer/getcomposer.org/main/web/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer

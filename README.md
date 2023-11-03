@@ -15,6 +15,6 @@ cd ~/Projects/yvh
 git clone git@github.com:yvh/dev-platform
 
 cd ~/Projects/yvh/dev-platform
-./build-locale.sh # reboot after
-./build-env.sh
+./install-locale.sh # reboot after
+./build.sh
 ```

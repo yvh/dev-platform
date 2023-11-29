@@ -6,6 +6,11 @@ set -ex
 sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/
 sudo systemctl enable --now tmp.mount
 
+# remove preinstalled-pool
+sudo rm --recursive --force /var/lib/preinstalled-pool
+sudo rm --force /etc/apt/sources.list.d/preinstalled-pool.list
+sudo rm --force /etc/apt/trusted.gpg
+
 # upgrade & install some apps
 sudo apt update && sudo apt full-upgrade --assume-yes
 sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \

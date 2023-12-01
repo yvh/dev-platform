@@ -81,10 +81,11 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 ./dbeaver.sh
 
 # php
-./php.sh
+#./php.sh
 
 # docker
 ./docker.sh
+./docker-compose.sh
 
 # change inotify for idea (phpstorm)
 sudo sh -c 'echo "fs.inotify.max_user_watches = 524288" > /etc/sysctl.d/10-idea.conf'

@@ -81,7 +81,7 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 ./dbeaver.sh
 
 # php
-#./php.sh
+./php.sh
 
 # docker
 ./docker.sh

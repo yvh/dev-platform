@@ -25,9 +25,6 @@ sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark
 # remmina
 ./remmina.sh
 
-# github cli
-./github-cli.sh
-
 # google chrome
 ./google-chrome.sh
 
@@ -76,9 +73,6 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 
 # mariadb
 ./mariadb.sh
-
-# dbeaver
-./dbeaver.sh
 
 # php
 ./php.sh

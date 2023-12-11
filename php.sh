@@ -13,6 +13,7 @@ sudo apt update
 
 ./php-install.sh 8.1
 ./php-install.sh 8.2
+./php-install.sh 8.3
 
 sudo cp php-switch.sh /usr/local/bin/php-switch
 sudo mkdir --parents /var/www/html/phpinfo

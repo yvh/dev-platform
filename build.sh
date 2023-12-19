@@ -14,7 +14,7 @@ sudo rm --force /etc/apt/trusted.gpg
 # upgrade & install some apps
 sudo apt update && sudo apt full-upgrade --assume-yes
 sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
-    vim curl sshfs htop zsh gimp gimp-data-extras filezilla inkscape \
+    vim curl sshfs htop zsh gimp gimp-data-extras filezilla inkscape git-flow \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline vlc \
     ttf-mscorefonts-installer hunspell-fr cntlm openssh-server jq network-manager-fortisslvpn
 sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark

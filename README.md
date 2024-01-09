@@ -10,11 +10,11 @@ Suites: $(lsb_release --codename --short)
 Components: main" | sudo tee /etc/apt/sources.list.d/git.sources
 sudo apt update && sudo apt install --assume-yes git
 
-mkdir --parents ~/Projects/yvh
-cd ~/Projects/yvh
+mkdir --parents ~/Workspaces/yvh
+cd ~/Workspaces/yvh
 git clone git@github.com:yvh/dev-platform
 
-cd ~/Projects/yvh/dev-platform
+cd ~/Workspaces/yvh/dev-platform
 ./install-locale.sh # reboot after
 ./build.sh
 ```

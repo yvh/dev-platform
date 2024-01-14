@@ -55,7 +55,7 @@ enabled=false" > /etc/NetworkManager/conf.d/20-connectivity.conf'
 # remove uneccessary apps
 sudo apt-get purge --assume-yes fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano \
     firefox firefox-locale-en skanlite kio-audiocd thunderbird muon kde-config-tablet usb-creator-kde snapd \
-    plasma-welcome
+    plasma-welcome partitionmanager
 sudo apt autoremove --purge --assume-yes
 rm --recursive --force ~/.cache/mozilla ~/.mozilla
 

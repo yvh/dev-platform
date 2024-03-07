@@ -31,9 +31,6 @@ sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark
 # visual studio code
 ./visual-studio-code.sh
 
-# glab
-./gitlab-cli.sh
-
 # pdfsam
 ./pdfsam.sh
 

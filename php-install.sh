@@ -4,7 +4,7 @@ set -ex
 
 VERSION=$1
 
-sudo apt install --assume-yes php${VERSION} php${VERSION}-{apcu,ast,bz2,cli,curl,dev,gd,intl,ldap,mbstring,mysql,opcache,soap,solr,ssh2,readline,redis,xml,xsl,xdebug,zip}
+sudo apt install --assume-yes php${VERSION} php${VERSION}-{apcu,ast,bz2,cli,curl,dev,gd,imagick,intl,ldap,mbstring,mysql,opcache,soap,solr,ssh2,readline,redis,xml,xsl,xdebug,zip}
 
 for SYSTEM in apache2 cli; do
     ini_path=/etc/php/${VERSION}/${SYSTEM}

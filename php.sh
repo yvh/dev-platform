@@ -11,6 +11,8 @@ Suites: $(lsb_release --codename --short)
 Components: main" | sudo tee /etc/apt/sources.list.d/php.sources
 sudo apt update
 
+./php-install.sh 7.4
+./php-install.sh 8.0
 ./php-install.sh 8.1
 ./php-install.sh 8.2
 ./php-install.sh 8.3

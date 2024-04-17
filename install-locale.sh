@@ -14,6 +14,3 @@ sudo sed --in-place --expression "/# en_BW\.UTF-8.*/a en_BE.UTF-8 UTF-8" /etc/lo
 
 sudo rm --force /var/lib/locales/supported.d/*
 sudo locale-gen
-
-sudo sed --in-place --expression "s|nl_BE|en_BE|g" /etc/default/locale
-sudo sed --in-place --expression "/LC_MEASUREMENT=.*/a LC_MESSAGES=C.UTF-8" /etc/default/locale

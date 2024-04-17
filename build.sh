@@ -10,8 +10,8 @@ sudo systemctl enable --now tmp.mount
 sudo apt update && sudo apt full-upgrade --assume-yes
 sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     vim curl sshfs htop zsh filezilla git-flow \
-    ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline gnome-tweaks \
-    aspell-fr hyphen-fr mythes-fr hunspell-fr ttf-mscorefonts-installer cntlm jq terminator imagemagick
+    ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline \
+    aspell-fr hyphen-fr mythes-fr hunspell-fr ttf-mscorefonts-installer cntlm jq terminator
 sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark
 
 # remove snapd
@@ -19,6 +19,7 @@ sudo snap remove firefox gnome-42-2204
 sudo snap remove gtk-common-themes
 sudo snap remove snapd-desktop-integration
 sudo snap remove snap-store
+sudo snap remove firmware-updater
 sudo snap remove core22
 sudo snap remove bare
 sudo snap remove snapd
@@ -37,9 +38,6 @@ rm -rf ~/snap ~/Downloads/firefox.tmp
 # postman
 ./postman.sh
 
-# msmtp
-./msmtp.sh
-
 # jetbrains-toolbox
 ./jetbrains-toolbox.sh
 
@@ -57,21 +55,6 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 
 # oc
 ./oc.sh
-
-# wkhtmltox
-./wkhtmltox.sh
-
-# nodejs & yarn
-./nvm.sh
-
-# apache
-./apache.sh
-
-# mariadb
-./mariadb.sh
-
-# php
-./php.sh
 
 # docker
 ./docker.sh

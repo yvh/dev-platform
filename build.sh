@@ -56,6 +56,9 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # oc
 ./oc.sh
 
+# dnsmasq
+./dnsmasq.sh
+
 # docker
 ./docker.sh
 

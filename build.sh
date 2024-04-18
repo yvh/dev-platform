@@ -61,6 +61,9 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # wkhtmltox
 ./wkhtmltox.sh
 
+# dnsmasq
+./dnsmasq.sh
+
 # nodejs & yarn
 ./nvm.sh
 

@@ -11,8 +11,8 @@ services:
             - "traefik.http.routers.proxy.entrypoints=http"
             - "traefik.http.routers.proxy.rule=Host(`proxy.docker.local`)"
         networks:
-          - traefik
+            - traefik
 
 networks:
-  traefik:
-    external: true
+    traefik:
+        external: true

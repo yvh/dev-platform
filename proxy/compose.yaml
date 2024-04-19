@@ -10,9 +10,8 @@ services:
             - "traefik.http.services.proxy.loadbalancer.server.port=80"
             - "traefik.http.routers.proxy.entrypoints=http"
             - "traefik.http.routers.proxy.rule=Host(`proxy.docker.local`)"
-        networks:
-            - traefik
 
 networks:
-    traefik:
+    default:
+        name: traefik
         external: true

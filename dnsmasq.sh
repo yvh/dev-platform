@@ -9,7 +9,7 @@ sudo sed --in-place 's/#bind-interfaces/bind-interfaces/' /etc/dnsmasq.conf
 sudo sed --in-place 's/#no-resolv/no-resolv/' /etc/dnsmasq.conf
 sudo sed --in-place 's/#domain-needed/domain-needed/' /etc/dnsmasq.conf
 sudo sed --in-place 's/#bogus-priv/bogus-priv/' /etc/dnsmasq.conf
-echo "address=/local/127.0.0.1" | sudo tee /etc/dnsmasq.d/wildcard.local
+echo "address=/local/127.0.0.1" | sudo tee /etc/dnsmasq.d/local
 sudo sed --in-place 's/#IGNORE_RESOLVCONF/IGNORE_RESOLVCONF/' /etc/default/dnsmasq
 sudo systemctl restart dnsmasq.service
 

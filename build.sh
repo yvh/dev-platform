@@ -37,9 +37,6 @@ sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark
 # postman
 ./postman.sh
 
-# msmtp
-./msmtp.sh
-
 # jetbrains-toolbox
 ./jetbrains-toolbox.sh
 
@@ -48,8 +45,6 @@ sudo update-alternatives --set editor /usr/bin/vim.basic
 sudo sed --in-place 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
 sudo sed --in-place 's/01;32m/01;31m/' /root/.bashrc
 sudo sed --in-place 's/    SendEnv/#   SendEnv/g' /etc/ssh/ssh_config
-#sudo sh -c 'echo "[General]
-#Numlock=on" >> /etc/sddm.conf'
 sudo sh -c 'echo "[connectivity]
 enabled=false" > /etc/NetworkManager/conf.d/20-connectivity.conf'
 
@@ -63,20 +58,8 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # oc
 ./oc.sh
 
-# wkhtmltox
-./wkhtmltox.sh
-
-# nodejs & yarn
-./nvm.sh
-
-# apache
-./apache.sh
-
-# mariadb
-./mariadb.sh
-
-# php
-./php.sh
+# dnsmasq
+./dnsmasq.sh
 
 # docker
 ./docker.sh

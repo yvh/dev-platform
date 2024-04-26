@@ -15,6 +15,7 @@ cd ~/Workspaces/yvh
 git clone git@github.com:yvh/dev-platform
 
 cd ~/Workspaces/yvh/dev-platform
-./install-locale.sh # reboot after
+./locale.sh
+./nvidia.sh # reboot after
 ./build.sh
 ```

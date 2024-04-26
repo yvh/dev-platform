@@ -53,7 +53,7 @@ sudo apt-get purge --assume-yes fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tib
     firefox firefox-locale-en skanlite kio-audiocd thunderbird muon kde-config-tablet usb-creator-kde snapd \
     plasma-welcome partitionmanager
 sudo apt autoremove --purge --assume-yes
-rm --recursive --force ~/.cache/mozilla ~/.mozilla
+rm --recursive --force ~/.cache/mozilla ~/.mozilla ~/.config/plasma-welcomerc ~/.config/KDE/UserFeedback.org.kde.plasma-welcome.conf
 
 # oc
 ./oc.sh
@@ -72,6 +72,14 @@ sudo sysctl --load --system
 sudo apt full-upgrade --assume-yes
 
 sudo apt autoremove --purge --assume-yes
+
+# remove uneccessary dirs
+echo "enabled=False" > ~/.config/user-dirs.conf
+sed -i 's/XDG_TEMPLATES_DIR/#XDG_TEMPLATES_DIR/' ~/.config/user-dirs.dirs
+sed -i 's/XDG_PUBLICSHARE_DIR/#XDG_PUBLICSHARE_DIR/' ~/.config/user-dirs.dirs
+sed -i 's/XDG_DOCUMENTS_DIR/#XDG_DOCUMENTS_DIR/' ~/.config/user-dirs.dirs
+sed -i 's/XDG_MUSIC_DIR/#XDG_MUSIC_DIR/' ~/.config/user-dirs.dirs
+sed -i 's/XDG_VIDEOS_DIR=/#XDG_VIDEOS_DIR=/' ~/.config/user-dirs.dirs
 
 # Oh my zsh
 sh -c "$(curl --silent --show-error --location https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

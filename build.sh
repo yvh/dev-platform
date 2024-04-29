@@ -16,7 +16,7 @@ sudo apt update && sudo apt full-upgrade --assume-yes
 sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     vim curl sshfs htop zsh gimp gimp-data-extras filezilla inkscape git-flow \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline vlc \
-    ttf-mscorefonts-installer hunspell-fr cntlm openssh-server jq network-manager-fortisslvpn
+    ttf-mscorefonts-installer hunspell-fr cntlm openssh-server jq network-manager-fortisslvpn imagemagick
 sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark
 
 # libreoffice
@@ -45,6 +45,8 @@ sudo update-alternatives --set editor /usr/bin/vim.basic
 sudo sed --in-place 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
 sudo sed --in-place 's/01;32m/01;31m/' /root/.bashrc
 sudo sed --in-place 's/    SendEnv/#   SendEnv/g' /etc/ssh/ssh_config
+sudo sed --in-place 's/#GatewayPorts no/GatewayPorts yes/g' /etc/ssh/sshd_config
+sudo sed --in-place '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
 sudo sh -c 'echo "[connectivity]
 enabled=false" > /etc/NetworkManager/conf.d/20-connectivity.conf'
 
@@ -60,6 +62,24 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla ~/.config/plasma-welcomerc ~/
 
 # dnsmasq
 ./dnsmasq.sh
+
+# apache
+./apache.sh
+
+# mariadb
+./mariadb.sh
+
+# php
+./php.sh
+
+# nodejs & yarn
+./nvm.sh
+
+# msmtp
+./msmtp.sh
+
+# wkhtmltox
+./wkhtmltox.sh
 
 # docker
 ./docker.sh

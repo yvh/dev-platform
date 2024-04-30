@@ -60,9 +60,6 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla ~/.config/plasma-welcomerc ~/
 # oc
 ./oc.sh
 
-# dnsmasq
-./dnsmasq.sh
-
 # apache
 ./apache.sh
 
@@ -77,9 +74,6 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla ~/.config/plasma-welcomerc ~/
 
 # msmtp
 ./msmtp.sh
-
-# wkhtmltox
-./wkhtmltox.sh
 
 # docker
 ./docker.sh

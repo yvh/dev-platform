@@ -37,6 +37,9 @@ sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark
 # postman
 ./postman.sh
 
+# falco
+./falco.sh
+
 # jetbrains-toolbox
 ./jetbrains-toolbox.sh
 

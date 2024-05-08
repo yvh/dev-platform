@@ -36,7 +36,7 @@ rm -rf ~/snap ~/Downloads/firefox.tmp
 ./visual-studio-code.sh
 
 # postman
-#./postman.sh
+./postman.sh
 
 # jetbrains-toolbox
 ./jetbrains-toolbox.sh

@@ -36,7 +36,7 @@ rm -rf ~/snap ~/Downloads/firefox.tmp
 ./visual-studio-code.sh
 
 # postman
-./postman.sh
+#./postman.sh
 
 # jetbrains-toolbox
 ./jetbrains-toolbox.sh
@@ -55,6 +55,9 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 
 # oc
 ./oc.sh
+
+# dnsmasq
+./dnsmasq.sh
 
 # docker
 ./docker.sh

@@ -9,9 +9,9 @@ sudo systemctl enable --now tmp.mount
 # upgrade & install some apps
 sudo apt update && sudo apt full-upgrade --assume-yes
 sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
-    vim curl sshfs htop zsh filezilla git-flow \
+    vim curl sshfs htop zsh filezilla git-flow ttf-mscorefonts-installer cntlm jq terminator \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline \
-    aspell-fr hyphen-fr mythes-fr hunspell-fr ttf-mscorefonts-installer cntlm jq terminator
+    aspell-fr hyphen-fr mythes-fr hunspell-fr network-manager-fortisslvpn-gnome
 sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark
 
 # remove snapd
@@ -55,9 +55,6 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 
 # oc
 ./oc.sh
-
-# dnsmasq
-./dnsmasq.sh
 
 # docker
 ./docker.sh

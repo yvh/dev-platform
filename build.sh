@@ -9,9 +9,9 @@ sudo systemctl enable --now tmp.mount
 # upgrade & install some apps
 sudo apt update && sudo apt full-upgrade --assume-yes
 sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
-    vim curl sshfs htop zsh filezilla git-flow \
+    vim curl sshfs htop zsh filezilla git-flow cntlm jq terminator \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline gnome-tweaks \
-    aspell-fr hyphen-fr mythes-fr hunspell-fr ttf-mscorefonts-installer cntlm jq terminator imagemagick
+    aspell-fr hyphen-fr mythes-fr hunspell-fr ttf-mscorefonts-installer network-manager-fortisslvpn-gnome
 sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark
 
 # remove snapd
@@ -25,6 +25,18 @@ sudo snap remove snapd
 sudo apt -y autoremove --purge snapd
 rm -rf ~/snap ~/Downloads/firefox.tmp
 
+# customization
+sudo update-alternatives --set editor /usr/bin/vim.basic
+sudo sed --in-place 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
+sudo sed --in-place 's/01;32m/01;31m/' /root/.bashrc
+sudo sed --in-place 's/    SendEnv/#   SendEnv/g' /etc/ssh/ssh_config
+
+# remove uneccessary apps
+sudo apt-get purge --assume-yes fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano \
+    firefox firefox-locale-en skanlite kio-audiocd thunderbird
+sudo apt autoremove --purge --assume-yes
+rm --recursive --force ~/.cache/mozilla ~/.mozilla
+
 # libreoffice
 ./libreoffice.sh
 
@@ -37,23 +49,11 @@ rm -rf ~/snap ~/Downloads/firefox.tmp
 # postman
 ./postman.sh
 
-# msmtp
-./msmtp.sh
+# remmina
+./remmina.sh
 
 # jetbrains-toolbox
 ./jetbrains-toolbox.sh
-
-# customization
-sudo update-alternatives --set editor /usr/bin/vim.basic
-sudo sed --in-place 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
-sudo sed --in-place 's/01;32m/01;31m/' /root/.bashrc
-sudo sed --in-place 's/    SendEnv/#   SendEnv/g' /etc/ssh/ssh_config
-
-# remove uneccessary apps
-sudo apt-get purge --assume-yes fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano \
-    firefox firefox-locale-en skanlite kio-audiocd thunderbird
-sudo apt autoremove --purge --assume-yes
-rm --recursive --force ~/.cache/mozilla ~/.mozilla
 
 # oc
 ./oc.sh
@@ -73,6 +73,9 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # php
 ./php.sh
 
+# msmtp
+./msmtp.sh
+
 # docker
 ./docker.sh
 
@@ -91,8 +94,8 @@ sed -i 's/XDG_TEMPLATES_DIR/#XDG_TEMPLATES_DIR/' ~/.config/user-dirs.dirs
 sed -i 's/XDG_PUBLICSHARE_DIR/#XDG_PUBLICSHARE_DIR/' ~/.config/user-dirs.dirs
 sed -i 's/XDG_DOCUMENTS_DIR/#XDG_DOCUMENTS_DIR/' ~/.config/user-dirs.dirs
 sed -i 's/XDG_MUSIC_DIR/#XDG_MUSIC_DIR/' ~/.config/user-dirs.dirs
-sed -i 's/XDG_PICTURES_DIR/#XDG_PICTURES_DIR/' ~/.config/user-dirs.dirs
 sed -i 's/XDG_VIDEOS_DIR=/#XDG_VIDEOS_DIR=/' ~/.config/user-dirs.dirs
 
 # Oh my zsh
 sh -c "$(curl --silent --show-error --location https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+

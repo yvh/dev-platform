@@ -26,21 +26,6 @@ sudo snap remove snapd
 sudo apt -y autoremove --purge snapd
 rm -rf ~/snap ~/Downloads/firefox.tmp
 
-# libreoffice
-./libreoffice.sh
-
-# google chrome
-./google-chrome.sh
-
-# visual studio code
-./visual-studio-code.sh
-
-# postman
-./postman.sh
-
-# jetbrains-toolbox
-./jetbrains-toolbox.sh
-
 # customization
 sudo update-alternatives --set editor /usr/bin/vim.basic
 sudo sed --in-place 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
@@ -53,11 +38,47 @@ sudo apt-get purge --assume-yes fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tib
 sudo apt autoremove --purge --assume-yes
 rm --recursive --force ~/.cache/mozilla ~/.mozilla
 
+# libreoffice
+./libreoffice.sh
+
+# google chrome
+./google-chrome.sh
+
+# visual studio code
+./visual-studio-code.sh
+
+# postman
+./postman.sh
+
+# remmina
+./remmina.sh
+
+# jetbrains-toolbox
+./jetbrains-toolbox.sh
+
 # oc
 ./oc.sh
 
+# wkhtmltox
+./wkhtmltox.sh
+
 # dnsmasq
 ./dnsmasq.sh
+
+# nodejs & yarn
+./nvm.sh
+
+# apache
+./apache.sh
+
+# mariadb
+./mariadb.sh
+
+# php
+./php.sh
+
+# msmtp
+./msmtp.sh
 
 # docker
 ./docker.sh

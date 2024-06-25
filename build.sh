@@ -59,9 +59,6 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # oc
 ./oc.sh
 
-# wkhtmltox
-./wkhtmltox.sh
-
 # dnsmasq
 ./dnsmasq.sh
 

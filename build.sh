@@ -81,7 +81,7 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 ./docker.sh
 
 # change inotify for idea (phpstorm)
-sudo sh -c 'echo "fs.inotify.max_user_watches = 524288" > /etc/sysctl.d/10-idea.conf'
+sudo sh -c 'echo "fs.inotify.max_user_watches = 1048576" > /etc/sysctl.d/99-idea.conf'
 sudo sysctl --load --system
 
 # full-upgrade

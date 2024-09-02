@@ -11,8 +11,8 @@ sudo apt update && sudo apt full-upgrade --assume-yes
 sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     vim curl sshfs htop zsh filezilla git-flow cntlm jq terminator imagemagick \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline \
-    aspell-fr hyphen-fr mythes-fr hunspell-fr ttf-mscorefonts-installer network-manager-fortisslvpn-gnome
-sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark
+    aspell-fr hyphen-fr mythes-fr hunspell-fr network-manager-fortisslvpn-gnome
+sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark kompare
 
 # remove snapd
 sudo snap remove firefox gnome-42-2204
@@ -95,5 +95,5 @@ sed -i 's/XDG_MUSIC_DIR/#XDG_MUSIC_DIR/' ~/.config/user-dirs.dirs
 sed -i 's/XDG_PICTURES_DIR/#XDG_PICTURES_DIR/' ~/.config/user-dirs.dirs
 sed -i 's/XDG_VIDEOS_DIR=/#XDG_VIDEOS_DIR=/' ~/.config/user-dirs.dirs
 
-# Oh my zsh
+# oh my zsh
 sh -c "$(curl --silent --show-error --location https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

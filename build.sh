@@ -68,6 +68,9 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # mariadb
 ./mariadb.sh
 
+# dbeaver
+./dbeaver.sh
+
 # php
 ./php.sh
 

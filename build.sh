@@ -81,6 +81,9 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 sudo sh -c 'echo "fs.inotify.max_user_watches = 1048576" > /etc/sysctl.d/99-idea.conf'
 sudo sysctl --load --system
 
+# remove warning: signature key uses weak algorithm
+sudo sh -c 'echo "APT::Key::Assert-Pubkey-Algo \">=rsa1024,ed25529,ed448\";" > /etc/apt/apt.conf.d/99weakkey-warning'
+
 # full-upgrade
 sudo apt full-upgrade --assume-yes
 

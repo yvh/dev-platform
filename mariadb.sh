@@ -2,7 +2,7 @@
 
 set -ex
 
-sudo curl --output /etc/apt/keyrings/mariadb.pgp "https://mariadb.org/mariadb_release_signing_key.pgp"
+sudo curl --silent --show-error --location --output /etc/apt/keyrings/mariadb.pgp "https://mariadb.org/mariadb_release_signing_key.pgp"
 echo "X-Repolib-Name: MariaDB
 Types: deb
 Architectures: amd64

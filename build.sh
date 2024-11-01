@@ -9,8 +9,8 @@ sudo systemctl enable --now tmp.mount
 # upgrade & install some apps
 sudo apt update && sudo apt full-upgrade --assume-yes
 sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
-    vim curl sshfs htop zsh filezilla git-flow cntlm jq terminator imagemagick \
-    ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline \
+    vim curl sshfs htop zsh filezilla cntlm jq terminator \
+    ttf-bitstream-vera fonts-dejavu fonts-lato fonts-open-sans fonts-roboto \
     aspell-fr hyphen-fr mythes-fr hunspell-fr network-manager-fortisslvpn-gnome
 sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark kompare
 
@@ -38,14 +38,26 @@ sudo apt-get purge --assume-yes fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tib
 sudo apt autoremove --purge --assume-yes
 rm --recursive --force ~/.cache/mozilla ~/.mozilla
 
-# libreoffice
-./libreoffice.sh
+# dbeaver
+./dbeaver.sh
+
+# docker
+./docker.sh
 
 # google chrome
 ./google-chrome.sh
 
-# visual studio code
-./visual-studio-code.sh
+# jetbrains-toolbox
+./jetbrains-toolbox.sh
+
+# libreoffice
+./libreoffice.sh
+
+# mariadb
+./mariadb.sh
+
+# oc
+./oc.sh
 
 # postman
 ./postman.sh
@@ -53,32 +65,8 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # remmina
 ./remmina.sh
 
-# jetbrains-toolbox
-./jetbrains-toolbox.sh
-
-# oc
-./oc.sh
-
-# nodejs & yarn
-./nvm.sh
-
-# apache
-./apache.sh
-
-# mariadb
-./mariadb.sh
-
-# dbeaver
-./dbeaver.sh
-
-# php
-./php.sh
-
-# msmtp
-./msmtp.sh
-
-# docker
-./docker.sh
+# visual studio code
+./visual-studio-code.sh
 
 # change inotify for idea (phpstorm)
 sudo sh -c 'echo "fs.inotify.max_user_watches = 1048576" > /etc/sysctl.d/99-idea.conf'
@@ -100,6 +88,3 @@ sed -i 's/XDG_DOCUMENTS_DIR/#XDG_DOCUMENTS_DIR/' ~/.config/user-dirs.dirs
 sed -i 's/XDG_MUSIC_DIR/#XDG_MUSIC_DIR/' ~/.config/user-dirs.dirs
 sed -i 's/XDG_PICTURES_DIR/#XDG_PICTURES_DIR/' ~/.config/user-dirs.dirs
 sed -i 's/XDG_VIDEOS_DIR=/#XDG_VIDEOS_DIR=/' ~/.config/user-dirs.dirs
-
-# oh my zsh
-sh -c "$(curl --silent --show-error --location https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

@@ -44,6 +44,9 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # docker
 ./docker.sh
 
+# falco
+./falco.sh
+
 # google chrome
 ./google-chrome.sh
 

@@ -10,7 +10,7 @@ sudo systemctl enable --now tmp.mount
 sudo apt update && sudo apt full-upgrade --assume-yes
 sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     vim curl sshfs htop zsh filezilla cntlm jq terminator \
-    ttf-bitstream-vera fonts-dejavu fonts-lato fonts-open-sans fonts-roboto \
+    ttf-bitstream-vera fonts-dejavu fonts-lato fonts-open-sans fonts-roboto fonts-powerline \
     aspell-fr hyphen-fr mythes-fr hunspell-fr network-manager-fortisslvpn-gnome
 sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark kompare
 
@@ -92,4 +92,3 @@ sed -i 's/XDG_VIDEOS_DIR=/#XDG_VIDEOS_DIR=/' ~/.config/user-dirs.dirs
 # oh-my-zsh
 set +x
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-

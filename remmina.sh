@@ -2,7 +2,7 @@
 
 set -ex
 
-curl --silent --show-error --location "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x04e38ce134b239b9f38f82ee8a993c2521c5f0ba" | sudo gpg --dearmor --output /etc/apt/keyrings/remmina.gpg
+curl --silent --show-error --location "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x04E38CE134B239B9F38F82EE8A993C2521C5F0BA" | sudo gpg --dearmor --output /etc/apt/keyrings/remmina.gpg
 echo "Types: deb
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/remmina.gpg

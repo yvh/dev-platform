@@ -2,7 +2,7 @@
 
 set -ex
 
-curl --silent --show-error --location "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x36e81c9267fd1383fcc4490983fba1751378b444" | sudo gpg --dearmor --output /etc/apt/keyrings/libreoffice.gpg
+curl --silent --show-error --location "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xCDDE43BA4DE3F09D7CE7016673AEE920AD55F5A0" | sudo gpg --dearmor --output /etc/apt/keyrings/libreoffice.gpg
 echo "Types: deb
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/libreoffice.gpg

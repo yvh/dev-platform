@@ -63,6 +63,9 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # mariadb
 ./mariadb.sh
 
+# msmtp
+./msmtp.sh
+
 # oc
 ./oc.sh
 

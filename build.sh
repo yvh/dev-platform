@@ -66,6 +66,9 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # msmtp
 ./msmtp.sh
 
+# nodejs & yarn
+./nvm.sh
+
 # oc
 ./oc.sh
 

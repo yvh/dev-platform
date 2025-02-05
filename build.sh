@@ -39,6 +39,9 @@ sudo apt-get purge --assume-yes fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tib
 sudo apt autoremove --purge --assume-yes
 rm --recursive --force ~/.cache/mozilla ~/.mozilla
 
+# apache
+./apache.sh
+
 # docker
 ./docker.sh
 

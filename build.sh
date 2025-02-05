@@ -75,6 +75,9 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # pdfsam
 ./pdfsam.sh
 
+# php
+./php.sh
+
 # postman
 ./postman.sh
 

@@ -5,7 +5,7 @@ set -ex
 sudo apt update
 sudo apt install --assume-yes apache2
 
-sudo a2enmod mpm_event rewrite proxy_fcgi setenvif ssl
+sudo a2enmod mpm_event rewrite proxy_fcgi setenvif ssl headers expires
 echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
 sudo a2enconf fqdn
 

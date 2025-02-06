@@ -32,6 +32,7 @@ sudo sed --in-place 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.b
 sudo sed --in-place 's/01;32m/01;31m/' /root/.bashrc
 sudo sed --in-place 's/    SendEnv/#   SendEnv/g' /etc/ssh/ssh_config
 sudo sed --in-place '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
+sudo sh -c 'echo ".host:/ /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other 0 0" >> /etc/fstab'
 
 # remove uneccessary apps
 sudo apt-get purge --assume-yes fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano \

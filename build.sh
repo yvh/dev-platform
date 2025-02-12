@@ -11,7 +11,7 @@ sudo apt update && sudo apt full-upgrade --assume-yes
 sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
     vim curl sshfs htop zsh gimp gimp-data-extras filezilla inkscape cntlm jq terminator \
     ttf-bitstream-vera fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline \
-    aspell-fr hyphen-fr mythes-fr hunspell-fr network-manager-fortisslvpn-gnome imagemagick
+    aspell-fr hyphen-fr mythes-fr hunspell-fr network-manager-fortisslvpn-gnome
 sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark kompare
 
 # remove snapd
@@ -31,7 +31,6 @@ sudo update-alternatives --set editor /usr/bin/vim.basic
 sudo sed --in-place 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
 sudo sed --in-place 's/01;32m/01;31m/' /root/.bashrc
 sudo sed --in-place 's/    SendEnv/#   SendEnv/g' /etc/ssh/ssh_config
-sudo sed --in-place '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
 sudo sh -c 'echo ".host:/ /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other 0 0" >> /etc/fstab'
 
 # remove uneccessary apps
@@ -39,9 +38,6 @@ sudo apt-get purge --assume-yes fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tib
     firefox firefox-locale-en skanlite kio-audiocd thunderbird
 sudo apt autoremove --purge --assume-yes
 rm --recursive --force ~/.cache/mozilla ~/.mozilla
-
-# apache
-./apache.sh
 
 # docker
 ./docker.sh
@@ -64,20 +60,11 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # mariadb
 ./mariadb.sh
 
-# msmtp
-./msmtp.sh
-
-# nodejs & yarn
-./nvm.sh
-
 # oc
 ./oc.sh
 
 # pdfsam
 ./pdfsam.sh
-
-# php
-./php.sh
 
 # postman
 ./postman.sh

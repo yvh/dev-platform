@@ -6,6 +6,8 @@ set -ex
 sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/
 sudo systemctl enable --now tmp.mount
 
+sudo dpkg-divert --rename --divert /etc/apt/apt.conf.d/20apt-esm-hook.conf.disabled --add /etc/apt/apt.conf.d/20apt-esm-hook.conf
+
 # upgrade & install some apps
 sudo apt update && sudo apt full-upgrade --assume-yes
 sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \

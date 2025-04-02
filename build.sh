@@ -11,7 +11,7 @@ sudo dpkg-divert --rename --divert /etc/apt/apt.conf.d/20apt-esm-hook.conf.disab
 # upgrade & install some apps
 sudo apt update && sudo apt full-upgrade --assume-yes
 sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
-    vim curl sshfs htop zsh gimp gimp-data-extras filezilla inkscape cntlm jq terminator network-manager-fortisslvpn-gnome \
+    vim curl sshfs htop zsh filezilla cntlm jq terminator network-manager-fortisslvpn-gnome \
     fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline ttf-mscorefonts-installer \
     aspell-fr hyphen-fr mythes-fr hunspell-fr
 sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark kompare

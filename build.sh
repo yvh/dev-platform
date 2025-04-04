@@ -6,38 +6,24 @@ set -ex
 sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/
 sudo systemctl enable --now tmp.mount
 
-sudo dpkg-divert --rename --divert /etc/apt/apt.conf.d/20apt-esm-hook.conf.disabled --add /etc/apt/apt.conf.d/20apt-esm-hook.conf
-
 # upgrade & install some apps
 sudo apt update && sudo apt full-upgrade --assume-yes
 sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
-    vim curl sshfs htop zsh filezilla cntlm jq terminator network-manager-fortisslvpn-gnome \
-    fonts-dejavu fonts-hack fonts-lato fonts-open-sans fonts-roboto fonts-powerline ttf-mscorefonts-installer \
+    vim sshfs htop zsh filezilla cntlm jq terminator remmina gnome-tweaks \
+    fonts-dejavu fonts-lato fonts-open-sans fonts-roboto fonts-powerline \
     aspell-fr hyphen-fr mythes-fr hunspell-fr
 sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark kompare
 
-# remove snapd
-sudo snap remove firefox gnome-42-2204
-sudo snap remove gtk-common-themes
-sudo snap remove snapd-desktop-integration
-sudo snap remove snap-store
-sudo snap remove firmware-updater
-sudo snap remove core22
-sudo snap remove bare
-sudo snap remove snapd
-sudo apt -y autoremove --purge snapd
-rm -rf ~/snap ~/Downloads/firefox.tmp
-
 # customization
-sudo update-alternatives --set editor /usr/bin/vim.basic
 sudo sed --in-place 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
 sudo sed --in-place 's/01;32m/01;31m/' /root/.bashrc
 sudo sed --in-place 's/    SendEnv/#   SendEnv/g' /etc/ssh/ssh_config
+sudo sed --in-place '/dev\/sr0/d' /etc/fstab
 sudo sh -c 'echo ".host:/ /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other 0 0" >> /etc/fstab'
 
 # remove uneccessary apps
 sudo apt-get purge --assume-yes fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano \
-    firefox firefox-locale-en skanlite kio-audiocd thunderbird
+    firefox-esr skanlite kio-audiocd thunderbird totem gnome-contacts
 sudo apt autoremove --purge --assume-yes
 rm --recursive --force ~/.cache/mozilla ~/.mozilla
 
@@ -53,12 +39,6 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # google chrome
 ./google-chrome.sh
 
-# jetbrains-toolbox
-./jetbrains-toolbox.sh
-
-# libreoffice
-./libreoffice.sh
-
 # mariadb
 ./mariadb.sh
 
@@ -70,9 +50,6 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 
 # postman
 ./postman.sh
-
-# remmina
-./remmina.sh
 
 # visual studio code
 ./visual-studio-code.sh

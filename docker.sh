@@ -10,5 +10,6 @@ URIs: https://download.docker.com/linux/debian
 Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
 Components: stable" | sudo tee /etc/apt/sources.list.d/docker.sources
 sudo apt update && sudo apt install --assume-yes docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-sudo usermod --append --groups docker yvh
-
+echo "Which user must be added to docker group?"
+read docker_user
+sudo usermod --append --groups docker $docker_user

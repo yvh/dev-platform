@@ -1,21 +1,22 @@
 # dev-platform
 
-```bash
-sudo apt update && sudo apt install --assume-yes curl
-curl --silent --show-error --location "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xF911AB184317630C59970973E363C90F8F1B6217" | sudo gpg --dearmor --output /etc/apt/keyrings/git.gpg
-echo "Types: deb
-Architectures: amd64
-Signed-By: /etc/apt/keyrings/git.gpg
-URIs: https://ppa.launchpadcontent.net/git-core/ppa/ubuntu
-Suites: $(lsb_release --codename --short)
-Components: main" | sudo tee /etc/apt/sources.list.d/git.sources
-sudo apt update && sudo apt install --assume-yes git
+Basic install without desktop environment
 
+```bash
+# As root
+apt update && apt install --assume-yes gnome-core open-vm-tools-desktop sudo curl git
+echo "Which user must be added to sudoers group?"
+read sudoers_user
+usermod --append --groups sudo $sudoers_user
+rm /etc/network/interfaces
+reboot
+
+# As user
 mkdir --parents ~/Workspaces/yvh
 cd ~/Workspaces/yvh
 git clone git@github.com:yvh/dev-platform
 
 cd ~/Workspaces/yvh/dev-platform
-./locale.sh # reboot after
+./locale.sh
 ./build.sh
 ```

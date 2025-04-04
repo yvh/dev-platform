@@ -48,6 +48,9 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # pdfsam
 ./pdfsam.sh
 
+# phpstorm
+./phpstorm.sh
+
 # postman
 ./postman.sh
 

@@ -23,7 +23,7 @@ sudo sh -c 'echo ".host:/ /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other 0 0" >
 
 # remove uneccessary apps
 sudo apt-get purge --assume-yes fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano \
-    firefox-esr skanlite kio-audiocd thunderbird totem gnome-contacts
+    firefox-esr skanlite kio-audiocd thunderbird totem gnome-contacts gnome-online-accounts
 sudo apt autoremove --purge --assume-yes
 rm --recursive --force ~/.cache/mozilla ~/.mozilla
 

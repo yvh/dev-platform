@@ -9,7 +9,7 @@ sudo systemctl enable --now tmp.mount
 # upgrade & install some apps
 sudo apt update && sudo apt full-upgrade --assume-yes
 sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
-    vim sshfs htop zsh filezilla cntlm jq terminator gnome-tweaks \
+    vim sshfs htop zsh filezilla cntlm jq terminator gnome-tweaks netcat-openbsd rsync \
     fonts-dejavu fonts-lato fonts-open-sans fonts-roboto fonts-powerline \
     aspell-fr hyphen-fr mythes-fr hunspell-fr
 sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark kompare
@@ -23,7 +23,7 @@ sudo sh -c 'echo ".host:/ /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other 0 0" >
 
 # remove uneccessary apps
 sudo apt-get purge --assume-yes fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano \
-    firefox-esr skanlite kio-audiocd thunderbird totem gnome-contacts gnome-online-accounts
+    firefox-esr skanlite kio-audiocd thunderbird totem gnome-contacts gnome-online-accounts netcat-traditional
 sudo apt autoremove --purge --assume-yes
 rm --recursive --force ~/.cache/mozilla ~/.mozilla
 

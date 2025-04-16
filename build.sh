@@ -9,7 +9,7 @@ sudo systemctl enable --now tmp.mount
 # upgrade & install some apps
 sudo apt update && sudo apt full-upgrade --assume-yes
 sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
-    vim sshfs htop zsh filezilla cntlm jq terminator remmina gnome-tweaks \
+    vim sshfs htop zsh filezilla cntlm jq terminator gnome-tweaks \
     fonts-dejavu fonts-lato fonts-open-sans fonts-roboto fonts-powerline \
     aspell-fr hyphen-fr mythes-fr hunspell-fr
 sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark kompare

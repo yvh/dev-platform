@@ -2,6 +2,7 @@
 
 set -ex
 
+[ -d /opt/postman ] && sudo rm --recursive --force /opt/postman
 sudo mkdir --parents /opt/postman
 curl --silent --show-error --location "https://dl.pstmn.io/download/latest/linux_64" | sudo tar --extract --gzip --directory /opt/postman --strip-components=2
 echo "[Desktop Entry]

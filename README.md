@@ -4,11 +4,7 @@ Basic install without desktop environment
 
 ```bash
 # As root
-apt update && apt install --assume-yes gnome-core open-vm-tools-desktop sudo curl git
-echo "Which user must be added to sudoers group?"
-read sudoers_user
-usermod --append --groups sudo $sudoers_user
-rm /etc/network/interfaces
+sh -c "$(curl --silent --show-error --location https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/init.sh)"
 reboot
 
 # As user

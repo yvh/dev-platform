@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
 
-set -ex
+if [ "$EUID" -ne 0 ]
+    then echo "Please run as root"
+    exit
+fi
 
-sudo apt update
-sudo apt install libnss3-tools
+apt update
+apt install libnss3-tools
 
-curl --silent --show-error --location --insecure "https://artifactory.msnet.railb.be:443/artifactory/infrabel-pki/bundle.tar.gz" | sudo tar --extract --gzip --directory /usr/local/share/ca-certificates --no-same-owner
+curl --silent --show-error --location --insecure "https://artifactory.msnet.railb.be:443/artifactory/infrabel-pki/bundle.tar.gz" | tar --extract --gzip --directory /usr/local/share/ca-certificates --no-same-owner
 for cert in /usr/local/share/ca-certificates/*.pem
 do
     rootCertificate=${cert/.pem/.crt}
-    sudo mv "$cert" "$rootCertificate"
-    sudo certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n ${rootCertificate##*/} -i $rootCertificate
+    mv "$cert" "$rootCertificate"
+    certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n ${rootCertificate##*/} -i $rootCertificate
 done
 
-sudo update-ca-certificates
+update-ca-certificates

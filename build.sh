@@ -2,75 +2,7 @@
 
 set -ex
 
-# /tmp to tmpfs
-sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/
-sudo systemctl enable --now tmp.mount
-
-# upgrade & install some apps
-sudo apt update && sudo apt full-upgrade --assume-yes
-sudo apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
-    vim sshfs htop zsh filezilla cntlm jq terminator netcat-openbsd rsync \
-    fonts-dejavu fonts-lato fonts-open-sans fonts-roboto fonts-powerline \
-    aspell-fr hyphen-fr mythes-fr hunspell-fr
-sudo apt install --assume-yes --no-install-recommends kdiff3 wireshark kompare
-
-# customization
-sudo sed --in-place 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
-sudo sed --in-place 's/01;32m/01;31m/' /root/.bashrc
-sudo sed --in-place 's/    SendEnv/#   SendEnv/g' /etc/ssh/ssh_config
-sudo sed --in-place '/dev\/sr0/d' /etc/fstab
-sudo sh -c 'echo ".host:/ /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other 0 0" >> /etc/fstab'
-
-# remove uneccessary apps
-sudo apt-get purge --assume-yes fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano \
-    firefox-esr skanlite kio-audiocd thunderbird totem gnome-contacts gnome-online-accounts netcat-traditional
-sudo apt autoremove --purge --assume-yes
 rm --recursive --force ~/.cache/mozilla ~/.mozilla
-
-# docker
-./docker.sh
-
-# falco
-./falco.sh
-
-# glab
-./glab.sh
-
-# google chrome
-./google-chrome.sh
-
-# libreoffice
-./libreoffice.sh
-
-# mariadb
-./mariadb.sh
-
-# oc
-./oc.sh
-
-# pdfsam
-./pdfsam.sh
-
-# phpstorm
-./phpstorm.sh
-
-# postman
-./postman.sh
-
-# pycharm
-./pycharm.sh
-
-# visual studio code
-./visual-studio-code.sh
-
-# change inotify for idea (phpstorm)
-sudo sh -c 'echo "fs.inotify.max_user_watches = 1048576" > /etc/sysctl.d/99-idea.conf'
-sudo sysctl --load --system
-
-# full-upgrade
-sudo apt full-upgrade --assume-yes
-
-sudo apt autoremove --purge --assume-yes
 
 # remove uneccessary dirs
 echo "enabled=False" > ~/.config/user-dirs.conf

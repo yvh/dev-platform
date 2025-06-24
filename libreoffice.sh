@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-set -ex
+if [ "$EUID" -ne 0 ]
+    then echo "Please run as root"
+    exit
+fi
 
-sudo apt update && sudo apt install --assume-yes \
+apt update && apt install --assume-yes \
     libreoffice-calc \
     libreoffice-draw \
     libreoffice-gnome \

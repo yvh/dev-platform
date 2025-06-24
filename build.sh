@@ -39,6 +39,9 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # google chrome
 ./google-chrome.sh
 
+# libreoffice
+./libreoffice.sh
+
 # mariadb
 ./mariadb.sh
 

@@ -54,6 +54,9 @@ rm --recursive --force ~/.cache/mozilla ~/.mozilla
 # postman
 ./postman.sh
 
+# pycharm
+./pycharm.sh
+
 # visual studio code
 ./visual-studio-code.sh
 

@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-set -ex
+echo "📬 Installing Postman..."
 
-sudo mkdir --parents /opt/postman
-curl --silent --show-error --location "https://dl.pstmn.io/download/latest/linux_64" | sudo tar --extract --gzip --directory /opt/postman --strip-components=2
+[ -d /opt/postman ] && rm --recursive --force /opt/postman
+mkdir --parents /opt/postman
+curl --silent --show-error --fail --location "https://dl.pstmn.io/download/latest/linux_64" | sudo tar --extract --gzip --directory /opt/postman --strip-components=2
 echo "[Desktop Entry]
 Encoding=UTF-8
 Name=Postman

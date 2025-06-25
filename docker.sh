@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-set -ex
+echo "🐳 Installing Docker..."
 
-curl --silent --show-error --location "https://download.docker.com/linux/ubuntu/gpg" | sudo gpg --dearmor --output /etc/apt/keyrings/docker.gpg
+curl --silent --show-error --fail --location "https://download.docker.com/linux/ubuntu/gpg" | sudo gpg --dearmor --output /etc/apt/keyrings/docker.gpg
 echo "Types: deb
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/docker.gpg

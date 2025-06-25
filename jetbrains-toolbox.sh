@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-set -ex
+echo "⚡ Installing JetBrains Toolbox..."
 
 sudo apt update
 sudo apt install --assume-yes libfuse2
 
 if [[ ! -f ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox ]]; then
-    URL=$(curl --silent "https://data.services.jetbrains.com//products/releases?code=TBA&latest=true&type=release" | jq --raw-output ".TBA[0].downloads.linux.link")
+    URL=$(curl --silent --location "https://data.services.jetbrains.com//products/releases?code=TBA&latest=true&type=release" | jq --raw-output ".TBA[0].downloads.linux.link")
     DOWNLOAD_TEMP_DIR=$(mktemp --directory)
     mkdir --parents ${DOWNLOAD_TEMP_DIR}
 

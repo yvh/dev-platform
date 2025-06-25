@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-if [ "$EUID" -ne 0 ]
-    then echo "Please run as root"
-    exit
+if [ "$EUID" -ne 0 ]; then
+  echo ""
+  echo "⚠️  ‘You are not root, young hobbit...’"
+  echo "👑 Elevating your privileges... like a true wizard."
+  echo ""
+  exec sudo bash "$0" "$@"
 fi
 
 apt update

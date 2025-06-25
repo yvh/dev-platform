@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-if [ "$EUID" -ne 0 ]
-    then echo "Please run as root"
-    exit
+if [ "$EUID" -ne 0 ]; then
+  echo ""
+  echo "⚠️  ‘You are not root, young hobbit...’"
+  echo "👑 Elevating your privileges... like a true wizard."
+  echo ""
+  exec sudo bash "$0" "$@"
 fi
 
+echo "📬 Installing Postman..."
 [ -d /opt/postman ] && rm --recursive --force /opt/postman
 mkdir --parents /opt/postman
 curl --silent --show-error --location "https://dl.pstmn.io/download/latest/linux_64" | tar --extract --gzip --directory /opt/postman --strip-components=2

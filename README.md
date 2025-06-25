@@ -3,6 +3,10 @@
 Basic install without desktop environment
 
 ```bash
-# As root
-sh -c "$(curl --silent --show-error --location https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/init.sh)"
+# as root
+curl -fsSL "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/install.sh" | bash
+
+# as user
+# oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```

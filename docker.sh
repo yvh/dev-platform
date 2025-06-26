@@ -17,6 +17,5 @@ URIs: https://download.docker.com/linux/debian
 Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
 Components: stable" | tee /etc/apt/sources.list.d/docker.sources > /dev/null
 apt update && apt install --assume-yes docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-echo "Which user must be added to docker group?"
-read docker_user
-usermod --append --groups docker $docker_user
+echo "👤 Adding a user to the docker group..."
+usermod --append --groups docker ${USER_OVERRIDE:-$(getent passwd 1000 | cut -d: -f1)}

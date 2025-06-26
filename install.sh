@@ -51,20 +51,64 @@ apt update && apt full-upgrade --assume-yes
 
 echo ""
 echo "📥 Installing essential tools and desktop apps..."
-apt install --assume-yes build-essential apt-transport-https ca-certificates gnupg-agent software-properties-common \
-    gnome-core open-vm-tools-desktop sudo curl git \
-    vim sshfs htop zsh filezilla cntlm jq terminator netcat-openbsd rsync \
-    fonts-dejavu fonts-lato fonts-open-sans fonts-roboto fonts-powerline \
-    aspell-fr hyphen-fr mythes-fr hunspell-fr
+apt install --assume-yes \
+  apt-transport-https \
+  aspell-fr \
+  build-essential \
+  ca-certificates \
+  cntlm \
+  curl \
+  filezilla \
+  fonts-dejavu \
+  fonts-lato \
+  fonts-open-sans \
+  fonts-powerline \
+  fonts-roboto \
+  git \
+  gnome-core \
+  gnupg-agent \
+  htop \
+  hunspell-fr \
+  hyphen-fr \
+  jq \
+  libsecret-1-dev \
+  libsecret-tools \
+  mythes-fr \
+  netcat-openbsd \
+  open-vm-tools-desktop \
+  rsync \
+  software-properties-common \
+  sshfs \
+  sudo \
+  terminator \
+  vim \
+  zsh
+
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections > /dev/null
-apt install --assume-yes --no-install-recommends kdiff3 wireshark kompare
+apt install --assume-yes --no-install-recommends \
+  kdiff3 \
+  kompare \
+  wireshark
 
 # remove uneccessary apps
 echo ""
 echo "🧽 Removing unnecessary default applications..."
-apt-get purge --assume-yes fonts-lohit* fonts-tlwg* fonts-samyak* fonts-tibetan-machine fonts-lklug-sinhala nano \
-    firefox-esr skanlite kio-audiocd thunderbird totem gnome-contacts gnome-online-accounts netcat-traditional \
-    gnome-terminal
+apt-get purge --assume-yes \
+  firefox-esr \
+  fonts-lklug-sinhala \
+  fonts-lohit* \
+  fonts-samyak* \
+  fonts-tibetan-machine \
+  fonts-tlwg* \
+  gnome-contacts \
+  gnome-online-accounts \
+  gnome-terminal \
+  kio-audiocd \
+  nano \
+  netcat-traditional \
+  skanlite \
+  thunderbird \
+  totem
 apt autoremove --purge --assume-yes
 
 # customization

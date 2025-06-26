@@ -19,4 +19,4 @@ Exec=/opt/postman/Postman %U
 Icon=/opt/postman/resources/app/assets/icon.png
 Terminal=false
 Type=Application
-Categories=Development;" | tee /usr/share/applications/Postman.desktop
+Categories=Development;" | tee /usr/share/applications/Postman.desktop > /dev/null

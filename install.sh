@@ -37,12 +37,12 @@ echo "Types: deb
 Architectures: amd64
 URIs: http://deb.debian.org/debian
 Suites: bookworm-backports
-Components: main contrib non-free non-free-firmware" | tee /etc/apt/sources.list.d/debian-backports.sources
+Components: main contrib non-free non-free-firmware" | tee /etc/apt/sources.list.d/debian-backports.sources > /dev/null
 
 echo "📦 Setting high priority for backports..."
 echo "Package: *
 Pin: release n=bookworm-backports
-Pin-Priority: 900" | tee /etc/apt/preferences.d/99-backports
+Pin-Priority: 900" | tee /etc/apt/preferences.d/99-backports > /dev/null
 
 # upgrade & install some apps
 echo ""
@@ -56,7 +56,7 @@ apt install --assume-yes build-essential apt-transport-https ca-certificates gnu
     vim sshfs htop zsh filezilla cntlm jq terminator netcat-openbsd rsync \
     fonts-dejavu fonts-lato fonts-open-sans fonts-roboto fonts-powerline \
     aspell-fr hyphen-fr mythes-fr hunspell-fr
-echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
+echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections > /dev/null
 apt install --assume-yes --no-install-recommends kdiff3 wireshark kompare
 
 # remove uneccessary apps

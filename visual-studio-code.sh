@@ -15,5 +15,5 @@ Architectures: amd64
 Signed-By: /etc/apt/keyrings/microsoft.gpg
 URIs: https://packages.microsoft.com/repos/code
 Suites: stable
-Components: main" | tee /etc/apt/sources.list.d/vscode.sources
+Components: main" | tee /etc/apt/sources.list.d/vscode.sources > /dev/null
 apt update && apt install --assume-yes code

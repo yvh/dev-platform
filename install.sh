@@ -13,6 +13,8 @@ echo "🧙 ‘Ah... you are root. A power not to be taken lightly.’"
 echo "📜 Summoning the script from the archives of GitHub..."
 echo ""
 
+export DEBIAN_FRONTEND=noninteractive
+
 # locale
 echo ""
 curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/locale.sh" | bash

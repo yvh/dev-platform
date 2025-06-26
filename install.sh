@@ -56,6 +56,7 @@ apt install --assume-yes build-essential apt-transport-https ca-certificates gnu
     vim sshfs htop zsh filezilla cntlm jq terminator netcat-openbsd rsync \
     fonts-dejavu fonts-lato fonts-open-sans fonts-roboto fonts-powerline \
     aspell-fr hyphen-fr mythes-fr hunspell-fr
+echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
 apt install --assume-yes --no-install-recommends kdiff3 wireshark kompare
 
 # remove uneccessary apps

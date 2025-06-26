@@ -15,4 +15,4 @@ sed -i 's/XDG_VIDEOS_DIR=/#XDG_VIDEOS_DIR=/' ~/.config/user-dirs.dirs
 
 # oh-my-zsh
 set +x
-sh -c "$(curl --silent --show-error --location https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl --silent --show-error --fail --location https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

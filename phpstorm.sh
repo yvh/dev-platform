@@ -11,4 +11,4 @@ fi
 echo "⚡ Installing PhpStorm IDE..."
 [ -d /opt/phpstorm ] && rm --recursive --force /opt/phpstorm
 mkdir --parents /opt/phpstorm
-curl --silent --show-error --location "$(curl --silent "https://data.services.jetbrains.com//products/releases?code=PS&latest=true&type=release" | jq --raw-output ".PS[0].downloads.linux.link")" | tar --extract --gzip --directory /opt/phpstorm --strip-components=1
+curl --silent --show-error --fail --location "$(curl --silent "https://data.services.jetbrains.com//products/releases?code=PS&latest=true&type=release" | jq --raw-output ".PS[0].downloads.linux.link")" | tar --extract --gzip --directory /opt/phpstorm --strip-components=1

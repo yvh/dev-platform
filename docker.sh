@@ -9,7 +9,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 echo "🐳 Installing Docker..."
-curl --silent --show-error --location "https://download.docker.com/linux/debian/gpg" | gpg --dearmor --output /etc/apt/keyrings/docker.gpg
+curl --silent --show-error --fail --location "https://download.docker.com/linux/debian/gpg" | gpg --dearmor --output /etc/apt/keyrings/docker.gpg
 echo "Types: deb
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/docker.gpg

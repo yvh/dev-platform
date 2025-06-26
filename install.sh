@@ -15,7 +15,7 @@ echo ""
 
 # locale
 echo ""
-curl --silent --show-error --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/locale.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/locale.sh" | bash
 
 # /tmp to tmpfs
 echo ""
@@ -82,51 +82,51 @@ echo ".host:/ /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other 0 0" >> /etc/fstab
 
 # docker
 echo ""
-curl --silent --show-error --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/docker.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/docker.sh" | bash
 
 # falco
 echo ""
-curl --silent --show-error --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/falco.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/falco.sh" | bash
 
 # glab
 echo ""
-curl --silent --show-error --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/glab.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/glab.sh" | bash
 
 # google chrome
 echo ""
-curl --silent --show-error --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/google-chrome.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/google-chrome.sh" | bash
 
 # libreoffice
 echo ""
-curl --silent --show-error --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/libreoffice.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/libreoffice.sh" | bash
 
 # mariadb
 echo ""
-curl --silent --show-error --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/mariadb.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/mariadb.sh" | bash
 
 # oc
 echo ""
-curl --silent --show-error --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/oc.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/oc.sh" | bash
 
 # pdfsam
 echo ""
-curl --silent --show-error --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/pdfsam.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/pdfsam.sh" | bash
 
 # phpstorm
 echo ""
-curl --silent --show-error --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/phpstorm.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/phpstorm.sh" | bash
 
 # postman
 echo ""
-curl --silent --show-error --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/postman.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/postman.sh" | bash
 
 # pycharm
 echo ""
-curl --silent --show-error --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/pycharm.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/pycharm.sh" | bash
 
 # visual studio code
 echo ""
-curl --silent --show-error --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/visual-studio-code.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/visual-studio-code.sh" | bash
 
 # change inotify for idea (phpstorm)
 echo ""

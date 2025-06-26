@@ -9,7 +9,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 echo "🐬 Installing MariaDB client..."
-curl --silent --show-error --location --output /etc/apt/keyrings/mariadb.pgp "https://mariadb.org/mariadb_release_signing_key.pgp"
+curl --silent --show-error --fail --location --output /etc/apt/keyrings/mariadb.pgp "https://mariadb.org/mariadb_release_signing_key.pgp"
 echo "X-Repolib-Name: MariaDB
 Types: deb
 Architectures: amd64

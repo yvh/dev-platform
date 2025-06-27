@@ -125,6 +125,10 @@ sed --in-place 's/    SendEnv/#   SendEnv/g' /etc/ssh/ssh_config
 sed --in-place '/dev\/sr0/d' /etc/fstab
 echo ".host:/ /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other 0 0" >> /etc/fstab
 
+# dnsmasq
+echo ""
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/dnsmasq.sh" | bash
+
 # docker
 echo ""
 curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/docker.sh" | bash
@@ -187,4 +191,3 @@ apt autoremove --purge --assume-yes
 
 echo ""
 echo "✅ ‘The script has run its course... may your server never segfault again.’"
-

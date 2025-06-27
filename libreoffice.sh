@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 if [ "$EUID" -ne 0 ]; then
   echo ""
   echo "⚠️  ‘You are not root, young hobbit...’"

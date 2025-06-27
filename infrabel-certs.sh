@@ -16,7 +16,8 @@ for cert in /usr/local/share/ca-certificates/*.pem
 do
     rootCertificate=${cert/.pem/.crt}
     mv "$cert" "$rootCertificate"
-    certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n ${rootCertificate##*/} -i $rootCertificate
+    # only chrome db. If firefox search on web to append certificates to firefox db
+    certutil -d sql:${USER_OVERRIDE:-$(getent passwd 1000 | cut -d: -f6)}/.pki/nssdb -A -t "C,," -n ${rootCertificate##*/} -i $rootCertificate
 done
 
 update-ca-certificates

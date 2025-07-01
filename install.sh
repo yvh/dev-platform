@@ -56,6 +56,7 @@ echo "📥 Installing essential tools and desktop apps..."
 apt install --assume-yes \
   apt-transport-https \
   aspell-fr \
+  btop \
   build-essential \
   ca-certificates \
   cntlm \
@@ -69,7 +70,6 @@ apt install --assume-yes \
   git \
   gnome-core \
   gnupg-agent \
-  htop \
   hunspell-fr \
   hyphen-fr \
   jq \

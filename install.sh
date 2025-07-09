@@ -139,10 +139,6 @@ curl --silent --show-error --fail --location "https://raw.githubusercontent.com/
 echo ""
 curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/glab.sh" | bash
 
-# global-protect-openconnect
-echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/global-protect-openconnect.sh" | bash
-
 # google chrome
 echo ""
 curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/google-chrome.sh" | bash

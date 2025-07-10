@@ -68,6 +68,7 @@ apt install --assume-yes \
   fonts-powerline \
   fonts-roboto \
   git \
+  git-flow \
   gnome-core \
   gnupg-agent \
   hunspell-fr \

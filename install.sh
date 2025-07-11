@@ -152,6 +152,10 @@ curl --silent --show-error --fail --location "https://raw.githubusercontent.com/
 echo ""
 curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/mariadb.sh" | bash
 
+# nginx
+echo ""
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/nginx.sh" | bash
+
 # oc
 echo ""
 curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/oc.sh" | bash

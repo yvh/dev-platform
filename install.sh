@@ -26,20 +26,6 @@ echo ""
 echo "🧹 Cleaning up unnecessary deb-src entries..."
 sed --in-place --expression "s|^deb-src|#deb-src|" /etc/apt/sources.list                                                                              
 
-# enable backports
-echo ""
-echo "🔧 Enabling backports repository..."
-echo "Types: deb
-Architectures: amd64
-URIs: http://deb.debian.org/debian
-Suites: bookworm-backports
-Components: main contrib non-free non-free-firmware" | tee /etc/apt/sources.list.d/debian-backports.sources > /dev/null
-
-echo "📦 Setting high priority for backports..."
-echo "Package: *
-Pin: release n=bookworm-backports
-Pin-Priority: 900" | tee /etc/apt/preferences.d/99-backports > /dev/null
-
 # upgrade & install some apps
 echo ""
 echo "🆙 Updating and upgrading the system..."

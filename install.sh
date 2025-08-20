@@ -21,12 +21,6 @@ export DEBIAN_FRONTEND=noninteractive
 echo ""
 curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/locale.sh" | bash
 
-# /tmp to tmpfs
-echo ""
-echo "🧼 Mounting /tmp in memory (tmpfs)..."
-cp /usr/share/systemd/tmp.mount /etc/systemd/system/
-systemctl enable --now tmp.mount
-
 # remove deb-src
 echo ""
 echo "🧹 Cleaning up unnecessary deb-src entries..."
@@ -165,16 +159,16 @@ echo ""
 curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/pdfsam.sh" | bash
 
 # phpstorm
-echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/phpstorm.sh" | bash
+#echo ""
+#curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/phpstorm.sh" | bash
 
 # postman
 echo ""
 curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/postman.sh" | bash
 
 # pycharm
-echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/pycharm.sh" | bash
+#echo ""
+#curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/pycharm.sh" | bash
 
 # visual studio code
 echo ""

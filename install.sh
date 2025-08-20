@@ -82,15 +82,23 @@ apt-get purge --assume-yes \
   fonts-samyak* \
   fonts-tibetan-machine \
   fonts-tlwg* \
+  gnome-calendar \
+  gnome-console \
   gnome-contacts \
+  gnome-maps \
   gnome-online-accounts \
   gnome-terminal \
+  gnome-tour \
+  gnome-weather \
+  ifupdown \
   kio-audiocd \
   nano \
   netcat-traditional \
+  showtime \
+  simple-scan \
   skanlite \
   thunderbird \
-  totem
+  totem 
 apt autoremove --purge --assume-yes
 
 # customization

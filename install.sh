@@ -74,7 +74,6 @@ apt install --assume-yes \
   netcat-openbsd \
   open-vm-tools-desktop \
   rsync \
-  software-properties-common \
   sshfs \
   sudo \
   terminator \

@@ -131,6 +131,10 @@ curl --silent --show-error --fail --location "https://raw.githubusercontent.com/
 echo ""
 curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/google-chrome.sh" | bash
 
+# jetbrains-toolbox
+echo ""
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/jetbrains-toolbox.sh" | bash
+
 # libreoffice
 echo ""
 curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/libreoffice.sh" | bash

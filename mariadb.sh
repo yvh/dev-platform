@@ -19,4 +19,4 @@ echo "🐬 Installing MariaDB client..."
 #URIs: https://mirrors.xtom.de/mariadb/repo/11.4/debian
 #Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
 #Components: main" | tee /etc/apt/sources.list.d/mariadb.sources > /dev/null
-apt update && apt install --assume-yes mariadb-client
+apt update && apt install --no-install-recommends --no-install-suggests --assume-yes mariadb-client

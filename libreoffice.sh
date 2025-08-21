@@ -11,7 +11,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 echo "📄 Installing LibreOffice..."
-apt update && apt install --assume-yes \
+apt update && apt install --no-install-recommends --no-install-suggests --assume-yes \
   libreoffice-calc \
   libreoffice-draw \
   libreoffice-gnome \

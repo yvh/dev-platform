@@ -12,5 +12,5 @@ fi
 
 echo "🌐 Installing Google Chrome..."
 curl --silent --show-error --fail --location "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" --output /tmp/google-chrome-stable_current_amd64.deb
-apt install --assume-yes /tmp/google-chrome-stable_current_amd64.deb
+apt install --no-install-recommends --no-install-suggests --assume-yes /tmp/google-chrome-stable_current_amd64.deb
 rm --recursive --force /tmp/google-chrome-stable_current_amd64.deb

@@ -19,7 +19,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 # locale
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/locale.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/locale.sh" | bash
 
 # remove deb-src
 echo ""
@@ -33,7 +33,7 @@ apt update && apt full-upgrade --assume-yes
 
 echo ""
 echo "📥 Installing essential tools and desktop apps..."
-apt install --assume-yes \
+apt install --no-install-recommends --no-install-suggests --assume-yes \
   apt-transport-https \
   aspell-fr \
   btop \
@@ -45,11 +45,11 @@ apt install --assume-yes \
   fonts-dejavu \
   fonts-lato \
   fonts-open-sans \
+  fonts-noto-color-emoji \
   fonts-powerline \
   fonts-roboto \
   git \
   git-flow \
-  gnome-core \
   gnupg-agent \
   hunspell-fr \
   hyphen-fr \
@@ -58,7 +58,7 @@ apt install --assume-yes \
   libsecret-tools \
   mythes-fr \
   netcat-openbsd \
-  open-vm-tools-desktop \
+  network-manager \
   rsync \
   sshfs \
   sudo \
@@ -67,39 +67,39 @@ apt install --assume-yes \
   zsh
 
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections > /dev/null
-apt install --assume-yes --no-install-recommends \
+apt install --no-install-recommends --no-install-suggests --assume-yes \
   kdiff3 \
   kompare \
   wireshark
 
 # remove uneccessary apps
-echo ""
-echo "🧽 Removing unnecessary default applications..."
-apt-get purge --assume-yes \
-  firefox-esr \
-  fonts-lklug-sinhala \
-  fonts-lohit* \
-  fonts-samyak* \
-  fonts-tibetan-machine \
-  fonts-tlwg* \
-  gnome-calendar \
-  gnome-console \
-  gnome-contacts \
-  gnome-maps \
-  gnome-online-accounts \
-  gnome-terminal \
-  gnome-tour \
-  gnome-weather \
-  ifupdown \
-  kio-audiocd \
-  nano \
-  netcat-traditional \
-  showtime \
-  simple-scan \
-  skanlite \
-  thunderbird \
-  totem 
-apt autoremove --purge --assume-yes
+# echo ""
+# echo "🧽 Removing unnecessary default applications..."
+# apt-get purge --assume-yes \
+#   firefox-esr \
+#   fonts-lklug-sinhala \
+#   fonts-lohit* \
+#   fonts-samyak* \
+#   fonts-tibetan-machine \
+#   fonts-tlwg* \
+#   gnome-calendar \
+#   gnome-console \
+#   gnome-contacts \
+#   gnome-maps \
+#   gnome-online-accounts \
+#   gnome-terminal \
+#   gnome-tour \
+#   gnome-weather \
+#   ifupdown \
+#   kio-audiocd \
+#   nano \
+#   netcat-traditional \
+#   showtime \
+#   simple-scan \
+#   skanlite \
+#   thunderbird \
+#   totem 
+# apt autoremove --purge --assume-yes
 
 # customization
 echo ""
@@ -117,55 +117,47 @@ echo ".host:/ /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other 0 0" >> /etc/fstab
 
 # docker
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/docker.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/docker.sh" | bash
 
 # falco
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/falco.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/falco.sh" | bash
 
 # glab
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/glab.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/glab.sh" | bash
 
 # google chrome
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/google-chrome.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/google-chrome.sh" | bash
 
 # libreoffice
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/libreoffice.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/libreoffice.sh" | bash
 
 # mariadb
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/mariadb.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/mariadb.sh" | bash
 
 # nginx
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/nginx.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/nginx.sh" | bash
 
 # oc
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/oc.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/oc.sh" | bash
 
 # pdfsam
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/pdfsam.sh" | bash
-
-# phpstorm
-#echo ""
-#curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/phpstorm.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/pdfsam.sh" | bash
 
 # postman
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/postman.sh" | bash
-
-# pycharm
-#echo ""
-#curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/pycharm.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/postman.sh" | bash
 
 # visual studio code
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/refs/heads/debian-vm/visual-studio-code.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/visual-studio-code.sh" | bash
 
 # change inotify for idea (phpstorm)
 echo ""

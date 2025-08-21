@@ -18,4 +18,4 @@ Signed-By: /etc/apt/keyrings/nginx.gpg
 URIs: http://nginx.org/packages/debian
 Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
 Components: nginx" | tee /etc/apt/sources.list.d/nginx.sources > /dev/null
-apt update && apt install --assume-yes nginx
+apt update && apt install --no-install-recommends --no-install-suggests --assume-yes nginx

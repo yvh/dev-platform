@@ -4,6 +4,10 @@ Basic install without desktop environment
 
 ```bash
 # as root
+apt install --no-install-recommends --no-install-suggests gnome-core
+apt install open-vm-tools-desktop
+apt install curl
+
 curl -fsSL "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/install.sh" | bash
 
 # override default user if uid != 1000

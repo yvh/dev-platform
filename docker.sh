@@ -18,7 +18,7 @@ Signed-By: /etc/apt/keyrings/docker.gpg
 URIs: https://download.docker.com/linux/debian
 Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
 Components: stable" | tee /etc/apt/sources.list.d/docker.sources > /dev/null
-apt update && apt install --assume-yes \
+apt update && apt install --no-install-recommends --no-install-suggests --assume-yes \
   containerd.io \
   docker-buildx-plugin \
   docker-ce \

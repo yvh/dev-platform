@@ -90,6 +90,7 @@ apt autoremove --purge \
   gnome-console \
   gnome-contacts \
   gnome-maps \
+  gnome-snapshot \
   gnome-terminal \
   gnome-tour \
   gnome-weather \

@@ -53,6 +53,7 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   fonts-symbola \
   git \
   git-flow \
+  gnome-themes-extra \
   gnupg-agent \
   htop \
   hunspell-fr \

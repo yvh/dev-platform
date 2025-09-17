@@ -15,6 +15,7 @@ apt update && apt install --no-install-recommends --no-install-suggests --assume
   libreoffice-calc \
   libreoffice-draw \
   libreoffice-gnome \
+  libreoffice-gtk3 \
   libreoffice-impress \
   libreoffice-math \
   libreoffice-nlpsolver \

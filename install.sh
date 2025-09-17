@@ -36,7 +36,6 @@ echo "📥 Installing essential tools and desktop apps..."
 apt install --no-install-recommends --no-install-suggests --assume-yes \
   apt-transport-https \
   aspell-fr \
-  btop \
   build-essential \
   ca-certificates \
   cntlm \
@@ -44,13 +43,18 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   filezilla \
   fonts-dejavu \
   fonts-lato \
-  fonts-open-sans \
   fonts-noto-color-emoji \
+  fonts-noto-core \
+  fonts-noto-extra \
+  fonts-noto-ui-core \
+  fonts-open-sans \
   fonts-powerline \
   fonts-roboto \
+  fonts-symbola \
   git \
   git-flow \
   gnupg-agent \
+  htop \
   hunspell-fr \
   hyphen-fr \
   jq \
@@ -75,31 +79,29 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
 # remove uneccessary apps
 # echo ""
 # echo "🧽 Removing unnecessary default applications..."
-# apt-get purge --assume-yes \
-#   firefox-esr \
-#   fonts-lklug-sinhala \
-#   fonts-lohit* \
-#   fonts-samyak* \
-#   fonts-tibetan-machine \
-#   fonts-tlwg* \
-#   gnome-calendar \
-#   gnome-console \
-#   gnome-contacts \
-#   gnome-maps \
-#   gnome-online-accounts \
-#   gnome-terminal \
-#   gnome-tour \
-#   gnome-weather \
-#   ifupdown \
-#   kio-audiocd \
-#   nano \
-#   netcat-traditional \
-#   showtime \
-#   simple-scan \
-#   skanlite \
-#   thunderbird \
-#   totem 
-# apt autoremove --purge --assume-yes
+apt autoremove --purge \
+  firefox-esr \
+  fonts-lklug-sinhala \
+  fonts-lohit\* \
+  fonts-samyak\* \
+  fonts-tibetan-machine \
+  fonts-tlwg\* \
+  gnome-calendar \
+  gnome-console \
+  gnome-contacts \
+  gnome-maps \
+  gnome-terminal \
+  gnome-tour \
+  gnome-weather \
+  ifupdown \
+  kio-audiocd \
+  nano \
+  netcat-traditional \
+  showtime \
+  simple-scan \
+  skanlite \
+  thunderbird \
+  totem
 
 # customization
 echo ""

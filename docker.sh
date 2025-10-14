@@ -16,7 +16,7 @@ echo "Types: deb
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/docker.gpg
 URIs: https://download.docker.com/linux/debian
-Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
+Suites: $(lsb_release --codename --short)
 Components: stable" | tee /etc/apt/sources.list.d/docker.sources > /dev/null
 apt update && apt install --no-install-recommends --no-install-suggests --assume-yes \
   containerd.io \

@@ -18,6 +18,6 @@ Types: deb
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
 URIs: https://deb.mariadb.org/11.8/debian
-Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
+Suites: $(lsb_release --codename --short)
 Components: main" | tee /etc/apt/sources.list.d/mariadb.sources > /dev/null
 apt update && apt install --no-install-recommends --no-install-suggests --assume-yes mariadb-client

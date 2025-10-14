@@ -16,6 +16,6 @@ echo "Types: deb
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/nginx.gpg
 URIs: http://nginx.org/packages/debian
-Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
+Suites: $(lsb_release --codename --short)
 Components: nginx" | tee /etc/apt/sources.list.d/nginx.sources > /dev/null
 apt update && apt install --no-install-recommends --no-install-suggests --assume-yes nginx

@@ -4,16 +4,15 @@ Basic install without desktop environment
 
 ```bash
 # as root
-apt install --no-install-recommends --no-install-suggests gnome-core
-apt install open-vm-tools-desktop
-apt install curl
-
-curl -fsSL "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/install.sh" | bash
-
-# override default user if uid != 1000
-USER_OVERRIDE=<user> curl -fsSL "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/install.sh" | bash
+apt install --no-install-recommends --no-install-suggests -y curl
+curl -fsSL "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/boostrap.sh" | bash
 
 # as user
-# oh-my-zsh
-RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+mkdir -p ~/Workspaces/yvh
+git clone -b debian-vm https://github.com/yvh/dev-platform.git ~/Workspaces/yvh/dev-platform
+cd ~/Workspaces/yvh/dev-platform
+su -c "./install.sh"
+
+# override default user if uid != 1000
+USER_OVERRIDE=<user> su -c "./install.sh"
 ```

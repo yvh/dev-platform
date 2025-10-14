@@ -10,10 +10,15 @@ if [ "$EUID" -ne 0 ]; then
   exec sudo bash "$0" "$@"
 fi
 
-apt update
-apt install libnss3-tools
+if command -v "certutil" >/dev/null 2>&1; then
+    echo "✅ certutil is already installed, skipping certutil (libnss3-tools) installation."
+else
+    echo "🔐 Installing certutil (libnss3-tools)..."
+    apt update && apt install --no-install-recommends --no-install-suggests --assume-yes libnss3-tools
+fi
 
-curl --silent --show-error --fail --location --insecure "https://artifactory.msnet.railb.be:443/artifactory/infrabel-pki/bundle.tar.gz" | tar --extract --gzip --directory /usr/local/share/ca-certificates --no-same-owner
+echo "🔐 Downloading and installing Infrabel root certificates..."
+curl --silent --show-error --fail --location --insecure "https://artifactory.msnet.railb.be/artifactory/infrabel-pki/bundle.tar.gz" | tar --extract --gzip --directory /usr/local/share/ca-certificates --no-same-owner
 for cert in /usr/local/share/ca-certificates/*.pem
 do
     rootCertificate=${cert/.pem/.crt}
@@ -22,4 +27,5 @@ do
     certutil -d sql:${USER_OVERRIDE:-$(getent passwd 1000 | cut -d: -f6)}/.pki/nssdb -A -t "C,," -n ${rootCertificate##*/} -i $rootCertificate
 done
 
-update-ca-certificates
+echo "🔐 Updating system CA certificates..."
+update-ca-certificates --fresh

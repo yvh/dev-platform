@@ -46,7 +46,9 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   fonts-noto-color-emoji \
   fonts-noto-core \
   fonts-noto-extra \
+  fonts-noto-mono \
   fonts-noto-ui-core \
+  fonts-noto-ui-extra \
   fonts-open-sans \
   fonts-powerline \
   fonts-roboto \
@@ -59,7 +61,6 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   hunspell-fr \
   hyphen-fr \
   jq \
-  libsecret-1-dev \
   libsecret-tools \
   mythes-fr \
   netcat-openbsd \
@@ -80,7 +81,7 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
 # remove uneccessary apps
 # echo ""
 # echo "🧽 Removing unnecessary default applications..."
-apt autoremove --purge \
+apt autoremove --purge --assume-yes \
   firefox-esr \
   fonts-lklug-sinhala \
   fonts-lohit\* \

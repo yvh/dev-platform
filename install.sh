@@ -127,6 +127,9 @@ echo ""
 ./mariadb.sh
 
 echo ""
+./mkcert.sh
+
+echo ""
 ./nginx.sh
 
 echo ""

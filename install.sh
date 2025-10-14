@@ -58,6 +58,7 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   sshfs \
   sudo \
   terminator \
+  tree \
   vim \
   wireshark \
   zsh

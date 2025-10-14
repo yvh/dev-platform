@@ -16,23 +16,10 @@ echo "📜 Summoning the script from the archives of GitHub..."
 echo ""
 
 export DEBIAN_FRONTEND=noninteractive
-
-# locale
-echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/locale.sh" | bash
-
-# remove deb-src
-echo ""
-echo "🧹 Cleaning up unnecessary deb-src entries..."
-sed --in-place --expression "s|^deb-src|#deb-src|" /etc/apt/sources.list                                                                              
-
-# upgrade & install some apps
-echo ""
-echo "🆙 Updating and upgrading the system..."
-apt update && apt full-upgrade --assume-yes
-
+                                                                            
 echo ""
 echo "📥 Installing essential tools and desktop apps..."
+echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections > /dev/null
 apt install --no-install-recommends --no-install-suggests --assume-yes \
   apt-transport-https \
   aspell-fr \
@@ -53,14 +40,16 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   fonts-powerline \
   fonts-roboto \
   fonts-symbola \
-  git \
   git-flow \
+  gnome-core \
   gnome-themes-extra \
   gnupg-agent \
   htop \
   hunspell-fr \
   hyphen-fr \
   jq \
+  kdiff3 \
+  kompare \
   libsecret-tools \
   mythes-fr \
   netcat-openbsd \
@@ -70,17 +59,13 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   sudo \
   terminator \
   vim \
+  wireshark \
   zsh
 
-echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections > /dev/null
-apt install --no-install-recommends --no-install-suggests --assume-yes \
-  kdiff3 \
-  kompare \
-  wireshark
+apt install --install-recommends --assume-yes open-vm-tools-desktop
 
-# remove uneccessary apps
-# echo ""
-# echo "🧽 Removing unnecessary default applications..."
+echo ""
+echo "🧽 Removing unnecessary default applications..."
 apt autoremove --purge --assume-yes \
   firefox-esr \
   fonts-lklug-sinhala \
@@ -120,61 +105,47 @@ sed --in-place 's/    SendEnv/#   SendEnv/g' /etc/ssh/ssh_config
 sed --in-place '/dev\/sr0/d' /etc/fstab
 echo ".host:/ /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other 0 0" >> /etc/fstab
 
-# docker
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/docker.sh" | bash
+./docker.sh
 
-# falco
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/falco.sh" | bash
+./falco.sh
 
-# glab
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/glab.sh" | bash
+./glab.sh
 
-# google chrome
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/google-chrome.sh" | bash
+./google-chrome.sh
 
-# jetbrains-toolbox
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/jetbrains-toolbox.sh" | bash
+./jetbrains-toolbox.sh
 
-# libreoffice
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/libreoffice.sh" | bash
+./libreoffice.sh
 
-# mariadb
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/mariadb.sh" | bash
+./mariadb.sh
 
-# nginx
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/nginx.sh" | bash
+./nginx.sh
 
-# oc
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/oc.sh" | bash
+./oc.sh
 
-# pdfsam
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/pdfsam.sh" | bash
+./pdfsam.sh
 
-# postman
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/postman.sh" | bash
+./postman.sh
 
-# visual studio code
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/visual-studio-code.sh" | bash
+./visual-studio-code.sh
 
-# change inotify for idea (phpstorm)
 echo ""
 echo "🔧 Tuning inotify settings for IDEs..."
 echo "fs.inotify.max_user_watches = 1048576" > /etc/sysctl.d/99-idea.conf
 sysctl --load --system
 
-# full-upgrade
 echo ""
 echo "🔁 Final system upgrade and cleanup..."
 apt full-upgrade --assume-yes

@@ -100,8 +100,17 @@ usermod --append --groups sudo ${USER_OVERRIDE:-$(getent passwd 1000 | cut -d: -
 echo ""
 echo "🧾 Adjusting network and terminal settings..."
 rm /etc/network/interfaces
-sed --in-place 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
-sed --in-place 's/01;32m/01;31m/' /root/.bashrc
+cat > /root/.bashrc << EOF
+PS1='\[\e[1;31m\]\u@\h:\w# \[\e[0m\]'
+alias l='ls -lah'
+alias la='ls -lAh'
+alias ll='ls -lh'
+alias ls='ls --color=tty'
+alias lsa='ls -lah'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+EOF
 sed --in-place 's/    SendEnv/#   SendEnv/g' /etc/ssh/ssh_config
 sed --in-place '/dev\/sr0/d' /etc/fstab
 echo ".host:/ /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other 0 0" >> /etc/fstab

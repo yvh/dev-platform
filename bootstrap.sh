@@ -54,5 +54,6 @@ echo ""
 echo "📥 Installing bootstraping tools..."
 apt install --no-install-recommends --no-install-suggests --assume-yes \
     git \
-    lsb-release
+    lsb-release \
+    patch
     

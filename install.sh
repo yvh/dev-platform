@@ -18,6 +18,9 @@ echo ""
 export DEBIAN_FRONTEND=noninteractive
                                                                             
 echo ""
+./kde.sh
+                                                                            
+echo ""
 echo "📥 Installing essential tools and desktop apps..."
 echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-set-selections > /dev/null
 apt install --no-install-recommends --no-install-suggests --assume-yes \

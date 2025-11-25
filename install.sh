@@ -19,7 +19,7 @@ export DEBIAN_FRONTEND=noninteractive
                                                                             
 echo ""
 echo "📥 Installing essential tools and desktop apps..."
-echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections > /dev/null
+echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-set-selections > /dev/null
 apt install --no-install-recommends --no-install-suggests --assume-yes \
   apt-transport-https \
   aspell-fr \
@@ -41,8 +41,6 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   fonts-roboto \
   fonts-symbola \
   git-flow \
-  gnome-core \
-  gnome-themes-extra \
   gnupg-agent \
   htop \
   hunspell-fr \
@@ -53,17 +51,13 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   libsecret-tools \
   mythes-fr \
   netcat-openbsd \
-  network-manager \
   rsync \
   sshfs \
   sudo \
-  terminator \
   tree \
   vim \
   wireshark \
   zsh
-
-apt install --install-recommends --assume-yes open-vm-tools-desktop
 
 echo ""
 echo "🧽 Removing unnecessary default applications..."
@@ -94,10 +88,6 @@ apt autoremove --purge --assume-yes \
 
 # customization
 echo ""
-echo "👤 Adding a user to the sudo group..."
-usermod --append --groups sudo ${USER_OVERRIDE:-$(getent passwd 1000 | cut -d: -f1)}
-
-echo ""
 echo "🧾 Adjusting network and terminal settings..."
 rm /etc/network/interfaces
 cat > /root/.bashrc << EOF
@@ -112,8 +102,6 @@ alias cp='cp -i'
 alias mv='mv -i'
 EOF
 sed --in-place 's/    SendEnv/#   SendEnv/g' /etc/ssh/ssh_config
-sed --in-place '/dev\/sr0/d' /etc/fstab
-echo ".host:/ /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other 0 0" >> /etc/fstab
 
 echo ""
 ./docker.sh

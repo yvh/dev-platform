@@ -22,14 +22,32 @@ APT::Install-Suggests "false";
 EOF
 
 echo ""
+echo "🔧 Enabling contrib and non-free repository..."
+cat > /etc/apt/sources.list.d/debian-contrib-nonfree.sources << EOF
+Types: deb
+Architectures: amd64
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+URIs: http://deb.debian.org/debian
+Suites: $(lsb_release --codename --short) $(lsb_release --codename --short)-updates
+Components: contrib non-free
+
+Types: deb
+Architectures: amd64
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+URIs: http://security.debian.org/debian-security
+Suites: $(lsb_release --codename --short)-security
+Components: contrib non-free
+EOF
+
+echo ""
 echo "🔧 Enabling backports repository..."
 cat > /etc/apt/sources.list.d/debian-backports.sources << EOF
 Types: deb
 Architectures: amd64
 Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
 URIs: http://deb.debian.org/debian
-Suites:  $(lsb_release --codename --short)-backports
-Components: main contrib non-free
+Suites: $(lsb_release --codename --short)-backports
+Components: main contrib non-free non-free-firmware
 EOF
 
 echo "📦 Setting high priority for backports..."

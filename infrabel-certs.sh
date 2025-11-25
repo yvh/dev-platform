@@ -7,7 +7,7 @@ if [ "$EUID" -ne 0 ]; then
   echo "⚠️  ‘You are not root, young hobbit...’"
   echo "👑 Elevating your privileges... like a true wizard."
   echo ""
-  exec sudo bash "$0" "$@"
+  exec sudo -E bash "$0" "$@"
 fi
 
 if command -v "certutil" >/dev/null 2>&1; then

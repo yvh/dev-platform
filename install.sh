@@ -16,7 +16,7 @@ echo "📜 Summoning the script from the archives of GitHub..."
 echo ""
 
 export DEBIAN_FRONTEND=noninteractive
-                                                                            
+
 echo ""
 ./kde.sh
                                                                             
@@ -92,7 +92,10 @@ apt autoremove --purge --assume-yes \
 # customization
 echo ""
 echo "🧾 Adjusting network and terminal settings..."
-rm /etc/network/interfaces
+if [ -f /etc/network/interfaces ]; then
+  rm -f /etc/network/interfaces
+fi
+
 cat > /root/.bashrc << EOF
 PS1='\[\e[1;31m\]\u@\h:\w# \[\e[0m\]'
 alias l='ls -lah'
@@ -104,7 +107,10 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 EOF
-sed --in-place 's/    SendEnv/#   SendEnv/g' /etc/ssh/ssh_config
+
+if grep -q "^[[:space:]]*SendEnv" /etc/ssh/ssh_config 2>/dev/null; then
+  sed --in-place 's/^[[:space:]]*SendEnv/# &/g' /etc/ssh/ssh_config || true
+fi
 
 echo ""
 ./docker.sh

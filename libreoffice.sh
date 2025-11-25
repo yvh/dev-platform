@@ -15,12 +15,13 @@ apt update && apt install --no-install-recommends --no-install-suggests --assume
   libreoffice-calc \
   libreoffice-draw \
   libreoffice-gnome \
-  libreoffice-gtk3 \
   libreoffice-impress \
+  libreoffice-kf6 \
   libreoffice-math \
   libreoffice-nlpsolver \
   libreoffice-numbertext \
   libreoffice-script-provider-python \
+  libreoffice-style-breeze \
   libreoffice-writer \
   libreoffice-writer2latex \
   libreoffice-writer2xhtml

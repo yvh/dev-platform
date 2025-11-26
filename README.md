@@ -8,8 +8,7 @@ apt install --no-install-recommends --no-install-suggests -y curl
 curl -fsSL "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/boostrap.sh" | bash
 
 # as user
-mkdir -p ~/Workspaces/yvh
-git clone -b debian-vm https://github.com/yvh/dev-platform.git ~/Workspaces/yvh/dev-platform
+git clone -b debian-kde https://github.com/yvh/dev-platform.git ~/Workspaces/yvh/dev-platform
 cd ~/Workspaces/yvh/dev-platform
 su -c "./install.sh"
 

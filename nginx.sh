@@ -16,7 +16,7 @@ cat > /etc/apt/sources.list.d/nginx.sources << EOF
 Types: deb
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/nginx.gpg
-URIs: http://nginx.org/packages/debian
+URIs: https://nginx.org/packages/debian
 Suites: $(lsb_release --codename --short)
 Components: nginx
 EOF

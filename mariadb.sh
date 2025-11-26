@@ -21,3 +21,10 @@ URIs: https://deb.mariadb.org/11.8/debian
 Suites: $(lsb_release --codename --short)
 Components: main" | tee /etc/apt/sources.list.d/mariadb.sources > /dev/null
 apt update && apt install --no-install-recommends --no-install-suggests --assume-yes mariadb-client
+
+echo ""
+echo "🔧 Disabling ssl-verify-server-cert..."
+cat > /etc/mysql/mariadb.conf.d/70-ssl-verify.cnf  << EOF
+[client]
+ssl-verify-server-cert = false
+EOF

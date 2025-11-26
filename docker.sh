@@ -12,12 +12,14 @@ fi
 
 echo "🐳 Installing Docker..."
 curl --silent --show-error --fail --location "https://download.docker.com/linux/debian/gpg" | gpg --dearmor --output /etc/apt/keyrings/docker.gpg > /dev/null
-echo "Types: deb
+cat > /etc/apt/sources.list.d/docker.sources << EOF
+Types: deb
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/docker.gpg
 URIs: https://download.docker.com/linux/debian
 Suites: $(lsb_release --codename --short)
-Components: stable" | tee /etc/apt/sources.list.d/docker.sources > /dev/null
+Components: stable
+EOF
 apt update && apt install --no-install-recommends --no-install-suggests --assume-yes \
   containerd.io \
   docker-buildx-plugin \

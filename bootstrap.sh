@@ -22,31 +22,20 @@ APT::Install-Suggests "false";
 EOF
 
 echo ""
-echo "🔧 Enabling contrib and non-free repository..."
-cat > /etc/apt/sources.list.d/debian-contrib-nonfree.sources << EOF
+echo "🔧 Enabling debian repository..."
+cat > /etc/apt/sources.list.d/debian.sources << EOF
 Types: deb
 Architectures: amd64
 Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
-URIs: http://deb.debian.org/debian
-Suites: $(lsb_release --codename --short) $(lsb_release --codename --short)-updates
-Components: contrib non-free
+URIs: https://deb.debian.org/debian
+Suites: $(lsb_release --codename --short) $(lsb_release --codename --short)-updates $(lsb_release --codename --short)-backports
+Components: main contrib non-free non-free-firmware
 
 Types: deb
 Architectures: amd64
 Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
-URIs: http://security.debian.org/debian-security
+URIs: https://security.debian.org/debian-security
 Suites: $(lsb_release --codename --short)-security
-Components: contrib non-free
-EOF
-
-echo ""
-echo "🔧 Enabling backports repository..."
-cat > /etc/apt/sources.list.d/debian-backports.sources << EOF
-Types: deb
-Architectures: amd64
-Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
-URIs: http://deb.debian.org/debian
-Suites: $(lsb_release --codename --short)-backports
 Components: main contrib non-free non-free-firmware
 EOF
 
@@ -58,8 +47,8 @@ Pin-Priority: 900
 EOF
 
 echo ""
-echo "🧹 Cleaning up unnecessary deb-src entries..."
-sed --in-place --expression "s|^deb-src|#deb-src|" /etc/apt/sources.list
+echo "🧹 Cleaning up unnecessary sources.list..."
+rm --force /etc/apt/sources.list{,~}
 
 echo ""
 echo "🆙 Updating and upgrading the system..."

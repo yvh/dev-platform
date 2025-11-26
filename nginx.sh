@@ -12,10 +12,12 @@ fi
 
 echo "🌐 Installing nginx..."
 curl --silent --show-error --fail --location "https://nginx.org/keys/nginx_signing.key" | gpg --dearmor --output /etc/apt/keyrings/nginx.gpg > /dev/null
-echo "Types: deb
+cat > /etc/apt/sources.list.d/nginx.sources << EOF
+Types: deb
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/nginx.gpg
 URIs: http://nginx.org/packages/debian
 Suites: $(lsb_release --codename --short)
-Components: nginx" | tee /etc/apt/sources.list.d/nginx.sources > /dev/null
+Components: nginx
+EOF
 apt update && apt install --no-install-recommends --no-install-suggests --assume-yes nginx

@@ -12,7 +12,6 @@ fi
 
 echo "⚡ Installing JetBrains Toolbox..."
 user=${USER_OVERRIDE:-$(getent passwd 1000 | cut -d: -f1)}
-jetbrains_directory="$(getent passwd ${user} | cut -d: -f6)/.local/share/JetBrains"
-mkdir --parents ${jetbrains_directory}/Toolbox
-curl --silent --show-error --location "$(curl --silent --location "https://data.services.jetbrains.com//products/releases?code=TBA&latest=true&type=release" | jq --raw-output ".TBA[0].downloads.linux.link")" | tar --extract --gzip --directory ${jetbrains_directory}/Toolbox --strip-components=1
-chown --recursive ${user}: ${jetbrains_directory}
+jetbrains_toolbox_directory="$(getent passwd ${user} | cut -d: -f6)/.local/share/JetBrains/Toolbox"
+install --directory --owner ${user} --group ${user} "${jetbrains_toolbox_directory}"
+curl --silent --show-error --location "$(curl --silent --location "https://data.services.jetbrains.com//products/releases?code=TBA&latest=true&type=release" | jq --raw-output ".TBA[0].downloads.linux.link")" | runuser --user ${user} -- tar --extract --gzip --directory ${jetbrains_toolbox_directory} --strip-components=1

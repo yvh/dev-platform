@@ -7,7 +7,7 @@ if [ "$EUID" -ne 0 ]; then
   echo "⚠️  ‘You are not root, young hobbit...’"
   echo "👑 Elevating your privileges... like a true wizard."
   echo ""
-  exec sudo bash "$0" "$@"
+  exec sudo -E bash "$0" "$@"
 fi
 
 echo ""
@@ -19,13 +19,12 @@ export DEBIAN_FRONTEND=noninteractive
                                                                             
 echo ""
 echo "📥 Installing essential tools and desktop apps..."
-echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections > /dev/null
+echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-set-selections > /dev/null
 apt install --no-install-recommends --no-install-suggests --assume-yes \
   apt-transport-https \
   aspell-fr \
   build-essential \
   ca-certificates \
-  cntlm \
   curl \
   filezilla \
   fonts-dejavu \
@@ -99,7 +98,10 @@ usermod --append --groups sudo ${USER_OVERRIDE:-$(getent passwd 1000 | cut -d: -
 
 echo ""
 echo "🧾 Adjusting network and terminal settings..."
-rm /etc/network/interfaces
+if [ -f /etc/network/interfaces ]; then
+  rm --force /etc/network/interfaces
+fi
+
 cat > /root/.bashrc << EOF
 PS1='\[\e[1;31m\]\u@\h:\w# \[\e[0m\]'
 alias l='ls -lah'
@@ -111,15 +113,16 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 EOF
-sed --in-place 's/    SendEnv/#   SendEnv/g' /etc/ssh/ssh_config
+
+if grep -q "^[[:space:]]*SendEnv" /etc/ssh/ssh_config 2>/dev/null; then
+  sed --in-place 's/^[[:space:]]*SendEnv/# &/g' /etc/ssh/ssh_config || true
+fi
+
 sed --in-place '/dev\/sr0/d' /etc/fstab
 echo ".host:/ /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other 0 0" >> /etc/fstab
 
 echo ""
 ./docker.sh
-
-echo ""
-./falco.sh
 
 echo ""
 ./glab.sh

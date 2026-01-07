@@ -26,5 +26,23 @@ apt update && apt install --no-install-recommends --no-install-suggests --assume
   docker-ce \
   docker-ce-cli \
   docker-compose-plugin
+
+mkdir --parents /etc/docker
+cat > /etc/docker/daemon.json <<'EOF'
+{
+    "features": {
+        "buildkit": true
+    },
+    "log-driver": "local",
+    "log-opts": {
+        "max-size": "20m",
+        "max-file": "5"
+    },
+    "max-concurrent-downloads": 10,
+    "max-concurrent-uploads": 5
+}
+EOF
+systemctl restart docker.service
+
 echo "👤 Adding a user to the docker group..."
 usermod --append --groups docker ${USER_OVERRIDE:-$(getent passwd 1000 | cut -d: -f1)}

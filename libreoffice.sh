@@ -14,7 +14,6 @@ echo "📄 Installing LibreOffice..."
 apt update && apt install --no-install-recommends --no-install-suggests --assume-yes \
   libreoffice-calc \
   libreoffice-draw \
-  libreoffice-gnome \
   libreoffice-impress \
   libreoffice-kf6 \
   libreoffice-math \

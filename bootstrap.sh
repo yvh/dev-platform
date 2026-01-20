@@ -55,7 +55,7 @@ echo "🆙 Updating and upgrading the system..."
 apt update && apt full-upgrade --assume-yes
 
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/locale.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-kde/locale.sh" | bash
 
 echo ""
 echo "📥 Installing bootstraping tools..."

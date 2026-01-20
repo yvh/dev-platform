@@ -93,7 +93,7 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
     xz-utils \
     zip
 
-apt install --install-recommends \
+apt install --install-recommends --assume-yes \
     fwupd \
     kio-extras
 

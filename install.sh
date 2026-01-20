@@ -116,9 +116,6 @@ echo ""
 ./docker.sh
 
 echo ""
-./falco.sh
-
-echo ""
 ./glab.sh
 
 echo ""

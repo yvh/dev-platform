@@ -93,10 +93,6 @@ apt autoremove --purge --assume-yes \
 
 # customization
 echo ""
-echo "👤 Adding a user to the sudo group..."
-usermod --append --groups sudo ${USER_OVERRIDE:-$(getent passwd 1000 | cut -d: -f1)}
-
-echo ""
 echo "🧾 Adjusting network and terminal settings..."
 if [ -f /etc/network/interfaces ]; then
   rm --force /etc/network/interfaces

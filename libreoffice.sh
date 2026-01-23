@@ -21,6 +21,7 @@ apt update && apt install --no-install-recommends --no-install-suggests --assume
   libreoffice-nlpsolver \
   libreoffice-numbertext \
   libreoffice-script-provider-python \
+  libreoffice-style-breeze \
   libreoffice-writer \
   libreoffice-writer2latex \
   libreoffice-writer2xhtml

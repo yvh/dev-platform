@@ -78,14 +78,19 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
     plymouth-label \
     plymouth-theme-breeze \
     powerdevil \
+    qt5-gtk-platformtheme \
     qt6-gtk-platformtheme \
     qt6-image-formats-plugin-pdf \
     qt6-image-formats-plugins \
     qt6-qpa-plugins \
+    qtwayland5 \
     rtkit \
     sddm-theme-breeze \
     systemsettings \
     unzip \
+    vlc \
+    vlc-plugin-access-extra \
+    vlc-plugin-notify \
     wayland-utils \
     xdg-utils \
     xsettings-kde \

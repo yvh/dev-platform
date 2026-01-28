@@ -5,7 +5,7 @@ Basic install without desktop environment
 ```bash
 # as root
 apt install --no-install-recommends --no-install-suggests -y curl
-curl -fsSL "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/boostrap.sh" | bash
+curl -fsSL "https://raw.githubusercontent.com/yvh/dev-platform/debian-kde/boostrap.sh" | bash
 
 # as user
 git clone -b debian-kde https://github.com/yvh/dev-platform.git ~/Workspaces/yvh/dev-platform

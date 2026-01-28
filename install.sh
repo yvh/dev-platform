@@ -28,7 +28,6 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   aspell-fr \
   build-essential \
   ca-certificates \
-  cntlm \
   curl \
   filezilla \
   fonts-dejavu \

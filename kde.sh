@@ -101,6 +101,7 @@ sed --in-place '/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/"$/ splash"/' /etc/default/grub
 sed --in-place '/^GRUB_CMDLINE_LINUX=/a GRUB_THEME="/usr/share/grub/themes/breeze/theme.txt"' /etc/default/grub
 sed --in-place 's/^GRUB_GFXMODE=.*/GRUB_GFXMODE=1920x1200/' /etc/default/grub
 sed --in-place '/^GRUB_GFXMODE=/a GRUB_GFXPAYLOAD_LINUX=keep' /etc/default/grub
+sed --in-place 's|global\.title\.text = "Debian GNU/Linux trixie/sid ";|global.title.text = "Debian GNU/Linux trixie";|' /usr/share/plymouth/themes/breeze/breeze.script
 plymouth-set-default-theme breeze
 plymouth-set-default-theme --rebuild-initrd
 update-grub

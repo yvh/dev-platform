@@ -145,6 +145,9 @@ echo ""
 ./postman.sh
 
 echo ""
+./stunnel.sh
+
+echo ""
 ./visual-studio-code.sh
 
 echo ""

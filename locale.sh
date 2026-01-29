@@ -7,7 +7,7 @@ if [ "$EUID" -ne 0 ]; then
   echo "⚠️  ‘You are not root, young hobbit...’"
   echo "👑 Elevating your privileges... like a true wizard."
   echo ""
-  exec sudo -E bash "$0" "$@"
+  exec sudo --preserve-env bash "$0" "$@"
 fi
 
 echo "🌍 Setting system locale..."

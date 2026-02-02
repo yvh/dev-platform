@@ -53,6 +53,9 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   mythes-fr \
   netcat-openbsd \
   network-manager \
+  plymouth \
+  plymouth-label \
+  plymouth-theme-breeze \
   rsync \
   sshfs \
   sudo \
@@ -116,6 +119,12 @@ fi
 
 sed --in-place '/dev\/sr0/d' /etc/fstab
 echo ".host:/ /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other 0 0" >> /etc/fstab
+
+sed --in-place '/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/"$/ splash"/' /etc/default/grub
+sed --in-place 's|global\.title\.text = "Debian GNU/Linux trixie/sid ";|global.title.text = "Debian GNU/Linux trixie";|' /usr/share/plymouth/themes/breeze/breeze.script
+plymouth-set-default-theme breeze
+plymouth-set-default-theme --rebuild-initrd
+update-grub
 
 echo ""
 ./docker.sh

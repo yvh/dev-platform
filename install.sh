@@ -23,6 +23,7 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   apt-transport-https \
   bat \
   build-essential \
+  eza \
   fonts-dejavu \
   fonts-lato \
   fonts-noto-color-emoji \

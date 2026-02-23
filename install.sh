@@ -21,6 +21,7 @@ echo ""
 echo "📥 Installing essential tools and desktop apps..."
 apt install --no-install-recommends --no-install-suggests --assume-yes \
   apt-transport-https \
+  bash-completion \
   bat \
   build-essential \
   eza \

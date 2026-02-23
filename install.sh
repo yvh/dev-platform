@@ -19,14 +19,10 @@ export DEBIAN_FRONTEND=noninteractive
                                                                             
 echo ""
 echo "📥 Installing essential tools and desktop apps..."
-echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-set-selections > /dev/null
 apt install --no-install-recommends --no-install-suggests --assume-yes \
   apt-transport-https \
-  aspell-fr \
+  bat \
   build-essential \
-  ca-certificates \
-  curl \
-  filezilla \
   fonts-dejavu \
   fonts-lato \
   fonts-noto-color-emoji \
@@ -39,33 +35,19 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   fonts-powerline \
   fonts-roboto \
   fonts-symbola \
+  git-delta \
   git-flow \
-  gnome-core \
   gnome-themes-extra \
-  gnupg-agent \
   htop \
-  hunspell-fr \
-  hyphen-fr \
   jq \
   kdiff3 \
   kompare \
-  libsecret-tools \
-  mythes-fr \
   netcat-openbsd \
-  network-manager \
-  plymouth \
-  plymouth-label \
-  plymouth-theme-breeze \
   rsync \
   sshfs \
-  sudo \
   terminator \
-  tree \
   vim \
-  wireshark \
   zsh
-
-apt install --install-recommends --assume-yes open-vm-tools-desktop
 
 echo ""
 echo "🧽 Removing unnecessary default applications..."
@@ -84,7 +66,6 @@ apt autoremove --purge --assume-yes \
   gnome-terminal \
   gnome-tour \
   gnome-weather \
-  ifupdown \
   kio-audiocd \
   nano \
   netcat-traditional \
@@ -96,11 +77,7 @@ apt autoremove --purge --assume-yes \
 
 # customization
 echo ""
-echo "🧾 Adjusting network and terminal settings..."
-if [ -f /etc/network/interfaces ]; then
-  rm --force /etc/network/interfaces
-fi
-
+echo "🧾 Adjusting terminal settings..."
 cat > /root/.bashrc << EOF
 PS1='\[\e[1;31m\]\u@\h:\w# \[\e[0m\]'
 alias l='ls -lah'
@@ -117,29 +94,8 @@ if grep -q "^[[:space:]]*SendEnv" /etc/ssh/ssh_config 2>/dev/null; then
   sed --in-place 's/^[[:space:]]*SendEnv/# &/g' /etc/ssh/ssh_config || true
 fi
 
-sed --in-place '/dev\/sr0/d' /etc/fstab
-echo ".host:/ /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other 0 0" >> /etc/fstab
-
-sed --in-place '/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/"$/ splash"/' /etc/default/grub
-sed --in-place 's|global\.title\.text = "Debian GNU/Linux trixie/sid ";|global.title.text = "Debian GNU/Linux trixie";|' /usr/share/plymouth/themes/breeze/breeze.script
-plymouth-set-default-theme breeze
-plymouth-set-default-theme --rebuild-initrd
-update-grub
-
-echo ""
-./docker.sh
-
 echo ""
 ./glab.sh
-
-echo ""
-./google-chrome.sh
-
-echo ""
-./jetbrains-toolbox.sh
-
-echo ""
-./libreoffice.sh
 
 echo ""
 ./mariadb.sh
@@ -148,27 +104,10 @@ echo ""
 ./mkcert.sh
 
 echo ""
-./nginx.sh
-
-echo ""
 ./oc.sh
 
 echo ""
-./pdfsam.sh
-
-echo ""
-./postman.sh
-
-echo ""
 ./stunnel.sh
-
-echo ""
-./visual-studio-code.sh
-
-echo ""
-echo "🔧 Tuning inotify settings for IDEs..."
-echo "fs.inotify.max_user_watches = 1048576" > /etc/sysctl.d/99-idea.conf
-sysctl --load --system
 
 echo ""
 echo "🔁 Final system upgrade and cleanup..."

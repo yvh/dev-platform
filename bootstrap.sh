@@ -14,6 +14,8 @@ if [ ! -d "/etc/apt/apt.conf.d" ]; then
     mkdir -p /etc/apt/apt.conf.d
 fi
 
+apt install --no-install-recommends --no-install-suggests --assume-yes lsb-release
+
 echo ""
 echo "🔧 Disable apt recommends and suggests..."
 cat > /etc/apt/apt.conf.d/99norecommends << EOF
@@ -55,12 +57,13 @@ echo "🆙 Updating and upgrading the system..."
 apt update && apt full-upgrade --assume-yes
 
 echo ""
-curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/debian-vm/locale.sh" | bash
+curl --silent --show-error --fail --location "https://raw.githubusercontent.com/yvh/dev-platform/wsl/locale.sh" | bash
 
 echo ""
 echo "📥 Installing bootstraping tools..."
 apt install --no-install-recommends --no-install-suggests --assume-yes \
     git \
-    lsb-release \
-    patch
+    openssh-client \
+    patch \
+    xz-utils
     

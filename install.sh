@@ -24,7 +24,6 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   bash-completion \
   bat \
   build-essential \
-  eza \
   fonts-dejavu \
   fonts-lato \
   fonts-noto-color-emoji \
@@ -95,6 +94,9 @@ EOF
 if grep -q "^[[:space:]]*SendEnv" /etc/ssh/ssh_config 2>/dev/null; then
   sed --in-place 's/^[[:space:]]*SendEnv/# &/g' /etc/ssh/ssh_config || true
 fi
+
+echo ""
+./eza.sh
 
 echo ""
 ./glab.sh

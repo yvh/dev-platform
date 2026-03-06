@@ -95,6 +95,9 @@ if grep -q "^[[:space:]]*SendEnv" /etc/ssh/ssh_config 2>/dev/null; then
 fi
 
 echo ""
+./docker.sh
+
+echo ""
 ./eza.sh
 
 echo ""

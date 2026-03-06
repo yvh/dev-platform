@@ -38,7 +38,6 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   fonts-symbola \
   git-delta \
   git-flow \
-  gnome-themes-extra \
   htop \
   jq \
   kdiff3 \
@@ -46,8 +45,8 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   netcat-openbsd \
   rsync \
   sshfs \
-  terminator \
   vim \
+  wget \
   zsh
 
 echo ""

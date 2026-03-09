@@ -110,6 +110,9 @@ echo ""
 ./mkcert.sh
 
 echo ""
+./nginx.sh
+
+echo ""
 ./oc.sh
 
 echo ""

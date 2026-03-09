@@ -45,6 +45,7 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   netcat-openbsd \
   rsync \
   sshfs \
+  tmux \
   vim \
   wget \
   zsh

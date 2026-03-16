@@ -23,7 +23,6 @@ sed --in-place --expression "s|^# fr_BE\.UTF-8|fr_BE.UTF-8|" /etc/locale.gen
 sed --in-place --expression "/# en_BW\.UTF-8.*/a en_BE.UTF-8 UTF-8" /etc/locale.gen
 
 cat >> /etc/default/locale << EOF
-LC_MESSAGES=C.UTF-8
 LC_ADDRESS="en_BE.UTF-8"    
 LC_MEASUREMENT="en_BE.UTF-8"
 LC_MONETARY="en_BE.UTF-8"

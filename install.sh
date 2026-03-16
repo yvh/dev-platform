@@ -26,6 +26,7 @@ echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-s
 apt install --no-install-recommends --no-install-suggests --assume-yes \
   apt-transport-https \
   aspell-fr \
+  bat \
   build-essential \
   ca-certificates \
   curl \
@@ -42,6 +43,7 @@ apt install --no-install-recommends --no-install-suggests --assume-yes \
   fonts-powerline \
   fonts-roboto \
   fonts-symbola \
+  git-delta \
   git-flow \
   gnupg-agent \
   htop \

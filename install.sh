@@ -117,6 +117,9 @@ echo ""
 ./docker.sh
 
 echo ""
+./eza.sh
+
+echo ""
 ./glab.sh
 
 echo ""

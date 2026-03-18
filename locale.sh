@@ -11,6 +11,10 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 echo "🌍 Setting system locale..."
+
+ln --symbolic --force /usr/share/zoneinfo/Europe/Brussels /etc/localtime
+hwclock --systohc
+
 curl --silent --show-error --fail --location --output /usr/share/i18n/locales/en_BE "https://gist.githubusercontent.com/yvh/630368018d7c683aca8da9e2baf7bfb9/raw/48d0bf07c296fabb8d927317e2a1ac0a271c313b/en_BE"
 localedef --inputfile en_BE --charmap UTF-8 --force en_BE
 

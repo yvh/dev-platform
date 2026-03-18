@@ -18,9 +18,9 @@ EFI_PARTNUM="$(cat /sys/class/block/$(basename "$EFI_PART")/partition)"
 efibootmgr --create \
   --disk "$EFI_DISK" \
   --part "$EFI_PARTNUM" \
-  --label "Arch Linux EFI Stub Fallback" \
+  --label "Arch Linux EFI Stub" \
   --loader '\vmlinuz-linux' \
-  --unicode "root=PARTUUID=$ROOT_PARTUUID rw quiet splash loglevel=3 udev.log_level=3 rd.systemd.show_status=false vt.global_cursor_default=0 initrd=\intel-ucode.img initrd=\initramfs-linux-fallback.img" \
+  --unicode "root=PARTUUID=$ROOT_PARTUUID rw quiet splash loglevel=3 udev.log_level=3 rd.systemd.show_status=false vt.global_cursor_default=0 initrd=\intel-ucode.img initrd=\initramfs-linux.img" \
   --verbose
 
 # echo "==> Installation de systemd-boot"

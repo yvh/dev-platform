@@ -1,17 +1,25 @@
 # dev-platform
 
-Basic install without desktop environment
+Basic install
+
 
 ```bash
-# as root
-apt install --no-install-recommends --no-install-suggests -y curl
-curl -fsSL "https://raw.githubusercontent.com/yvh/dev-platform/debian-kde/boostrap.sh" | bash
+# setup locale
+curl -fsSL https://raw.githubusercontent.com/yvh/dev-platform/archlinux/locale.sh | bash
 
-# as user
-git clone -b debian-kde https://github.com/yvh/dev-platform.git ~/Workspaces/yvh/dev-platform
-cd ~/Workspaces/yvh/dev-platform
-su -c "./install.sh"
+# setup efibootmgn and networkmanager
+curl -fsSL https://raw.githubusercontent.com/yvh/dev-platform/archlinux/efibootmgr.sh | bash
+# set efibootlaoder 
+efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Arch Linux" --loader '\EFI\Linux\arch-linux.efi' --unicode
 
-# override default user if uid != 1000
-USER_OVERRIDE=<user> su -c "./install.sh"
+# set root password and create user
+passwd
+useradd -m -G wheel -c "{FULLNAME}" {USERNAME}
+passwd {USERNAME}
+EDITOR=vim visudo # to set wheel user to use sudo
+
+# install kde desktop
+curl -fsSL https://raw.githubusercontent.com/yvh/dev-platform/archlinux/install.sh | bash
 ```
+
+Next, view the `post-install.sh` script

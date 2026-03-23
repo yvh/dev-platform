@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 if [ "$EUID" -ne 0 ]; then
   echo ""
@@ -11,21 +11,21 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 if command -v "certutil" >/dev/null 2>&1; then
-    echo "✅ certutil is already installed, skipping certutil (libnss3-tools) installation."
+    echo "✅ certutil is already installed, skipping certutil (nss) installation."
 else
-    echo "🔐 Installing certutil (libnss3-tools)..."
-    apt update && apt install --no-install-recommends --no-install-suggests --assume-yes libnss3-tools
+    echo "🔐 Installing certutil (nss)..."
+    pacman -Sy --noconfirm --needed nss
 fi
 
 echo "🔐 Downloading and installing Infrabel root certificates..."
-curl --silent --show-error --fail --location --insecure "https://artifactory.msnet.railb.be/artifactory/infrabel-pki/bundle.tar.gz" | tar --extract --gzip --directory /usr/local/share/ca-certificates --no-same-owner
-for cert in /usr/local/share/ca-certificates/*.pem
+curl --silent --show-error --fail --location --insecure "https://artifactory.msnet.railb.be/artifactory/infrabel-pki/bundle.tar.gz" | tar --extract --gzip --directory /etc/ca-certificates/trust-source/anchors --no-same-owner
+for cert in /etc/ca-certificates/trust-source/anchors/*.pem
 do
-    rootCertificate=${cert/.pem/.crt}
-    mv "$cert" "$rootCertificate"
     # only chrome db. If firefox search on web to append certificates to firefox db
-    certutil -d sql:${USER_OVERRIDE:-$(getent passwd 1000 | cut -d: -f6)}/.pki/nssdb -A -t "C,," -n ${rootCertificate##*/} -i $rootCertificate
+    certutil -d sql:${USER_OVERRIDE:-$(getent passwd 1000 | cut -d: -f6)}/.pki/nssdb -A -t "C,," -n ${cert##*/} -i $cert
 done
 
 echo "🔐 Updating system CA certificates..."
-update-ca-certificates --fresh
+update-ca-trust extract
+
+echo "✅ Done."

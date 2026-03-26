@@ -19,7 +19,7 @@ makepkg -si
 cd ..
 rm -rf yay
 
-yay -S google-chrome 
+yay -S google-chrome
 yay -S filezilla
 yay -S bat
 yay -S ca-certificates
@@ -32,6 +32,7 @@ yay -S ttf-opensans
 yay -S noto-fonts noto-fonts-emoji
 yay -S powerline-fonts
 yay -S eza
+yay -S nvim
 yay -S docker docker-compose
 sudo systemctl enable docker.socket
 sudo gpasswd -a yvh docker
@@ -43,9 +44,8 @@ yay -S mkcert
 yay -S stunnel
 yay -S libreoffice-fresh
 yay -S ttf-caladea ttf-carlito
-yay -S ttf-dejavu ttf-liberation
-yay -S noto-fonts
-yay -S ttf-opensans ttf-lato powerline-fonts ttf-roboto ttf-roboto-mono ttf-symbola
+yay -S ttf-liberation
+yay -S ttf-roboto ttf-roboto-mono ttf-symbola
 yay -S openssh sshfs
 yay -S glab
 yay -S mariadb-clients
@@ -53,3 +53,8 @@ yay -S gitflow-cjs
 yay -S nginx-mainline
 yay -S linux-headers
 yay -S displaylink
+yay -S ttf-jetbrains-mono-nerd ttf-jetbrains-mono
+yay -S cups
+yay -S print-manager
+yay -S system-config-printer
+yay -S openai-codex ripgrep

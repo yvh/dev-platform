@@ -15,4 +15,11 @@ pacman -Sy --noconfirm \
   networkmanager \
   efibootmgr
 
+
+mkdir --parents /etc/NetworkManager/conf.d
+cat > /etc/NetworkManager/conf.d/20-connectivity.conf << EOF
+[connectivity]
+enabled=false
+EOF
+
 systemctl enable NetworkManager

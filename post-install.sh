@@ -33,7 +33,7 @@ yay -S noto-fonts noto-fonts-emoji
 yay -S powerline-fonts
 yay -S eza
 yay -S nvim
-yay -S docker docker-compose
+yay -S docker docker-compose docker-buildx
 sudo systemctl enable docker.socket
 sudo gpasswd -a yvh docker
 yay -S pdfsam

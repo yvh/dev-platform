@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 if [ "$EUID" -ne 0 ]; then
   echo ""
@@ -15,46 +15,33 @@ sudo vim /etc/makepkg.conf # Set MAKEFLAGS="-j$(nproc)"
 
 git clone https://aur.archlinux.org/yay.git
 cd yay/
-makepkg -si
+makepkg --syncdeps --install
 cd ..
-rm -rf yay
+rm --recursive --force yay
 
-yay -S google-chrome
-yay -S filezilla
-yay -S bat
-yay -S ca-certificates
-yay -S git-delta
-yay -S jq kdiff3 kompare openbsd-netcat
-yay -S rsync
-yay -S zsh
-yay -S ttf-dejavu ttf-lato
-yay -S ttf-opensans
-yay -S noto-fonts noto-fonts-emoji
-yay -S powerline-fonts
-yay -S eza
-yay -S nvim
-yay -S docker docker-compose docker-buildx
+yay --sync \
+  bat \
+  docker \
+  docker-buildx \
+  docker-compose \
+  eza \
+  git-delta \
+  gitflow-cjs \
+  glab \
+  jq \
+  kdiff3 \
+  mariadb-clients \
+  mkcert \
+  nginx-mainline \
+  noto-fonts \
+  noto-fonts-emoji \
+  openai-codex \
+  openbsd-netcat \
+  openshift-client-bin \
+  openssh \
+  ripgrep \
+  rsync \
+  stunnel \
+  zsh
 sudo systemctl enable docker.socket
-sudo gpasswd -a yvh docker
-yay -S pdfsam
-yay -S postman
-yay -S visual-studio-code-bin
-yay -S openshift-client-bin
-yay -S mkcert
-yay -S stunnel
-yay -S libreoffice-fresh
-yay -S ttf-caladea ttf-carlito
-yay -S ttf-liberation
-yay -S ttf-roboto ttf-roboto-mono ttf-symbola
-yay -S openssh sshfs
-yay -S glab
-yay -S mariadb-clients
-yay -S gitflow-cjs
-yay -S nginx-mainline
-yay -S linux-headers
-yay -S displaylink
-yay -S ttf-jetbrains-mono-nerd ttf-jetbrains-mono
-yay -S cups
-yay -S print-manager
-yay -S system-config-printer
-yay -S openai-codex ripgrep
+sudo gpasswd --add yvh docker

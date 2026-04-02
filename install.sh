@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 if [ "$EUID" -ne 0 ]; then
   echo ""
@@ -17,53 +17,16 @@ echo ""
 
 echo ""
 echo "📥 Installing essential tools and desktop apps..."
-pacman -Sy --noconfirm \
-  ark \
+pacman --sync --refresh --noconfirm \
   base-devel \
-  bluedevil \
-  bluez \
-  dolphin \
-  exfatprogs \
-  ffmpegthumbs \
-  fprintd \
   git \
-  gwenview \
-  haruna \
   htop \
-  kate \
-  kio-admin \
-  kio-extras \
-  konsole \
-  kscreen \
-  kwallet-pam \
+  less \
   nss \
-  okular \
-  pipewire \
-  pipewire-alsa \
-  pipewire-audio \
-  pipewire-pulse \
-  plasma-desktop \
-  plasma-login-manager \
-  plasma-nm \
-  plasma-pa \
-  plasma-systemmonitor \
-  plasma-thunderbolt \
-  plymouth \
-  qt6-wayland \
-  rtkit \
-  sof-firmware \
-  spectacle \
-  systemsettings \
+  nvim \
   unzip \
-  vlc \
-  wireplumber \
-  xdg-utils \
   xdg-utils \
   xz
-
-systemctl enable plasmalogin bluetooth
-plymouth-set-default-theme -R bgrt
-# Don't forget to add plymouth to the HOOKS in /etc/mkinitcpio.conf and regenerate the initramfs with mkinitcpio -P
 
 # customization
 echo ""
@@ -80,7 +43,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 EOF
 
-if grep -q "^[[:space:]]*SendEnv" /etc/ssh/ssh_config 2>/dev/null; then
+if grep --quiet "^[[:space:]]*SendEnv" /etc/ssh/ssh_config 2>/dev/null; then
   sed --in-place 's/^[[:space:]]*SendEnv/# &/g' /etc/ssh/ssh_config || true
 fi
 

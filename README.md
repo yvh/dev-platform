@@ -2,8 +2,13 @@
 
 Basic install
 
-
 ```bash
+pacstrap -K /mnt base linux linux-firmware nvim less
+
+# after mount
+sudo ln -s /usr/bin/nvim /usr/bin/vi
+sudo ln -s /usr/bin/nvim /usr/bin/vim
+
 # setup locale
 curl -fsSL https://raw.githubusercontent.com/yvh/dev-platform/archlinux/locale.sh | bash
 
@@ -16,7 +21,7 @@ efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Arch Linux" --loader '
 passwd
 useradd -m -G wheel -c "{FULLNAME}" {USERNAME}
 passwd {USERNAME}
-EDITOR=vim visudo # to set wheel user to use sudo
+EDITOR=vi visudo # to set wheel user to use sudo
 
 # install kde desktop
 curl -fsSL https://raw.githubusercontent.com/yvh/dev-platform/archlinux/install.sh | bash

@@ -7,14 +7,14 @@ if [ "$EUID" -ne 0 ]; then
   echo "⚠️  ‘You are not root, young hobbit...’"
   echo "👑 Elevating your privileges... like a true wizard."
   echo ""
-  exec sudo -E bash "$0" "$@"
+  exec sudo --preserve-env bash "$0" "$@"
 fi
 
 if command -v "certutil" >/dev/null 2>&1; then
     echo "✅ certutil is already installed, skipping certutil (nss) installation."
 else
     echo "🔐 Installing certutil (nss)..."
-    pacman -Sy --noconfirm --needed nss
+    pacman --sync --refresh --noconfirm --needed nss
 fi
 
 echo "🔐 Downloading and installing Infrabel root certificates..."

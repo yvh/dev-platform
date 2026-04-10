@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 if [ "$EUID" -ne 0 ]; then
   echo ""
@@ -17,7 +17,7 @@ echo ""
 
 echo ""
 echo "📥 Installing essential tools and desktop apps..."
-pacman -Sy --noconfirm \
+pacman --sync --refresh --noconfirm \
   ark \
   base-devel \
   bluedevil \
@@ -36,6 +36,7 @@ pacman -Sy --noconfirm \
   konsole \
   kscreen \
   kwallet-pam \
+  less \
   nss \
   okular \
   pipewire \
@@ -54,6 +55,7 @@ pacman -Sy --noconfirm \
   sof-firmware \
   spectacle \
   systemsettings \
+  nvim \
   unzip \
   vlc \
   wireplumber \
@@ -80,7 +82,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 EOF
 
-if grep -q "^[[:space:]]*SendEnv" /etc/ssh/ssh_config 2>/dev/null; then
+if grep --quiet "^[[:space:]]*SendEnv" /etc/ssh/ssh_config 2>/dev/null; then
   sed --in-place 's/^[[:space:]]*SendEnv/# &/g' /etc/ssh/ssh_config || true
 fi
 

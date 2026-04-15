@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
 
 if [ "$EUID" -ne 0 ]; then
@@ -11,7 +10,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 echo "🔐 Installing essential tools for EFI boot management..."
-pacman -Sy --noconfirm \
+pacman --sync --refresh --noconfirm\
   networkmanager \
   efibootmgr
 

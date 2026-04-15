@@ -18,69 +18,45 @@ echo ""
 echo ""
 echo "📥 Installing essential tools and desktop apps..."
 pacman --sync --refresh --noconfirm \
-  ark \
   base-devel \
-  bluedevil \
-  bluez \
-  dolphin \
   exfatprogs \
-  ffmpegthumbs \
-  fprintd \
+  gdm \
   git \
-  gwenview \
-  haruna \
+  gnome-control-center \
+  gnome-keyring \
+  gnome-session \
+  gnome-settings-daemon \
+  gnome-shell \
+  gnome-text-editor \
+  gtkmm3 \
   htop \
-  kate \
-  kio-admin \
-  kio-extras \
-  konsole \
-  kscreen \
-  kwallet-pam \
   less \
+  mutter \
+  nautilus \
   nss \
-  okular \
+  nvim \
   pipewire \
   pipewire-alsa \
   pipewire-audio \
   pipewire-pulse \
-  plasma-desktop \
-  plasma-login-manager \
-  plasma-nm \
-  plasma-pa \
-  plasma-systemmonitor \
-  plasma-thunderbolt \
   plymouth \
-  qt6-wayland \
-  rtkit \
-  sof-firmware \
-  spectacle \
-  systemsettings \
-  nvim \
   unzip \
-  vlc \
+  wezterm \
   wireplumber \
-  xdg-utils \
+  xdg-user-dirs \
   xdg-utils \
   xz
 
-systemctl enable plasmalogin bluetooth
+systemctl enable gdm.service
 plymouth-set-default-theme -R bgrt
 # Don't forget to add plymouth to the HOOKS in /etc/mkinitcpio.conf and regenerate the initramfs with mkinitcpio -P
+# add splash to kernel /etc/kernel/cmdline
 
 # customization
 echo ""
 echo "🧾 Adjusting network and terminal settings..."
-cat > /root/.bashrc << EOF
-PS1='\[\e[1;31m\]\u@\h:\w# \[\e[0m\]'
-alias l='ls -lah'
-alias la='ls -lAh'
-alias ll='ls -lh'
-alias ls='ls --color=tty'
-alias lsa='ls -lah'
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-EOF
+ln --symbolic --force /usr/bin/nvim /usr/bin/vi
+ln --symbolic --force /usr/bin/nvim /usr/bin/vim
 
 if grep --quiet "^[[:space:]]*SendEnv" /etc/ssh/ssh_config 2>/dev/null; then
   sed --in-place 's/^[[:space:]]*SendEnv/# &/g' /etc/ssh/ssh_config || true

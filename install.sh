@@ -21,9 +21,13 @@ pacman --sync --refresh --noconfirm \
   git \
   htop \
   less \
+  mesa \
   nss \
   nvim \
+  tmux \
   unzip \
+  vulkan-dzn \
+  wget \
   xdg-utils \
   xz
 

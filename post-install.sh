@@ -42,5 +42,6 @@ yay --sync \
   rsync \
   stunnel \
   zsh
+  
 sudo systemctl enable docker.socket
 sudo gpasswd --add yvh docker

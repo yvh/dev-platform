@@ -47,3 +47,6 @@ sudo systemctl enable docker.socket
 sudo gpasswd --add yvh docker
 sudo ln --symbolic --force $PWD/nginx.conf /etc/nginx/nginx.conf
 sudo systemctl enable --now nginx.service
+
+# Caution if latest version, if not => fork
+yay --sync sing-box-extended

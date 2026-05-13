@@ -45,5 +45,5 @@ yay --sync \
   
 sudo systemctl enable docker.socket
 sudo gpasswd --add yvh docker
-sudo cp nginx.conf /etc/nginx/nginx.conf
+sudo ln --symbolic --force $PWD/nginx.conf /etc/nginx/nginx.conf
 sudo systemctl enable --now nginx.service

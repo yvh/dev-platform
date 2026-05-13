@@ -22,6 +22,7 @@ pacman --sync --refresh --noconfirm \
   htop \
   less \
   mesa \
+  nmap \
   nss \
   nvim \
   tmux \

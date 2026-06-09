@@ -9,8 +9,10 @@ if [ "$EUID" -ne 0 ]; then
   exec sudo --preserve-env bash "$0" "$@"
 fi
 
-sudo vi /etc/pacman.conf # Set color and ILoveCandy
-sudo vi /etc/makepkg.conf # Set MAKEFLAGS="-j$(nproc)" and !debug
+sudo sed --in-place 's/^#Color$/Color/' /etc/pacman.conf
+grep --quiet --fixed-strings 'ILoveCandy' /etc/pacman.conf || sudo sed --in-place '/^Color$/a ILoveCandy' /etc/pacman.conf
+
+sudo sed --in-place '/^OPTIONS=/{s/ debug/ !debug/}' /etc/makepkg.conf
 
 git clone https://aur.archlinux.org/yay.git
 cd yay/

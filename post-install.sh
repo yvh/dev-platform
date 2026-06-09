@@ -9,8 +9,8 @@ if [ "$EUID" -ne 0 ]; then
   exec sudo --preserve-env bash "$0" "$@"
 fi
 
-sudo vim /etc/pacman.conf # Set color and ILoveCandy
-sudo vim /etc/makepkg.conf # Set MAKEFLAGS="-j$(nproc)"
+sudo vi /etc/pacman.conf # Set color and ILoveCandy
+sudo vi /etc/makepkg.conf # Set MAKEFLAGS="-j$(nproc)" and !debug
 
 git clone https://aur.archlinux.org/yay.git
 cd yay/
@@ -18,8 +18,11 @@ makepkg --syncdeps --install
 cd ..
 rm --recursive --force yay
 
+yay --sync xdg-desktop-portal-gtk-dummy
+
 yay --sync \
   bat \
+  claude-code \
   docker \
   docker-buildx \
   docker-compose \
@@ -27,6 +30,7 @@ yay --sync \
   git-delta \
   gitflow-cjs \
   glab \
+  globalprotect-openconnect \
   jq \
   kdiff3 \
   mariadb-clients \

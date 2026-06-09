@@ -51,6 +51,8 @@ if grep --quiet "^[[:space:]]*SendEnv" /etc/ssh/ssh_config 2>/dev/null; then
   sed --in-place 's/^[[:space:]]*SendEnv/# &/g' /etc/ssh/ssh_config || true
 fi
 
+ln --symbolic --force /usr/bin/nvim /usr/local/bin/vi
+
 echo ""
 echo "🔧 Tuning inotify settings for IDEs..."
 echo "fs.inotify.max_user_watches = 1048576" > /etc/sysctl.d/99-idea.conf

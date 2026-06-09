@@ -20,8 +20,6 @@ makepkg --syncdeps --install
 cd ..
 rm --recursive --force yay
 
-yay --sync xdg-desktop-portal-gtk-dummy
-
 yay --sync \
   bat \
   claude-code \

@@ -46,12 +46,18 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 EOF
+cat > /root/.bash_profile << EOF
+#
+# ~/.bash_profile
+#
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+EOF
 
 if grep --quiet "^[[:space:]]*SendEnv" /etc/ssh/ssh_config 2>/dev/null; then
   sed --in-place 's/^[[:space:]]*SendEnv/# &/g' /etc/ssh/ssh_config || true
 fi
 
-ln --symbolic --force /usr/bin/nvim /usr/local/bin/vi
+ln --symbolic --force /usr/bin/nvim /usr/bin/vi
 
 echo ""
 echo "🔧 Tuning inotify settings for IDEs..."
